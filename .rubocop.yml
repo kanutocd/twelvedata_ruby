@@ -1,9 +1,9 @@
-require:
+plugins:
   - rubocop-performance
   - rubocop-rspec
 
 AllCops:
-  TargetRubyVersion: 3.0
+  TargetRubyVersion: 3.4
   NewCops: enable
   Exclude:
     - 'vendor/**/*'
