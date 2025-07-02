@@ -1,13 +1,113 @@
+# Bundler
 /.bundle/
-/.yardoc
-/_yardoc/
+/vendor/bundle
+/lib/bundler/man/
+
+# RubyGems
+*.gem
+/.config
 /coverage/
+/InstalledFiles
 /pkg/
 /spec/reports/
+/spec/examples.txt
+/test/tmp/
+/test/version_tmp/
 /tmp/
 
-# rspec failure tracking
-.rspec
+# Documentation
+/doc/
+/.yardoc/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Test artifacts
+/coverage/
 .rspec_status
-.history
-.vscode
+.byebug_history
+
+# Logs
+*.log
+
+# Runtime
+/tmp/
+*.tmp
+*.pid
+
+# Database
+*.sqlite3
+*.db
+
+# Compiled source
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# SimpleCov
+coverage/
+.coverage
+
+# YARD
+.yardoc/
+doc/
+
+# Rubocop
+.rubocop-*
+
+# Local configuration
+.env.local
+.ruby-version
+.ruby-gemset
+
+# Ignore master key for decryption of credentials.yml.enc
+/config/master.key
+
+# Ignore application configuration
+/config/application.yml
+
+# RSpec
+spec/examples.txt
+
+# Pry
+.pry_history
+
+# Local development
+/playground/
+/scratch/
+/.vscode/
+/.history/
+
