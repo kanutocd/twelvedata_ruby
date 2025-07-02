@@ -78,9 +78,9 @@ module TwelvedataRuby
       # @yield Block to execute if condition is truthy
       # @return [Object] Block result or default value
       def execute_if_truthy(condition, default_return = nil)
-        return default_return unless condition
+        return default_return unless condition && block_given?
 
-        yield if block_given?
+        yield
       end
 
       # Executes block only if condition is exactly true
