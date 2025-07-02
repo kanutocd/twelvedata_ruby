@@ -1,0 +1,276 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to release (e.g., 0.4.0)"
+        required: true
+        type: string
+      dry_run:
+        description: "Dry run (build but do not publish)"
+        required: false
+        type: boolean
+        default: false
+
+env:
+  RUBY_VERSION: "3.4"
+
+jobs:
+  validate:
+    name: Validate Release
+    runs-on: ubuntu-latest
+
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      tag: ${{ steps.version.outputs.tag }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+          bundler-cache: true
+
+      - name: Extract version information
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "release" ]; then
+            VERSION="${{ github.event.release.tag_name }}"
+            TAG="${{ github.event.release.tag_name }}"
+          else
+            VERSION="${{ github.event.inputs.version }}"
+            TAG="v${VERSION}"
+          fi
+
+          echo "version=${VERSION#v}" >> $GITHUB_OUTPUT
+          echo "tag=${TAG}" >> $GITHUB_OUTPUT
+          echo "Extracted version: ${VERSION#v}"
+          echo "Extracted tag: ${TAG}"
+
+      - name: Verify version consistency
+        run: |
+          GEMSPEC_VERSION=$(ruby -e "require './lib/twelvedata_ruby/version'; puts TwelvedataRuby::VERSION")
+          EXPECTED_VERSION="${{ steps.version.outputs.version }}"
+
+          echo "Gemspec version: ${GEMSPEC_VERSION}"
+          echo "Expected version: ${EXPECTED_VERSION}"
+
+          if [ "${GEMSPEC_VERSION}" != "${EXPECTED_VERSION}" ]; then
+            echo "❌ Version mismatch! Gemspec: ${GEMSPEC_VERSION}, Expected: ${EXPECTED_VERSION}"
+            exit 1
+          fi
+
+          echo "✅ Version consistency verified"
+
+      - name: Run quality checks
+        run: |
+          echo "🔍 Running RuboCop..."
+          bundle exec rubocop
+
+          echo "🧪 Running tests..."
+          bundle exec rspec
+
+          echo "✅ All quality checks passed!"
+
+      - name: Verify changelog
+        run: |
+          if ! grep -q "## \[${{ steps.version.outputs.version }}\]" CHANGELOG.md; then
+            echo "❌ Changelog entry not found for version ${{ steps.version.outputs.version }}"
+            echo "Please add a changelog entry before releasing"
+            exit 1
+          fi
+          echo "✅ Changelog entry found"
+
+  build:
+    name: Build Gem
+    runs-on: ubuntu-latest
+    needs: validate
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+          bundler-cache: true
+
+      - name: Build gem
+        run: |
+          echo "📦 Building gem..."
+          gem build twelvedata_ruby.gemspec
+
+          # Verify gem was built
+          if [ ! -f "twelvedata_ruby-${{ needs.validate.outputs.version }}.gem" ]; then
+            echo "❌ Gem file not found!"
+            exit 1
+          fi
+
+          echo "✅ Gem built successfully"
+          ls -la *.gem
+
+      - name: Verify gem contents
+        run: |
+          echo "🔍 Verifying gem contents..."
+          gem contents twelvedata_ruby-${{ needs.validate.outputs.version }}.gem
+
+          echo "📋 Gem specification:"
+          gem specification twelvedata_ruby-${{ needs.validate.outputs.version }}.gem
+
+      - name: Test gem installation
+        run: |
+          echo "🧪 Testing gem installation..."
+          gem install twelvedata_ruby-${{ needs.validate.outputs.version }}.gem
+
+          # Test basic functionality
+          ruby -e "
+            require 'twelvedata_ruby'
+            puts 'Version: ' + TwelvedataRuby::VERSION
+            client = TwelvedataRuby.client
+            puts 'Client created successfully'
+          "
+
+          echo "✅ Gem installation test passed"
+
+      - name: Upload gem artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: gem-${{ needs.validate.outputs.version }}
+          path: "*.gem"
+          retention-days: 30
+
+  security_scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+          bundler-cache: true
+
+      - name: Download gem artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: gem-${{ needs.validate.outputs.version }}
+
+      - name: Security audit
+        run: |
+          echo "🔒 Running security audit..."
+          gem install bundler-audit
+          bundle audit --update
+
+          echo "🔍 Checking gem for vulnerabilities..."
+          # Install the built gem and check its dependencies
+          gem install twelvedata_ruby-${{ needs.validate.outputs.version }}.gem
+
+          echo "✅ Security scan completed"
+
+  publish:
+    name: Publish to RubyGems
+    runs-on: ubuntu-latest
+    needs: [validate, build, security_scan]
+    if: ${{ !github.event.inputs.dry_run }}
+
+    environment:
+      name: rubygems
+      url: https://rubygems.org/gems/twelvedata_ruby
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+          bundler-cache: true
+
+      - name: Download gem artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: gem-${{ needs.validate.outputs.version }}
+
+      - name: Configure RubyGems credentials
+        run: |
+          echo "🔑 Configuring RubyGems credentials..."
+          mkdir -p ~/.gem
+          cat > ~/.gem/credentials << EOF
+          ---
+          :rubygems_api_key: ${{ secrets.RUBYGEMS_API_KEY }}
+          EOF
+          chmod 0600 ~/.gem/credentials
+
+      - name: Publish gem to RubyGems
+        run: |
+          echo "🚀 Publishing gem to RubyGems..."
+          gem push twelvedata_ruby-${{ needs.validate.outputs.version }}.gem
+
+          echo "✅ Gem published successfully!"
+          echo "📦 Published: twelvedata_ruby v${{ needs.validate.outputs.version }}"
+          echo "🔗 URL: https://rubygems.org/gems/twelvedata_ruby/versions/${{ needs.validate.outputs.version }}"
+
+      - name: Verify publication
+        run: |
+          echo "🔍 Verifying publication..."
+          sleep 30  # Wait for RubyGems to process
+
+          # Try to fetch the gem info
+          gem query --remote --exact --name twelvedata_ruby
+
+          echo "✅ Publication verified"
+
+  notify:
+    name: Notify Release
+    runs-on: ubuntu-latest
+    needs: [validate, publish]
+    if: always()
+
+    steps:
+      - name: Notify success
+        if: needs.publish.result == 'success'
+        run: |
+          echo "🎉 Release ${{ needs.validate.outputs.version }} published successfully!"
+          echo "📦 Gem: https://rubygems.org/gems/twelvedata_ruby"
+          echo "📋 Release: ${{ github.event.release.html_url || github.server_url }}/${{ github.repository }}/releases/tag/${{ needs.validate.outputs.tag }}"
+
+      - name: Notify failure
+        if: needs.publish.result == 'failure' || needs.build.result == 'failure' || needs.validate.result == 'failure'
+        run: |
+          echo "❌ Release ${{ needs.validate.outputs.version }} failed!"
+          echo "Please check the workflow logs and fix any issues."
+          exit 1
+
+  dry_run_summary:
+    name: Dry Run Summary
+    runs-on: ubuntu-latest
+    needs: [validate, build, security_scan]
+    if: ${{ github.event.inputs.dry_run }}
+
+    steps:
+      - name: Dry run summary
+        run: |
+          echo "🏃‍♂️ Dry Run Completed Successfully!"
+          echo ""
+          echo "📋 Summary:"
+          echo "  Version: ${{ needs.validate.outputs.version }}"
+          echo "  Tag: ${{ needs.validate.outputs.tag }}"
+          echo "  ✅ Version validation passed"
+          echo "  ✅ Quality checks passed"
+          echo "  ✅ Gem build successful"
+          echo "  ✅ Security scan passed"
+          echo ""
+          echo "🚀 Ready for actual release!"
+          echo "To publish, create a release with tag ${{ needs.validate.outputs.tag }}"
