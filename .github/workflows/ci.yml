@@ -1,0 +1,187 @@
+# .github/workflows/ci.yml
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  schedule:
+    # Run tests daily at 2 AM UTC
+    - cron: "0 2 * * *"
+
+env:
+  COVERAGE: true
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+
+      - name: Run RuboCop
+        run: bundle exec rubocop --format github
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby-version: ["3.0", "3.1", "3.2", "3.3"]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby ${{ matrix.ruby-version }}
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+          bundler-cache: true
+
+      - name: Run tests
+        run: bundle exec rspec --format progress --format RspecJunitFormatter --out tmp/rspec.xml
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results-${{ matrix.ruby-version }}
+          path: tmp/rspec.xml
+
+  coverage:
+    name: Coverage
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+
+      - name: Run tests with coverage
+        run: bundle exec rspec
+        env:
+          COVERAGE: true
+
+      - name: Upload coverage to Code Climate
+        uses: paambaati/codeclimate-action@v5.0.0
+        if: github.ref == 'refs/heads/main'
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageLocations: coverage/coverage.json:simplecov
+
+  security:
+    name: Security
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+
+      - name: Run bundle audit
+        run: |
+          gem install bundler-audit
+          bundle audit --update
+
+      - name: Run brakeman
+        run: |
+          gem install brakeman
+          brakeman --no-pager --format json --output tmp/brakeman.json || true
+
+      - name: Upload security results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: security-results
+          path: tmp/brakeman.json
+
+  docs:
+    name: Documentation
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+
+      - name: Generate documentation
+        run: bundle exec yard doc
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./doc
+          force_orphan: true
+
+  compatibility:
+    name: Compatibility Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+
+      - name: Check dependencies
+        run: |
+          bundle outdated --strict || true
+          bundle exec ruby -c lib/twelvedata_ruby.rb
+
+      - name: Test installation
+        run: |
+          gem build twelvedata_ruby.gemspec
+          gem install twelvedata_ruby-*.gem
+          ruby -e "require 'twelvedata_ruby'; puts TwelvedataRuby::VERSION"
+
+  notify:
+    name: Notify
+    runs-on: ubuntu-latest
+    needs: [lint, test, coverage, security]
+    if: always() && github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Notify on success
+        if: needs.lint.result == 'success' && needs.test.result == 'success'
+        run: echo "✅ All CI checks passed!"
+
+      - name: Notify on failure
+        if: needs.lint.result == 'failure' || needs.test.result == 'failure'
+        run: |
+          echo "❌ CI checks failed!"
+          exit 1
