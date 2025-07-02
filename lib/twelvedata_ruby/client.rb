@@ -4,145 +4,193 @@ require "httpx"
 require "singleton"
 
 module TwelvedataRuby
-  # Responsible of the actual communication -- sending a valid request
-  #   and receiving the response  -- of the API web server
+  # HTTP client for making requests to the Twelve Data API
   class Client
     include Singleton
-    # @return [String] the exported shell ENV variable name that holds the apikey
+
+    # Default environment variable name for API key
     APIKEY_ENV_NAME = "TWELVEDATA_API_KEY"
-    # @return [Integer] CONNECT_TIMEOUT default connection timeout in milliseconds
-    CONNECT_TIMEOUT = 120
-    # @return [String] valid URI base url string of the API
+
+    # Default connection timeout in milliseconds
+    DEFAULT_CONNECT_TIMEOUT = 120
+
+    # Base URL for the Twelve Data API
     BASE_URL = "https://api.twelvedata.com"
 
     class << self
-      def request(request_objects, opts={})
-        HTTPX.with(options.merge(opts)).request(build_requests(request_objects))
+      # Make HTTP requests using HTTPX
+      #
+      # @param request_objects [Request, Array<Request>] Request object(s) to send
+      # @param options [Hash] Additional HTTPX options
+      # @return [HTTPX::Response, Array<HTTPX::Response>] HTTP response(s)
+      def request(request_objects, **options)
+        requests = build_requests(request_objects)
+        http_client = HTTPX.with(http_options.merge(options))
+
+        http_client.request(requests)
       end
 
+      # Build HTTP requests from Request objects
+      #
+      # @param requests [Request, Array<Request>] Request object(s)
+      # @return [Array] Array of HTTP request specs
       def build_requests(requests)
-        Utils.to_a(requests).map(&:build)
+        Utils.to_array(requests).map(&:build)
       end
 
-      def origin
-        @origin ||= {origin: BASE_URL}
-      end
-
-      def timeout
-        {timeout: {connect_timeout: instance.connect_timeout}}
-      end
-
-      def options
-        origin.merge(timeout)
+      # Get HTTP client options
+      #
+      # @return [Hash] HTTPX options
+      def http_options
+        {
+          origin: BASE_URL,
+          timeout: { connect_timeout: instance.connect_timeout }
+        }
       end
     end
 
-    # @!attribute options
-    #   @return [Hash] the options writeonly attribute that may contain values to override the default attribute values.
-    #     This attribute writer was automatically called in @see TwelvedataRuby.client(**options).
-    # @see TwelvedataRuby.client
-    attr_writer :options
+    attr_reader :configuration
 
-    # @return [String] apikey value from the instance options Hash object
-    #   but if nill use the value from +ENV[APIKEY_ENV_NAME]+
+    def initialize
+      @configuration = {}
+      @endpoint_methods_defined = Set.new
+      reset_configuration
+    end
+
+    # Configure the client with new options
+    #
+    # @param options [Hash] Configuration options
+    # @option options [String] :apikey API key for authentication
+    # @option options [Integer] :connect_timeout Connection timeout in milliseconds
+    # @option options [String] :apikey_env_var_name Environment variable name for API key
+    # @return [self] Returns self for method chaining
+    def configure(**options)
+      @configuration.merge!(options)
+      self
+    end
+
+    # Get the current API key
+    #
+    # @return [String, nil] Current API key
     def apikey
-      Utils.empty_to_nil(options[:apikey]) || ENV[apikey_env_var_name]
+      Utils.empty_to_nil(@configuration[:apikey]) || ENV[apikey_env_var_name]
     end
 
-    # The writer method that can be used to pass manually the value of the +apikey+
-    # @param [String] apikey
-    # @return [String] +apikey+ value
+    # Set the API key
+    #
+    # @param apikey [String] New API key
+    # @return [String] The API key that was set
     def apikey=(apikey)
-      options[:apikey] = apikey
+      @configuration[:apikey] = apikey
     end
 
+    # Get the connection timeout
+    #
+    # @return [Integer] Connection timeout in milliseconds
     def connect_timeout
-      parse_connect_timeout(options[:connect_timeout])
+      parse_timeout(@configuration[:connect_timeout])
     end
 
-    def connect_timeout=(connect_timeout)
-      parse_connect_timeout(connect_timeout)
+    # Set the connection timeout
+    #
+    # @param timeout [Integer, String] New timeout value
+    # @return [Integer] The timeout that was set
+    def connect_timeout=(timeout)
+      @configuration[:connect_timeout] = parse_timeout(timeout)
     end
 
-    # The name of the ENVIRONMENT variable that may hold the value of the Twelve Data API key
-    # # @return [String] the ENV variable that will be used to fetch from ENV the value of the API  key
+    # Get the environment variable name for the API key
+    #
+    # @return [String] Environment variable name
     def apikey_env_var_name
-      (options[:apikey_env_var_name] || APIKEY_ENV_NAME).upcase
+      (@configuration[:apikey_env_var_name] || APIKEY_ENV_NAME).upcase
     end
 
-    # A setter helper method to configure the ENV variable name of the API key
-    # @param [String] apikey_env_var_name
-    # @return [String] the ENV variable name
-    # @see #apikey_env_var_name
-    def apikey_env_var_name=(apikey_env_var_name)
-      options[:apikey_env_var_name] = apikey_env_var_name
+    # Set the environment variable name for the API key
+    #
+    # @param var_name [String] New environment variable name
+    # @return [String] The variable name that was set (uppercased)
+    def apikey_env_var_name=(var_name)
+      @configuration[:apikey_env_var_name] = var_name.upcase
     end
 
-    # The actual API fetch that transport the built request object.
-    # +Request#valid?+ guards the actual fetch and instead will return a Hash instance of endpoint errors.
-    # If +Request#valid?+ returns true, request object will be sent to the API and returned response will
-    # will be resolved which may or may not contain a kind of +ResponseError+ instance.
-    # @see Response.resolve for more details
-
-    # @param [Request] request built API request object that holds the endpoint payload
+    # Fetch data from an API endpoint
     #
-    # @return [NilClass] +nil+ if @param +request+ is not truthy
-    # @return [Hash] :errors if the request is not valid will hold the  endpoint errors details
-    #   @see Endpoint#errors
-    # @return [Response] if +request+ is valid and received an actual response from the API server.
-    #   The response object's #error may or may not return a kind of ResponseError
-    #   @see Response#error
-    # @return [ResponseError] if the response received did not come from the API server itself.
-    #
+    # @param request [Request] Request object to send
+    # @return [Response, Hash, ResponseError] Response or error information
     def fetch(request)
       return nil unless request
 
-      request.valid? ? Response.resolve(self.class.request(request), request) : {errors: request.errors}
+      if request.valid?
+        http_response = self.class.request(request)
+        Response.resolve(http_response, request)
+      else
+        { errors: request.errors }
+      end
+    rescue StandardError => e
+      handle_fetch_error(e, request)
     end
 
-    # The entry point in dynamically defining instance methods based on the called the valid endpoint names.
-    # @param [String] endpoint_name valid API endpoint name to fetch
-    # @param [Hash] endpoint_params the optional/required valid query params of the API endpoint.
-    #   If +:apikey+ key-value pair is present, the pair will override the +#apikey+ of singleton client instance
-    #   If +:format+ key-value pair is present and is a valid parameter key and value can only be +:csv+ or +:json+
-    #   If +:filename+ key-value is present and +:format+ is +:csv+, then this is will be added to the payload too.
-    #      Otherwise, this will just discarded and will not be part of the payload
-    #   If endpoint name and query params used are not valid, EndpointError instances will be returned
-    #     actual API fetch will not happen. @see #fetch for the rest of the documentation
+    # Handle method calls for API endpoints
     #
-    # @todo define all the method signatures of the endpoint methods that will meta-programatically defined at runtime.
-    def method_missing(endpoint_name, **endpoint_params, &_block)
-      try_fetch(endpoint_name, endpoint_params) || super
-    end
-
-    def options
-      @options || @options = {}
-    end
-
-    def respond_to_missing?(endpoint_name, _include_all=false)
-      Utils.return_nil_unless_true(Endpoint.valid_name?(endpoint_name)) {
+    # @param endpoint_name [String, Symbol] API endpoint name
+    # @param endpoint_params [Hash] Parameters for the endpoint
+    # @return [Response, Hash, ResponseError] API response or error
+    def method_missing(endpoint_name, **endpoint_params, &block)
+      if Endpoint.valid_name?(endpoint_name)
         define_endpoint_method(endpoint_name)
-      } || super
+        send(endpoint_name, **endpoint_params)
+      else
+        super
+      end
+    end
+
+    # Check if client responds to endpoint methods
+    #
+    # @param endpoint_name [String, Symbol] Method name to check
+    # @param include_all [Boolean] Include private methods in check
+    # @return [Boolean] True if client responds to the method
+    def respond_to_missing?(endpoint_name, include_all = false)
+      Endpoint.valid_name?(endpoint_name) || super
     end
 
     private
 
-    def build_request(endpoint_name, endpoint_params)
-      Request.new(endpoint_name, **endpoint_params)
+    def reset_configuration
+      @configuration = {
+        connect_timeout: DEFAULT_CONNECT_TIMEOUT
+      }
     end
 
-    def try_fetch(endpoint_name, endpoint_params)
-      respond_to?(endpoint_name) ? fetch(build_request(endpoint_name, endpoint_params)) : nil
+    def parse_timeout(value)
+      Utils.to_integer(value, DEFAULT_CONNECT_TIMEOUT)
     end
 
-    def define_endpoint_method(endpoint_name)
-      self.class.define_method(endpoint_name) do |**qparams|
-        fetch(build_request(__method__, qparams))
+    def handle_fetch_error(error, request)
+      case error
+      when HTTPX::Error
+        NetworkError.new(
+          message: "Network error occurred: #{error.message}",
+          original_error: error
+        )
+      else
+        ResponseError.new(
+          message: "Unexpected error: #{error.message}",
+          request: request,
+          original_error: error
+        )
       end
     end
 
-    def parse_connect_timeout(milliseconds)
-      options[:connect_timeout] = Utils.to_d(milliseconds, CONNECT_TIMEOUT)
+    def define_endpoint_method(endpoint_name)
+      return if @endpoint_methods_defined.include?(endpoint_name)
+
+      define_singleton_method(endpoint_name) do |**params|
+        request = Request.new(endpoint_name, **params)
+        fetch(request)
+      end
+
+      @endpoint_methods_defined.add(endpoint_name)
     end
   end
 end
