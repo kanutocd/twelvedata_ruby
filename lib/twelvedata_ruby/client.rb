@@ -123,6 +123,8 @@ module TwelvedataRuby
 
       if request.valid?
         http_response = self.class.request(request)
+        raise HTTPX::Error, "HTTP request failed" if http_response.error && http_response.response.nil?
+
         Response.resolve(http_response, request)
       else
         { errors: request.errors }
@@ -186,11 +188,10 @@ module TwelvedataRuby
       return if @endpoint_methods_defined.include?(endpoint_name)
 
       define_singleton_method(endpoint_name) do |**params|
+        @endpoint_methods_defined.add(endpoint_name)
         request = Request.new(endpoint_name, **params)
         fetch(request)
       end
-
-      @endpoint_methods_defined.add(endpoint_name)
     end
   end
 end

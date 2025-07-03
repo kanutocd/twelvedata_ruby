@@ -60,15 +60,9 @@ module TwelvedataRuby
       end
 
       def create_error_from_response(http_response, request)
-        error_data = extract_error_data(http_response)
+        json_data = extract_error_data(http_response)
         error_class = determine_error_class(http_response.status)
-
-        error_class.new(
-          json_data: error_data,
-          request: request,
-          status_code: http_response.status,
-          message: error_data[:message]
-        )
+        error_class.new(json_data:, request:, status_code: http_response.status, message: json_data[:message])
       end
 
       def extract_error_data(http_response)
