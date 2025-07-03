@@ -159,8 +159,8 @@ jobs:
 
       - name: Check dependencies
         run: |
-          bundle outdated --strict || true
-          bundle exec ruby -c lib/twelvedata_ruby.rb
+          bin/bundle outdated --strict || true
+          bin/bundle exec ruby -c lib/twelvedata_ruby.rb
 
       - name: Test installation
         run: |
