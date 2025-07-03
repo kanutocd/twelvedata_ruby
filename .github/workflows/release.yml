@@ -209,6 +209,8 @@ jobs:
           chmod 0600 ~/.gem/credentials
 
       - name: Publish gem to RubyGems
+        env:
+          RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
         run: |
           echo "🚀 Publishing gem to RubyGems..."
           gem push ${{ needs.build.outputs.artifact_name }}
