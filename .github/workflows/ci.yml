@@ -85,7 +85,8 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
-          coverageLocations: coverage/coverage.json:simplecov
+          coverageCommand: bin/rake coverage
+          coverageLocations: coverage/.resultset.json:simplecov
 
   security:
     name: Security
