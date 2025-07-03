@@ -42,7 +42,7 @@ RSpec.describe TwelvedataRuby do
         {
           apikey: "custom-api-key",
           connect_timeout: 5000,
-          apikey_env_var_name: "CUSTOM_API_KEY"
+          apikey_env_var_name: "CUSTOM_API_KEY",
         }
       end
 
@@ -84,7 +84,7 @@ RSpec.describe TwelvedataRuby do
       it "allows method chaining" do
         expect do
           stub_request(:get, /#{TwelvedataRuby::Client::BASE_URL}\/quote/)
-            .with(query: { symbol: "AAPL", apikey: "test-key", format: 'json' })
+            .with(query: { symbol: "AAPL", apikey: "test-key", format: "json" })
 
           response = described_class.client(**options).quote(symbol: "AAPL")
           expect(response).to be_a(TwelvedataRuby::Response)

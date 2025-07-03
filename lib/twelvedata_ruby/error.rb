@@ -8,10 +8,11 @@ module TwelvedataRuby
       "EndpointError" => "Endpoint is not valid: %{invalid}",
       "EndpointNameError" => "`%{invalid}` is not a valid endpoint. Valid endpoints: %{valid_names}",
       "EndpointParametersKeysError" => "Invalid parameters: %{invalid}. Valid parameters for `%{name}`: %{parameters}",
-      "EndpointRequiredParametersError" => "Missing required parameters: %{invalid}. Required for `%{name}`: %{required}",
+      "EndpointRequiredParametersError" => "Missing required parameters: %{invalid}.\
+                                            Required for `%{name}`: %{required}",
       "ResponseError" => "Response error occurred",
       "ConfigurationError" => "Configuration error: %{message}",
-      "NetworkError" => "Network error: %{message}"
+      "NetworkError" => "Network error: %{message}",
     }.freeze
 
     attr_reader :attributes, :original_error
@@ -55,7 +56,7 @@ module TwelvedataRuby
         invalid: invalid,
         valid_names: endpoint.class.names.join(", "),
         parameters: endpoint&.parameters_keys&.join(", "),
-        required: endpoint&.required_parameters&.join(", ")
+        required: endpoint&.required_parameters&.join(", "),
       }
 
       super(attributes: attributes, **options)
@@ -81,12 +82,12 @@ module TwelvedataRuby
       404 => "NotFoundResponseError",
       414 => "ParameterTooLongResponseError",
       429 => "TooManyRequestsResponseError",
-      500 => "InternalServerResponseError"
+      500 => "InternalServerResponseError",
     }.freeze
 
     # Mapping of HTTP error codes to specific error classes
     HTTP_ERROR_CODES = {
-      404 => "PageNotFoundResponseError"
+      404 => "PageNotFoundResponseError",
     }.freeze
 
     class << self

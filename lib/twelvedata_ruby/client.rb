@@ -3,8 +3,8 @@
 require "httpx"
 require "singleton"
 
+# HTTP client for making requests to the Twelve Data API
 module TwelvedataRuby
-  # HTTP client for making requests to the Twelve Data API
   class Client
     include Singleton
 
@@ -44,7 +44,7 @@ module TwelvedataRuby
       def http_options
         {
           origin: BASE_URL,
-          timeout: { connect_timeout: instance.connect_timeout }
+          timeout: { connect_timeout: instance.connect_timeout },
         }
       end
     end
@@ -160,7 +160,7 @@ module TwelvedataRuby
 
     def reset_configuration
       @configuration = {
-        connect_timeout: DEFAULT_CONNECT_TIMEOUT
+        connect_timeout: DEFAULT_CONNECT_TIMEOUT,
       }
     end
 
@@ -173,13 +173,13 @@ module TwelvedataRuby
       when HTTPX::Error
         NetworkError.new(
           message: "Network error occurred: #{error.message}",
-          original_error: error
+          original_error: error,
         )
       else
         ResponseError.new(
           message: "Unexpected error: #{error.message}",
           request: request,
-          original_error: error
+          original_error: error,
         )
       end
     end

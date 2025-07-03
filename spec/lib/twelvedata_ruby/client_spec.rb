@@ -96,7 +96,7 @@ RSpec.describe TwelvedataRuby::Client do
 
         expect(options).to include(
           origin: described_class::BASE_URL,
-          timeout: { connect_timeout: described_class.instance.connect_timeout }
+          timeout: { connect_timeout: described_class.instance.connect_timeout },
         )
       end
 

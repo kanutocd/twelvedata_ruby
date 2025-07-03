@@ -65,8 +65,8 @@ module FixtureHelpers
           high_change: "-12.87",
           low_change_percent: "50.38",
           high_change_percent: "-6.44",
-          range: "124.17 - 199.62"
-        }
+          range: "124.17 - 199.62",
+        },
       }.to_json
     when :price
       { price: "186.75" }.to_json
@@ -74,7 +74,7 @@ module FixtureHelpers
       {
         timestamp: "2024-01-15 10:30:00",
         current_usage: 150,
-        plan_limit: 800
+        plan_limit: 800,
       }.to_json
     when :time_series
       {
@@ -84,7 +84,7 @@ module FixtureHelpers
           currency: "USD",
           exchange_timezone: "America/New_York",
           exchange: "NASDAQ",
-          type: "Common Stock"
+          type: "Common Stock",
         },
         values: [
           {
@@ -93,7 +93,7 @@ module FixtureHelpers
             high: "187.50",
             low: "184.20",
             close: "186.75",
-            volume: "45678900"
+            volume: "45678900",
           },
           {
             datetime: "2024-01-14",
@@ -101,10 +101,10 @@ module FixtureHelpers
             high: "185.25",
             low: "182.80",
             close: "184.30",
-            volume: "42156800"
-          }
+            volume: "42156800",
+          },
         ],
-        status: "ok"
+        status: "ok",
       }.to_json
     when /error/
       generate_error_fixture(endpoint_name)
@@ -118,20 +118,20 @@ module FixtureHelpers
     when :quote
       [
         "symbol;name;exchange;currency;datetime;open;high;low;close;volume",
-        "AAPL;Apple Inc;NASDAQ;USD;2024-01-15;185.00;187.50;184.20;186.75;45678900"
+        "AAPL;Apple Inc;NASDAQ;USD;2024-01-15;185.00;187.50;184.20;186.75;45678900",
       ].join("\n")
     when :time_series
       [
         "datetime;open;high;low;close;volume",
         "2024-01-15;185.00;187.50;184.20;186.75;45678900",
-        "2024-01-14;183.50;185.25;182.80;184.30;42156800"
+        "2024-01-14;183.50;185.25;182.80;184.30;42156800",
       ].join("\n")
     when :stocks
       [
         "symbol;name;currency;exchange;country;type",
         "AAPL;Apple Inc;USD;NASDAQ;United States;Common Stock",
         "GOOGL;Alphabet Inc;USD;NASDAQ;United States;Common Stock",
-        "MSFT;Microsoft Corporation;USD;NASDAQ;United States;Common Stock"
+        "MSFT;Microsoft Corporation;USD;NASDAQ;United States;Common Stock",
       ].join("\n")
     else
       "test_column;value\ntest_data;#{endpoint_name}"
@@ -149,7 +149,7 @@ module FixtureHelpers
     {
       code: error_code,
       message: error_message,
-      status: "error"
+      status: "error",
     }.to_json
   end
 
@@ -179,7 +179,7 @@ module FixtureHelpers
       403 => "Forbidden: Access denied",
       404 => "Not Found: Endpoint or symbol not found",
       429 => "Too Many Requests: Rate limit exceeded",
-      500 => "Internal Server Error: Service temporarily unavailable"
+      500 => "Internal Server Error: Service temporarily unavailable",
     }
   end
 end

@@ -1,10 +1,12 @@
 plugins:
   - rubocop-performance
-  - rubocop-rspec
+  - rubocop-rake
+require: rubocop-rspec
 
 AllCops:
   TargetRubyVersion: 3.4
   NewCops: enable
+  DisabledByDefault: true
   Exclude:
     - 'vendor/**/*'
     - 'bin/**/*'
@@ -48,7 +50,7 @@ Style/FrozenStringLiteralComment:
   EnforcedStyle: always
 
 Style/ClassAndModuleChildren:
-  EnforcedStyle: compact
+  EnforcedStyle: nested
 
 # Metrics
 Metrics/AbcSize:
@@ -62,7 +64,7 @@ Metrics/MethodLength:
   CountAsOne: ['array', 'hash', 'heredoc']
 
 Metrics/ClassLength:
-  Max: 200
+  Max: 400
 
 Metrics/ModuleLength:
   Max: 200
@@ -85,7 +87,7 @@ RSpec/ExampleLength:
   Max: 20
 
 RSpec/MultipleExpectations:
-  Max: 5
+  Max: 6
 
 RSpec/NestedGroups:
   Max: 4

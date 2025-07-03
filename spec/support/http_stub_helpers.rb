@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'ostruct'
+require "ostruct"
 
 # Helper module for stubbing HTTP requests in tests
 module HttpStubHelpers
@@ -8,7 +8,7 @@ module HttpStubHelpers
   MIME_TYPES = {
     json: "application/json; charset=utf-8",
     csv: "text/csv; charset=utf-8",
-    plain: "text/plain; charset=utf-8"
+    plain: "text/plain; charset=utf-8",
   }.freeze
 
   # Stub a successful API request
@@ -36,7 +36,7 @@ module HttpStubHelpers
       request,
       status: 200, # API returns 200 with error in body
       fixture_name: fixture_name,
-      **options
+      **options,
     )
   end
 
@@ -52,7 +52,7 @@ module HttpStubHelpers
       status: status_code,
       format: :plain,
       body: "HTTP #{status_code} Error",
-      **options
+      **options,
     )
   end
 
@@ -86,7 +86,7 @@ module HttpStubHelpers
       query_params: { apikey: "test-key" }.merge(params),
       params: { params: { apikey: "test-key" }.merge(params) },
       valid?: true,
-      build: [:get, endpoint_name.to_s, { params: { apikey: "test-key" }.merge(params) }]
+      build: [:get, endpoint_name.to_s, { params: { apikey: "test-key" }.merge(params) }],
     )
   end
 
@@ -111,7 +111,8 @@ module HttpStubHelpers
 
   def stub_failure(request)
     stub_request(request.http_verb, request.full_url)
-      .with(query: request.query_params, headers: { "User-Agent" => "httpx.rb/#{HTTPX::VERSION}", "Accept" => "*/*", "Accept-Encoding" => "gzip, deflate" })
+      .with(query: request.query_params, headers: { "User-Agent" => "httpx.rb/#{HTTPX::VERSION}", "Accept" => "*/*", 
+"Accept-Encoding" => "gzip, deflate" })
   end
 
   def stub_request_with_response(request, **options)
@@ -130,7 +131,7 @@ module HttpStubHelpers
     response_options = {
       status: status,
       headers: build_response_headers(format, request, options),
-      body: custom_body || load_fixture(fixture_name, format)
+      body: custom_body || load_fixture(fixture_name, format),
     }
 
     response_options
@@ -139,7 +140,7 @@ module HttpStubHelpers
   def build_response_headers(format, request, options)
     headers = {
       "Content-Type" => MIME_TYPES[format],
-      "X-API-Version" => "1.0"
+      "X-API-Version" => "1.0",
     }
 
     # Add Content-Disposition header for CSV responses
@@ -177,7 +178,7 @@ module HttpStubHelpers
     {
       status: 200,
       headers: { "Content-Type" => MIME_TYPES[:json] },
-      body: { message: "Default test response" }.to_json
+      body: { message: "Default test response" }.to_json,
     }
   end
 end

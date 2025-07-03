@@ -88,7 +88,7 @@ RSpec.describe TwelvedataRuby::Error do
 
     before do
       stub_const("TwelvedataRuby::Error::DEFAULT_MESSAGES", {
-        "TestError" => "Test error with %{name} and %{value}"
+        "TestError" => "Test error with %{name} and %{value}",
       })
     end
 
@@ -123,7 +123,7 @@ RSpec.describe TwelvedataRuby::ConfigurationError do
   it "can be created with configuration-specific messages" do
     error = described_class.new(
       message: "Invalid API key configuration",
-      attributes: { key: "invalid_key" }
+      attributes: { key: "invalid_key" },
     )
 
     expect(error.message).to eq("Invalid API key configuration")
@@ -140,7 +140,7 @@ RSpec.describe TwelvedataRuby::NetworkError do
     original_error = HTTPX::ConnectionError.new("Connection failed")
     error = described_class.new(
       message: "Network request failed",
-      original_error: original_error
+      original_error: original_error,
     )
 
     expect(error.original_error).to be(original_error)
@@ -151,10 +151,10 @@ end
 RSpec.describe TwelvedataRuby::EndpointError do
   let(:endpoint) do
     double("Endpoint",
-      name: :test_endpoint,
-      class: double("EndpointClass", names: [:valid1, :valid2]),
-      parameters_keys: [:param1, :param2],
-      required_parameters: [:param1]
+           name: :test_endpoint,
+           class: double("EndpointClass", names: [:valid1, :valid2]),
+           parameters_keys: [:param1, :param2],
+           required_parameters: [:param1],
     )
   end
 
@@ -169,7 +169,7 @@ RSpec.describe TwelvedataRuby::EndpointError do
         invalid: "invalid_value",
         valid_names: "valid1, valid2",
         parameters: "param1, param2",
-        required: "param1"
+        required: "param1",
       )
     end
 
@@ -182,10 +182,10 @@ RSpec.describe TwelvedataRuby::EndpointError do
   context "with nil endpoint attributes" do
     let(:endpoint) do
       double("Endpoint",
-        name: :test_endpoint,
-        class: double("EndpointClass", names: []),
-        parameters_keys: nil,
-        required_parameters: nil
+             name: :test_endpoint,
+             class: double("EndpointClass", names: []),
+             parameters_keys: nil,
+             required_parameters: nil,
       )
     end
 
@@ -224,13 +224,13 @@ RSpec.describe TwelvedataRuby::ResponseError do
         403 => "ForbiddenResponseError",
         404 => "NotFoundResponseError",
         429 => "TooManyRequestsResponseError",
-        500 => "InternalServerResponseError"
+        500 => "InternalServerResponseError",
       )
     end
 
     it "has correct HTTP error code mappings" do
       expect(described_class::HTTP_ERROR_CODES).to include(
-        404 => "PageNotFoundResponseError"
+        404 => "PageNotFoundResponseError",
       )
     end
   end
@@ -277,7 +277,7 @@ RSpec.describe TwelvedataRuby::ResponseError do
           json_data: json_data,
           request: request,
           status_code: 401,
-          message: "Custom error message"
+          message: "Custom error message",
         )
       end
 
@@ -322,7 +322,7 @@ end
   TwelvedataRuby::ParameterTooLongResponseError,
   TwelvedataRuby::TooManyRequestsResponseError,
   TwelvedataRuby::InternalServerResponseError,
-  TwelvedataRuby::PageNotFoundResponseError
+  TwelvedataRuby::PageNotFoundResponseError,
 ].each do |error_class|
   RSpec.describe error_class do
     it "inherits from ResponseError" do
@@ -332,7 +332,7 @@ end
     it "can be instantiated with response data" do
       error = error_class.new(
         json_data: { code: 400, message: "Test error" },
-        status_code: 400
+        status_code: 400,
       )
 
       expect(error).to be_a(error_class)

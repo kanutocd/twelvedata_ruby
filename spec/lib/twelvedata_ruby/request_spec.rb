@@ -91,7 +91,7 @@ RSpec.describe TwelvedataRuby::Request do
           symbols: "AAPL,GOOGL",
           intervals: "1day",
           start_date: "2024-01-01",
-          end_date: "2024-01-31"
+          end_date: "2024-01-31",
         )
       end
 
@@ -177,7 +177,7 @@ RSpec.describe TwelvedataRuby::Request do
         expect(hash).to include(
           http_verb: :get,
           url: "#{TwelvedataRuby::Client::BASE_URL}/quote",
-          params: hash_including(symbol: "AAPL", format: :json)
+          params: hash_including(symbol: "AAPL", format: :json),
         )
       end
     end
@@ -213,7 +213,7 @@ RSpec.describe TwelvedataRuby::Request do
           symbols: "AAPL",
           intervals: "1day",
           start_date: "2024-01-01",
-          end_date: "2024-01-31"
+          end_date: "2024-01-31",
         )
       end
 
@@ -377,7 +377,7 @@ RSpec.describe TwelvedataRuby::Request do
           symbol: "AAPL",
           interval: "1day",
           format: :csv,
-          filename: "apple_data.csv"
+          filename: "apple_data.csv",
         )
       end
 
@@ -393,7 +393,7 @@ RSpec.describe TwelvedataRuby::Request do
         described_class.new(
           :currency_conversion,
           symbol: "USD/EUR",
-          amount: 100
+          amount: 100,
         )
       end
 
