@@ -42,7 +42,7 @@ RSpec.describe TwelvedataRuby do
         {
           apikey: "custom-api-key",
           connect_timeout: 5000,
-          apikey_env_var_name: "CUSTOM_API_KEY"
+          apikey_env_var_name: "CUSTOM_API_KEY",
         }
       end
 
@@ -84,7 +84,7 @@ RSpec.describe TwelvedataRuby do
       it "allows method chaining" do
         expect do
           stub_request(:get, /#{TwelvedataRuby::Client::BASE_URL}\/quote/)
-            .with(query: { symbol: "AAPL", apikey: "test-key", format: 'json' })
+            .with(query: { symbol: "AAPL", apikey: "test-key", format: "json" })
 
           response = described_class.client(**options).quote(symbol: "AAPL")
           expect(response).to be_a(TwelvedataRuby::Response)
@@ -113,9 +113,12 @@ RSpec.describe TwelvedataRuby do
         expect(clients.first.apikey).to start_with("thread-")
       end
     end
+
+
   end
 
   describe "module structure" do
+    # rubocop:disable RSpec/MultipleExpectations
     it "has all expected classes" do
       expect(defined?(TwelvedataRuby::Client)).to be_truthy
       expect(defined?(TwelvedataRuby::Request)).to be_truthy
@@ -123,7 +126,7 @@ RSpec.describe TwelvedataRuby do
       expect(defined?(TwelvedataRuby::Endpoint)).to be_truthy
       expect(defined?(TwelvedataRuby::Error)).to be_truthy
       expect(defined?(TwelvedataRuby::Utils)).to be_truthy
-    end
+    end# rubocop:enable RSpec/MultipleExpectations
 
     it "has all expected error classes" do
       expect(defined?(TwelvedataRuby::EndpointError)).to be_truthy

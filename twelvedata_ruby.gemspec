@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
     "bug_tracker_uri" => "https://github.com/kanutocd/twelvedata_ruby/issues",
     "documentation_uri" => "https://kanutocd.github.io/twelvedata_ruby/doc/",
     "wiki_uri" => "https://github.com/kanutocd/twelvedata_ruby/wiki",
-    "rubygems_mfa_required" => "true"
+    "rubygems_mfa_required" => "true",
   }
 
   spec.required_ruby_version = ">= 3.0.0"

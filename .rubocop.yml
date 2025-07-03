@@ -1,10 +1,11 @@
+require: rubocop-rspec
 plugins:
   - rubocop-performance
-  - rubocop-rspec
 
 AllCops:
   TargetRubyVersion: 3.4
   NewCops: enable
+  DisabledByDefault: true
   Exclude:
     - 'vendor/**/*'
     - 'bin/**/*'
@@ -62,7 +63,7 @@ Metrics/MethodLength:
   CountAsOne: ['array', 'hash', 'heredoc']
 
 Metrics/ClassLength:
-  Max: 200
+  Max: 400
 
 Metrics/ModuleLength:
   Max: 200

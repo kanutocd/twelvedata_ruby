@@ -11,7 +11,8 @@ SimpleCov.start do
 
   add_group "Core", ["lib/twelvedata_ruby.rb", "lib/twelvedata_ruby/version.rb"]
   add_group "Client", "lib/twelvedata_ruby/client.rb"
-  add_group "API", ["lib/twelvedata_ruby/endpoint.rb", "lib/twelvedata_ruby/request.rb", "lib/twelvedata_ruby/response.rb"]
+  add_group "API", 
+            ["lib/twelvedata_ruby/endpoint.rb", "lib/twelvedata_ruby/request.rb", "lib/twelvedata_ruby/response.rb"]
   add_group "Utilities", ["lib/twelvedata_ruby/utils.rb", "lib/twelvedata_ruby/error.rb"]
 end
 

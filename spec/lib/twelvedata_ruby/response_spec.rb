@@ -33,9 +33,9 @@ RSpec.describe TwelvedataRuby::Response do
       context "with successful HTTP response" do
         let(:http_response) do
           double("HTTPResponse",
-            status: 200,
-            headers: { "content-type" => "application/json" },
-            body: double("Body", bytesize: 100, to_s: '{"symbol":"AAPL"}', close: nil)
+                 status: 200,
+                 headers: { "content-type" => "application/json" },
+                 body: double("Body", bytesize: 100, to_s: '{"symbol":"AAPL"}', close: nil),
           )
         end
 
@@ -54,10 +54,10 @@ RSpec.describe TwelvedataRuby::Response do
       context "with HTTP error status" do
         let(:http_response) do
           double("HTTPResponse",
-            status: 404,
-            headers: { "content-type" => "text/plain" },
-            body: double("Body", to_s: "Not Found"),
-            error: nil
+                 status: 404,
+                 headers: { "content-type" => "text/plain" },
+                 body: double("Body", to_s: "Not Found"),
+                 error: nil,
           )
         end
 
@@ -77,9 +77,9 @@ RSpec.describe TwelvedataRuby::Response do
         let(:error_object) { double("Error", message: "Connection failed", class: StandardError) }
         let(:http_response) do
           double("HTTPResponse",
-            status: 500,
-            error: error_object,
-            body: double("Body", to_s: "Server Error")
+                 status: 500,
+                 error: error_object,
+                 body: double("Body", to_s: "Server Error"),
           )
         end
 
@@ -131,14 +131,14 @@ RSpec.describe TwelvedataRuby::Response do
     let(:body_content) { '{"symbol":"AAPL","price":"150.00"}' }
     let(:http_response) do
       double("HTTPResponse",
-        status: 200,
-        headers: headers,
-        body: double("Body",
-          bytesize: body_content.bytesize,
-          to_s: body_content,
-          close: nil,
-          closed?: false
-        )
+             status: 200,
+             headers: headers,
+             body: double("Body",
+                          bytesize: body_content.bytesize,
+                          to_s: body_content,
+                          close: nil,
+                          closed?: false,
+             ),
       )
     end
 
@@ -236,18 +236,18 @@ RSpec.describe TwelvedataRuby::Response do
       end
 
       context "with large response body" do
-        let(:large_content) { '{"content": "' + 'x' * (described_class::BODY_MAX_BYTESIZE + 1000) + '"}' }
+        let(:large_content) { '{"content": "' + "x" * (described_class::BODY_MAX_BYTESIZE + 1000) + '"}' }
         let(:body_content) { large_content }
         let(:http_response) do
           double("HTTPResponse",
-            status: 200,
-            headers: headers,
-            body: double("Body",
-              bytesize: large_content.bytesize,
-              close: nil,
-              closed?: false,
-              copy_to: ->(file) { file.write(large_content) }
-            )
+                 status: 200,
+                 headers: headers,
+                 body: double("Body",
+                              bytesize: large_content.bytesize,
+                              close: nil,
+                              closed?: false,
+                              copy_to: ->(file) { file.write(large_content) },
+                 ),
           )
         end
 
@@ -288,7 +288,7 @@ RSpec.describe TwelvedataRuby::Response do
         let(:headers) do
           {
             "content-type" => "text/csv",
-            "content-disposition" => 'attachment; filename="data.csv"'
+            "content-disposition" => 'attachment; filename="data.csv"',
           }
         end
 
@@ -308,7 +308,7 @@ RSpec.describe TwelvedataRuby::Response do
         let(:headers) do
           {
             "content-type" => "text/csv",
-            "content-disposition" => 'attachment; filename=data.csv' # No quotes
+            "content-disposition" => "attachment; filename=data.csv", # No quotes
           }
         end
 
@@ -388,9 +388,9 @@ RSpec.describe TwelvedataRuby::Response do
       context "with error HTTP status" do
         let(:http_response) do
           double("HTTPResponse",
-            status: 404,
-            headers: headers,
-            body: double("Body", bytesize: 10, to_s: "Not Found", close: nil, closed?: false)
+                 status: 404,
+                 headers: headers,
+                 body: double("Body", bytesize: 10, to_s: "Not Found", close: nil, closed?: false),
           )
         end
 
@@ -458,7 +458,7 @@ RSpec.describe TwelvedataRuby::Response do
         let(:headers) do
           {
             "content-type" => "text/csv",
-            "content-disposition" => 'attachment; filename="data.csv"'
+            "content-disposition" => 'attachment; filename="data.csv"',
           }
         end
 
@@ -504,9 +504,9 @@ RSpec.describe TwelvedataRuby::Response do
       context "with error response" do
         let(:http_response) do
           double("HTTPResponse",
-            status: 404,
-            headers: headers,
-            body: double("Body", bytesize: 10, to_s: "Not Found", close: nil, closed?: false)
+                 status: 404,
+                 headers: headers,
+                 body: double("Body", bytesize: 10, to_s: "Not Found", close: nil, closed?: false),
           )
         end
 
