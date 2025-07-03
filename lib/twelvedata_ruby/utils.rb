@@ -25,10 +25,7 @@ module TwelvedataRuby
       #   Utils.to_integer("123") #=> 123
       #   Utils.to_integer("abc", 0) #=> 0
       def to_integer(obj, default_value = nil)
-        return obj if obj.is_a?(Integer)
-        return default_value unless obj.to_s.match?(/^\d+$/)
-
-        Integer(obj.to_s)
+        obj.is_a?(Integer) ? obj : Integer(obj.to_s)
       rescue ArgumentError
         default_value
       end

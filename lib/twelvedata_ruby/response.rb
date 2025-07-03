@@ -77,8 +77,6 @@ module TwelvedataRuby
             code: http_response.status
           }
         end
-      rescue StandardError
-        { message: "Unknown error", code: http_response.status }
       end
 
       def determine_error_class(status_code)

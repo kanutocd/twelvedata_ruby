@@ -61,7 +61,7 @@ module HttpStubHelpers
   # @param request [TwelvedataRuby::Request] Request object to stub
   # @return [WebMock::RequestStub] WebMock stub
   def stub_timeout_error(request)
-    stub_connection_failure(request).to_timeout
+    stub_failure(request).to_timeout
   end
 
   # Stub a network connection error
@@ -69,7 +69,7 @@ module HttpStubHelpers
   # @param request [TwelvedataRuby::Request] Request object to stub
   # @return [WebMock::RequestStub] WebMock stub
   def stub_connection_error(request)
-    stub_connection_failure(request).to_raise(HTTPX::ConnectionError.new("Connection failed"))
+    stub_failure(request).to_raise(HTTPX::ConnectionError.new("Connection failed"))
   end
 
   # Create a mock request object for testing
@@ -109,7 +109,7 @@ module HttpStubHelpers
 
   private
 
-  def stub_connection_failure(request)
+  def stub_failure(request)
     stub_request(request.http_verb, request.full_url)
       .with(query: request.query_params, headers: { "User-Agent" => "httpx.rb/#{HTTPX::VERSION}", "Accept" => "*/*", "Accept-Encoding" => "gzip, deflate" })
   end

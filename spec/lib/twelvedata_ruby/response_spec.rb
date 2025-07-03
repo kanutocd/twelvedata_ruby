@@ -592,5 +592,17 @@ RSpec.describe TwelvedataRuby::Response do
         expect(result.status_code).to eq(500)
       end
     end
+
+    context "with unknown HTTP error status" do
+      before { stub_http_error(request, 999) }
+
+      it "creates ResponseError directly" do
+        http_response = TwelvedataRuby::Client.request(request)
+        result = described_class.resolve(http_response, request)
+
+        expect(result).to be_a(TwelvedataRuby::ResponseError)
+        expect(result.status_code).to eq(999)
+      end
+    end
   end
 end
