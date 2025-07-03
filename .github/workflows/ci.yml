@@ -173,7 +173,7 @@ jobs:
   notify:
     name: Notify
     runs-on: ubuntu-latest
-    needs: [lint, test, coverage, security]
+    needs: [lint, test, security]
     if: always() && github.ref == 'refs/heads/main'
 
     steps:
