@@ -119,10 +119,10 @@ jobs:
       - name: Verify gem contents
         run: |
           echo "🔍 Verifying gem contents..."
-          gem contents twelvedata_ruby-${{ needs.validate.outputs.version }}.gem
+          gem contents twelvedata_ruby --version ${{ needs.validate.outputs.version }}
 
           echo "📋 Gem specification:"
-          gem specification twelvedata_ruby-${{ needs.validate.outputs.version }}.gem
+          gem specification twelvedata_ruby --version ${{ needs.validate.outputs.version }}
 
       - name: Test gem installation
         run: |
