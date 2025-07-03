@@ -1,1 +1,0 @@
-{"code":400,"message":"Invalid **interval** provided: 1ms. Supported intervals: 1min, 5min, 15min, 30min, 45min, 1h, 2h, 4h, 8h, 1day, 1week, 1month","status":"error","meta":{"symbol":"IBM","interval":"1ms","exchange":""}}
