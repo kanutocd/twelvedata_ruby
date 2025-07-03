@@ -300,8 +300,7 @@ module TwelvedataRuby
     end
 
     def validate_name
-      puts "name: #{name.inspect}"
-      @errors.delete(:name) and return if self.class.valid_name?(name)
+      (@errors.delete(:name) || true) and return if self.class.valid_name?(name)
 
       invalid_name = name.nil? || name.to_s.empty? ? "blank name" : name
       @errors[:name] = create_error(:name, invalid_name, EndpointNameError)
