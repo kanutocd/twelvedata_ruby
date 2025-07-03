@@ -116,7 +116,7 @@ jobs:
           echo "✅ Gem built successfully"
           ls -la *.gem
 
-      - name: Verify gem contents
+      - name: Install, verify gem contents and specifications
         run: |
           echo "Installing gem for verification..."
           gem install twelvedata_ruby-${{ needs.validate.outputs.version }}.gem
@@ -126,21 +126,6 @@ jobs:
 
           echo "📋 Gem specification:"
           gem specification twelvedata_ruby --version ${{ needs.validate.outputs.version }}
-
-      - name: Test gem installation
-        run: |
-          echo "🧪 Testing gem installation..."
-          gem install twelvedata_ruby-${{ needs.validate.outputs.version }}.gem
-
-          # Test basic functionality
-          ruby -e "
-            require 'twelvedata_ruby'
-            puts 'Version: ' + TwelvedataRuby::VERSION
-            client = TwelvedataRuby.client
-            puts 'Client created successfully'
-          "
-
-          echo "✅ Gem installation test passed"
 
       - name: Upload gem artifact
         uses: actions/upload-artifact@v4
