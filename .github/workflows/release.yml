@@ -119,7 +119,7 @@ jobs:
       - name: Verify gem contents
         run: |
           echo "Installing gem for verification..."
-          gem verify twelvedata_ruby-${{ needs.validate.outputs.version }}.gem
+          gem install twelvedata_ruby-${{ needs.validate.outputs.version }}.gem
 
           echo "🔍 Verifying gem contents..."
           gem contents twelvedata_ruby --version ${{ needs.validate.outputs.version }}
