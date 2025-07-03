@@ -1,8 +1,118 @@
-#!/usr/bin/env bash
-set -euo pipefail
-IFS=$'\n\t'
-set -vx
+#!/bin/bash
+# bin/setup
+# Development environment setup script
+
+set -e
+
+echo "🔧 Setting up TwelvedataRuby development environment..."
+echo
+
+# Check Ruby version
+required_ruby="3.4.0"
+current_ruby=$(ruby -v | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+' | head -1)
+
+if ! ruby -e "exit(Gem::Version.new('$current_ruby') >= Gem::Version.new('$required_ruby'))" 2>/dev/null; then
+  echo "❌ Ruby $required_ruby or later is required. Current: $current_ruby"
+  echo "   Please update Ruby using rbenv, rvm, or your system package manager."
+  exit 1
+fi
+
+echo "✅ Ruby version: $current_ruby"
+
+# Install dependencies
+echo "📦 Installing dependencies..."
+if ! command -v bundle &>/dev/null; then
+  echo "Installing bundler..."
+  gem install bundler
+fi
 
 bundle install
 
-# Do any other automated setup that you need to do here
+# Make scripts executable
+echo "🔧 Setting up scripts..."
+chmod +x bin/release
+chmod +x bin/setup
+
+# Set up git hooks (optional)
+if [ -d .git ]; then
+  echo "🎣 Setting up git hooks..."
+  mkdir -p .git/hooks
+
+  # Pre-commit hook
+  cat >.git/hooks/pre-commit <<'EOF'
+#!/bin/sh
+echo "Running pre-commit checks..."
+
+# Run RuboCop
+if ! bundle exec rubocop --format simple; then
+  echo "❌ RuboCop violations found. Please fix before committing."
+  exit 1
+fi
+
+# Run tests
+if ! bundle exec rspec --format progress; then
+  echo "❌ Tests failed. Please fix before committing."
+  exit 1
+fi
+
+echo "✅ Pre-commit checks passed!"
+EOF
+
+  chmod +x .git/hooks/pre-commit
+  echo "✅ Git hooks installed"
+fi
+
+# Create .env.example if not exists
+if [ ! -f .env.example ]; then
+  cat >.env.example <<'EOF'
+# Twelve Data API Key
+TWELVEDATA_API_KEY=your-api-key-here
+
+# Optional: Custom environment variable name
+# CUSTOM_API_KEY_VAR=your-api-key
+
+# Development settings
+RUBY_ENV=development
+EOF
+  echo "✅ Created .env.example"
+fi
+
+# Run initial quality checks
+echo "🧪 Running initial quality checks..."
+
+echo "  🔍 RuboCop..."
+if bundle exec rubocop --format simple >/dev/null 2>&1; then
+  echo "  ✅ No RuboCop violations"
+else
+  echo "  ⚠️  RuboCop violations found (run 'bundle exec rubocop' to see details)"
+fi
+
+echo "  🧪 Tests..."
+if bundle exec rspec --format progress >/dev/null 2>&1; then
+  echo "  ✅ All tests passing"
+else
+  echo "  ⚠️  Some tests failing (run 'bundle exec rspec' to see details)"
+fi
+
+echo
+echo "🎉 Development environment setup complete!"
+echo
+echo "📝 Next steps:"
+echo "   1. Copy .env.example to .env and add your API key"
+echo "   2. Run 'bundle exec rspec' to run tests"
+echo "   3. Run 'bundle exec rubocop' to check code style"
+echo "   4. Run 'bin/release check' to verify release readiness"
+echo
+echo "📚 Useful commands:"
+echo "   rake qa                    # Run all quality checks"
+echo "   rake coverage              # Run tests with coverage"
+echo "   rake console               # Start interactive console"
+echo "   bin/release prepare        # Prepare a new release"
+echo "   bin/release check          # Check release readiness"
+echo
+echo "📖 Documentation:"
+echo "   README.md                  # Main documentation"
+echo "   docs/RELEASE_PROCESS.md    # Release process guide"
+echo "   CHANGELOG.md               # Version history"
+echo
+echo "Happy coding! 🚀"

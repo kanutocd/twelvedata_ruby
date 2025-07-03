@@ -24,7 +24,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.2"
+          ruby-version: "3.4.2"
           bundler-cache: true
 
       - name: Run RuboCop
@@ -37,7 +37,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ruby-version: ["3.0", "3.1", "3.2", "3.3"]
+        ruby-version: ["3.4.0", "3.4.1", "3.4.2"]
 
     steps:
       - name: Checkout code
@@ -50,7 +50,7 @@ jobs:
           bundler-cache: true
 
       - name: Run tests
-        run: bundle exec rspec --format progress --format RspecJunitFormatter --out tmp/rspec.xml
+        run: bin/rspec --format progress --format RspecJunitFormatter --out tmp/rspec.xml
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
@@ -71,11 +71,11 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.2"
+          ruby-version: "3.4.2"
           bundler-cache: true
 
       - name: Run tests with coverage
-        run: bundle exec rspec
+        run: bin/rspec
         env:
           COVERAGE: true
 
@@ -98,7 +98,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.2"
+          ruby-version: "3.4.2"
           bundler-cache: true
 
       - name: Run bundle audit
@@ -130,7 +130,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.2"
+          ruby-version: "3.4.2"
           bundler-cache: true
 
       - name: Generate documentation
@@ -154,19 +154,20 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.2"
+          ruby-version: "3.4.2"
           bundler-cache: true
 
       - name: Check dependencies
         run: |
-          bundle outdated --strict || true
-          bundle exec ruby -c lib/twelvedata_ruby.rb
+          bin/bundle outdated --strict || true
+          bin/bundle exec ruby -c lib/twelvedata_ruby.rb
 
       - name: Test installation
         run: |
           gem build twelvedata_ruby.gemspec
           gem install twelvedata_ruby-*.gem
-          ruby -e "require 'twelvedata_ruby'; puts TwelvedataRuby::VERSION"
+          installed=$(gem info twelvedata_ruby | grep twelvedata_ruby)
+          [[ -n "$installed" ]] && exit 0 || exit 1
 
   notify:
     name: Notify

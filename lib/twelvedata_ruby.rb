@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative "twelvedata_ruby/version"
 require_relative "twelvedata_ruby/utils"
 require_relative "twelvedata_ruby/error"
 require_relative "twelvedata_ruby/endpoint"
@@ -7,37 +8,47 @@ require_relative "twelvedata_ruby/request"
 require_relative "twelvedata_ruby/response"
 require_relative "twelvedata_ruby/client"
 
-# The one module that all the classes and modules of this gem are namespaced
-
+# TwelvedataRuby provides a Ruby interface for accessing Twelve Data's financial API
+#
+# @example Basic usage
+#   client = TwelvedataRuby.client(apikey: "your-api-key")
+#   response = client.quote(symbol: "AAPL")
+#   puts response.parsed_body
+#
+# @example Using environment variable for API key
+#   ENV['TWELVEDATA_API_KEY'] = 'your-api-key'
+#   client = TwelvedataRuby.client
+#   response = client.price(symbol: "GOOGL")
 module TwelvedataRuby
-  # Holds the current version
-  # @return [String] version number
-  VERSION = "0.3.0"
+  class << self
+    # Creates and configures a client instance
+    #
+    # @param options [Hash] Configuration options
+    # @option options [String] :apikey The Twelve Data API key
+    # @option options [Integer] :connect_timeout Connection timeout in milliseconds
+    # @option options [String] :apikey_env_var_name Environment variable name for API key
+    #
+    # @return [Client] Configured client instance
+    #
+    # @example Basic client creation
+    #   client = TwelvedataRuby.client(apikey: "your-key")
+    #
+    # @example With custom timeout
+    #   client = TwelvedataRuby.client(
+    #     apikey: "your-key",
+    #     connect_timeout: 5000
+    #   )
+    def client(**options)
+      client_instance = Client.instance
+      client_instance.configure(**options) if options.any?
+      client_instance
+    end
 
-  # A convenient and clearer way of getting and overriding default attribute values of the singleton `Client.instance`
-  #
-  # @param [Hash] options the optional Hash object that may contain values to override the cd Docdefaults
-  # @option options [Symbol, String] :apikey the private key from Twelvedata API key
-  # @option options [Integer, String] :connect_timeout milliseconds
-  #
-  #  @example Passing a nil options
-  #    TwelvedataRuby.client
-  #
-  #  The singleton instance  object returned will use the default values  for its attributes
-  #
-  #  @example Passing values of `:apikey` and `:connect_timeout`
-  #    TwelvedataRuby.client(apikey: "my-twelvedata-apikey", connect_timeout: 3000)
-  #
-  #  @example or, chain with other Client instance method
-  #    TwelvedataRuby.client(apikey: "my-twelvedata-apikey", connect_timeout: 3000).quote(symbol: "IBM")
-  #
-  #  In the last example, calling `#quote`, a valid API endpoint, an instance method with the same name
-  #  was dynamically defined and then fired up an API request to Twelvedata.
-  #
-  # @return [Client] singleton instance
-  def self.client(**options)
-    client = Client.instance
-    client.options = (client.options || {}).merge(options)
-    client
+    # Returns the current version
+    #
+    # @return [String] Version string
+    def version
+      VERSION
+    end
   end
 end

@@ -1,2 +1,0 @@
-symbol,name,exchange,currency,datetime,open,high,low,close,volume,previous_close,change,percent_change,average_volume,fifty_two_week_low,fifty_two_week_high,fifty_two_week_low_change,fifty_two_week_high_change,fifty_two_week_low_change_percent,fifty_two_week_high_change_percent,fifty_two_week_range
-IBM,International Business Machines Corp,NYSE,USD,2021-07-01,146.96001,147.50000,146.55000,146.84000,2665427,146.59000,0.25000,0.17054,3733229,105.92000,152.84000,40.92000,-6.00000,38.63293,-3.92567,105.919998 - 152.839996

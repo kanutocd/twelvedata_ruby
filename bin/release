@@ -1,0 +1,374 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Release preparation script for TwelvedataRuby gem
+
+require "fileutils"
+require "date"
+require "optparse"
+
+class ReleaseManager
+  VERSION_FILE = "lib/twelvedata_ruby/version.rb"
+  CHANGELOG_FILE = "CHANGELOG.md"
+  GEMSPEC_FILE = "twelvedata_ruby.gemspec"
+
+  def initialize
+    @options = parse_options
+    @current_version = extract_current_version
+  end
+
+  def run
+    case @options[:command]
+    when "prepare"
+      prepare_release
+    when "check"
+      check_release_readiness
+    when "bump"
+      bump_version
+    else
+      show_help
+    end
+  end
+
+  private
+
+  def parse_options
+    options = { command: "prepare" }
+
+    OptionParser.new do |opts|
+      opts.banner = "Usage: bin/release [command] [options]"
+      opts.separator ""
+      opts.separator "Commands:"
+      opts.separator "    prepare    Prepare a new release (default)"
+      opts.separator "    check      Check release readiness"
+      opts.separator "    bump       Bump version number"
+      opts.separator ""
+      opts.separator "Options:"
+
+      opts.on("-v", "--version VERSION", "Target version (e.g., 0.4.1)") do |v|
+        options[:version] = v
+      end
+
+      opts.on("-t", "--type TYPE", "Version bump type (major, minor, patch)") do |t|
+        options[:bump_type] = t
+      end
+
+      opts.on("--dry-run", "Show what would be done without making changes") do
+        options[:dry_run] = true
+      end
+
+      opts.on("-h", "--help", "Show this help") do
+        puts opts
+        exit
+      end
+    end.parse!
+
+    options[:command] = ARGV.first if ARGV.first
+    options
+  end
+
+  def prepare_release
+    puts "🚀 Preparing release for TwelvedataRuby..."
+    puts
+
+    target_version = @options[:version] || prompt_for_version
+
+    if @options[:dry_run]
+      puts "🏃‍♂️ DRY RUN MODE - No changes will be made"
+      puts
+    end
+
+    check_git_status
+    run_quality_checks
+    update_version(target_version)
+    update_changelog(target_version)
+
+    if @options[:dry_run]
+      puts "✅ Dry run completed. Release would be ready for version #{target_version}"
+    else
+      commit_changes(target_version)
+      show_next_steps(target_version)
+    end
+  end
+
+  def check_release_readiness
+    puts "🔍 Checking release readiness..."
+    puts
+
+    checks = [
+      method(:check_git_status),
+      method(:check_version_consistency),
+      method(:check_changelog),
+      method(:check_quality),
+      method(:check_dependencies)
+    ]
+
+    passed = 0
+    total = checks.size
+
+    checks.each do |check|
+      begin
+        check.call
+        passed += 1
+      rescue StandardError => e
+        puts "❌ #{e.message}"
+      end
+    end
+
+    puts
+    if passed == total
+      puts "✅ All checks passed! Ready for release."
+    else
+      puts "❌ #{total - passed} check(s) failed. Please fix issues before releasing."
+      exit 1
+    end
+  end
+
+  def bump_version
+    unless @options[:bump_type]
+      puts "❌ Please specify bump type with --type (major, minor, patch)"
+      exit 1
+    end
+
+    new_version = calculate_new_version(@current_version, @options[:bump_type])
+    puts "🔢 Bumping version from #{@current_version} to #{new_version}"
+
+    if @options[:dry_run]
+      puts "🏃‍♂️ DRY RUN: Would update version to #{new_version}"
+    else
+      update_version(new_version)
+      puts "✅ Version updated to #{new_version}"
+    end
+  end
+
+  def extract_current_version
+    content = File.read(VERSION_FILE)
+    match = content.match(/VERSION = ["']([^"']+)["']/)
+    match ? match[1] : nil
+  rescue Errno::ENOENT
+    puts "❌ Version file not found: #{VERSION_FILE}"
+    exit 1
+  end
+
+  def prompt_for_version
+    puts "Current version: #{@current_version}"
+    print "Enter new version (or press Enter for auto-increment): "
+    input = $stdin.gets.chomp
+
+    if input.empty?
+      calculate_new_version(@current_version, "patch")
+    else
+      input
+    end
+  end
+
+  def calculate_new_version(current, bump_type)
+    parts = current.split(".").map(&:to_i)
+
+    case bump_type
+    when "major"
+      "#{parts[0] + 1}.0.0"
+    when "minor"
+      "#{parts[0]}.#{parts[1] + 1}.0"
+    when "patch"
+      "#{parts[0]}.#{parts[1]}.#{parts[2] + 1}"
+    else
+      raise "Invalid bump type: #{bump_type}"
+    end
+  end
+
+  def check_git_status
+    unless system("git status --porcelain | wc -l | xargs test 0 -eq")
+      raise "Git working directory is not clean. Please commit or stash changes."
+    end
+    puts "✅ Git working directory is clean"
+  end
+
+  def check_version_consistency
+    gemspec_version = `ruby -e "load '#{GEMSPEC_FILE}'; puts Gem::Specification.load('#{GEMSPEC_FILE}').version"`.chomp
+
+    if @current_version != gemspec_version
+      raise "Version mismatch: version.rb (#{@current_version}) vs gemspec (#{gemspec_version})"
+    end
+    puts "✅ Version consistency verified"
+  end
+
+  def check_changelog
+    unless File.exist?(CHANGELOG_FILE)
+      raise "Changelog file not found: #{CHANGELOG_FILE}"
+    end
+
+    changelog_content = File.read(CHANGELOG_FILE)
+    unless changelog_content.include?("## [#{@current_version}]")
+      puts "⚠️  Warning: Current version #{@current_version} not found in changelog"
+    else
+      puts "✅ Changelog is up to date"
+    end
+  end
+
+  def check_quality
+    unless system("bundle exec rubocop --format simple", out: "/dev/null", err: "/dev/null")
+      raise "RuboCop violations found. Run 'bundle exec rubocop' to see details."
+    end
+    puts "✅ RuboCop checks passed"
+
+    unless system("bundle exec rspec --format progress", out: "/dev/null", err: "/dev/null")
+      raise "Test failures found. Run 'bundle exec rspec' to see details."
+    end
+    puts "✅ All tests passed"
+  end
+
+  def check_dependencies
+    if system("bundle outdated --strict", out: "/dev/null", err: "/dev/null")
+      puts "✅ All dependencies are up to date"
+    else
+      puts "⚠️  Warning: Some dependencies are outdated. Consider updating."
+    end
+  end
+
+  def run_quality_checks
+    puts "🔍 Running quality checks..."
+
+    print "  Running RuboCop... "
+    if system("bundle exec rubocop --format simple", out: "/dev/null", err: "/dev/null")
+      puts "✅"
+    else
+      puts "❌"
+      puts "RuboCop violations found. Please fix before releasing."
+      exit 1 unless @options[:dry_run]
+    end
+
+    print "  Running tests... "
+    if system("bundle exec rspec --format progress", out: "/dev/null", err: "/dev/null")
+      puts "✅"
+    else
+      puts "❌"
+      puts "Test failures found. Please fix before releasing."
+      exit 1 unless @options[:dry_run]
+    end
+  end
+
+  def update_version(new_version)
+    puts "📝 Updating version to #{new_version}..."
+
+    return if @options[:dry_run]
+
+    content = File.read(VERSION_FILE)
+    updated_content = content.gsub(
+      /VERSION = ["'][^"']+["']/,
+      "VERSION = \"#{new_version}\""
+    )
+
+    File.write(VERSION_FILE, updated_content)
+  end
+
+  def update_changelog(new_version)
+    puts "📝 Updating changelog..."
+
+    return if @options[:dry_run]
+
+    unless File.exist?(CHANGELOG_FILE)
+      create_initial_changelog(new_version)
+      return
+    end
+
+    content = File.read(CHANGELOG_FILE)
+
+    # Check if version already exists
+    if content.include?("## [#{new_version}]")
+      puts "  Version #{new_version} already exists in changelog"
+      return
+    end
+
+    # Find insertion point
+    unreleased_section = content.match(/## \[Unreleased\].*?\n(.*?)\n## /m)
+
+    new_entry = generate_changelog_entry(new_version, unreleased_section)
+
+    # Insert new entry
+    updated_content = content.sub(
+      /(## \[Unreleased\].*?\n)/m,
+      "\\1\n#{new_entry}\n"
+    )
+
+    File.write(CHANGELOG_FILE, updated_content)
+  end
+
+  def create_initial_changelog(version)
+    changelog_content = <<~CHANGELOG
+      # Changelog
+
+      All notable changes to this project will be documented in this file.
+
+      The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+      and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+      ## [Unreleased]
+
+      ## [#{version}] - #{Date.today}
+
+      ### Added
+      - Initial release
+
+    CHANGELOG
+
+    File.write(CHANGELOG_FILE, changelog_content)
+  end
+
+  def generate_changelog_entry(version, unreleased_section = nil)
+    changes = unreleased_section ? unreleased_section[1].strip : "### Changed\n- Release #{version}"
+
+    <<~ENTRY.chomp
+      ## [#{version}] - #{Date.today}
+
+      #{changes.empty? ? "### Changed\n- Release #{version}" : changes}
+    ENTRY
+  end
+
+  def commit_changes(version)
+    puts "📝 Committing changes..."
+
+    system("git add #{VERSION_FILE} #{CHANGELOG_FILE}")
+    system("git commit -m 'Prepare release v#{version}'")
+
+    puts "✅ Changes committed"
+  end
+
+  def show_next_steps(version)
+    puts
+    puts "🎉 Release preparation completed for version #{version}!"
+    puts
+    puts "Next steps:"
+    puts "1. Push changes: git push origin main"
+    puts "2. Create GitHub release with tag: v#{version}"
+    puts "3. GitHub Actions will automatically publish to RubyGems.org"
+    puts
+    puts "Or run a dry run first:"
+    puts "  gh workflow run release.yml --field version=#{version} --field dry_run=true"
+    puts
+    puts "Then publish:"
+    puts "  gh workflow run release.yml --field version=#{version} --field dry_run=false"
+  end
+
+  def show_help
+    puts <<~HELP
+      TwelvedataRuby Release Manager
+
+      Commands:
+        prepare [--version VERSION]  Prepare a new release
+        check                        Check if ready for release
+        bump --type TYPE            Bump version (major, minor, patch)
+
+      Examples:
+        bin/release prepare --version 0.4.1
+        bin/release prepare --dry-run
+        bin/release bump --type patch
+        bin/release check
+
+      For more information, see docs/RELEASE_PROCESS.md
+    HELP
+  end
+end
+
+# Run the release manager
+ReleaseManager.new.run if __FILE__ == $0
