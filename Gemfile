@@ -21,4 +21,5 @@ group :development, :test do
   gem "pry", "~> 0.14"
   gem "irb", "~> 1.15"
   gem "ostruct", "~> 0.6.2"
+  gem "rspec_junit_formatter", "~> 0.6.0"
 end
