@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.26
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "README";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'><h1 id="twelvedataruby">TwelvedataRuby</h1>
+
+<p>TwelvedataRuby is a Ruby library that exposes some convenient ways to access Twelve Data API to get information on stock, forex, crypto, and other financial market data. In order to do so, a free API key is required which can be easily requested <a href="https://twelvedata.com/pricing">here</a>. Visit their <a href="https://twelvedata.com/doc">API’s full documentation</a></p>
+
+<h2 id="installation">Installation</h2>
+
+<p>Add this line to your application’s Gemfile:</p>
+
+<p><code>ruby
+gem 'twelvedata_ruby'
+</code></p>
+
+<p>And then execute:</p>
+
+<pre class="code ruby"><code class="ruby">$ bundle install
+</code></pre>
+
+<p>Or install it yourself as:</p>
+
+<pre class="code ruby"><code class="ruby">$ gem install twelvedata_ruby
+</code></pre>
+
+<h2 id="usage">Usage</h2>
+
+<p>The preferred way to include the Twelve Data API key in the request payload is to assign it to an ENVIRONMENT variable which your Ruby application can fetch if none was explicitly assigned. The default ENVIRONMENTt variable name is <code>TWELVEDATA_API_KEY</code> but you can configure this to any other value  using the <code>#apikey_env_var_name=</code> setter method.</p>
+
+<p>To get hold of the singleton <code>TwelvedataRuby::Client.instance</code>, you can directly used that inherited instance method from the mixed in <code>Singleton</code> module or thru the gem’s module helper class method:</p>
+
+<p><code>ruby
+require "twelvedata_ruby"
+client = TwelvedataRuby.client
+</code></p>
+
+<p>By not passing anything to the options method parameters, the <code>client</code> instance attributes will have default values. Though you can still set different values to the attributes through their helper setter methods:</p>
+
+<p><code>ruby
+client.apikey = "twelvedata-apikey"
+client.apikey_env_var_name = "the_environment_variable_name" # the helper getter method will upcase the value
+client.connect_timeout = 300 # can also accept "300"
+</code></p>
+
+<p>or simply set them all at once:</p>
+
+<p><code>ruby
+require "twelvedata_ruby"
+client = TwelvedataRuby.client(apikey: "twelvedata-apikey", connect_timeout: 300)
+# or client = TwelvedataRuby.client(apikey_env_var_name: "the_environment_variable_name", connect_timeout: 300)
+</code></p>
+
+<p>The default values though are sufficient already.</p>
+
+<p>Getting any type of financial data then from the API, simply invoke any valid endpoint name to the client instance. For example, to fetch some data for <code>GOOG</code> stock symbol using quote, timeseries, price, and etd API endpoints:</p>
+
+<p><code>ruby
+# 1. response content-type will be :csv
+client.quote(symbol: "GOOG", format: :csv)
+# 2. assigns custom attachment name
+client.timeseries(symbol: "GOOG", interval: "1hour", format: :csv, filename: "google_timeseries_1hour.csv")
+# 3. the content-type format will be :json
+client.price(symbol: "GOOG")
+# 4. the passed apikey is the used in the request payload
+client.etd(symbol: "GOOG", apikey: "overrides-whatever-is-the-current-apikey")
+# 5. an example of invocation which the API will respond with 401 error code
+client.etd(symbol: "GOOG", apikey: "invalid-api-key")
+# 6. still exactly the same object with client
+TwelvedataRuby.client.api_usage
+# 7. an invalid request wherein the required query parameter :interval is missing
+TwelvedataRuby.client.timeseries(symbol: "GOOG")
+# 8. an invalid request because it contains an invalid parameter
+client.price(symbol: "GOOG", invalid_parameter: "value")
+# 9. invoking a non-existing API endpoint will cause a NoMethodError exception
+client.price(symbol: "GOOG", invalid_parameter: "value")
+</code></p>
+
+<p>All of the invocations possible return instance value is one of the following:
+- <code>TwelvedataRuby::Response</code> instance object which <code>#error</code> instance getter method can return a nil or kind of <code>TwelvedataRuby::ResponseError</code> instance if the API, or the API web server responded with some errors. #5 is an example which the API response will have status error with 401 code. <code>TwelvedataRuby::Response</code> resolves this into <code>TwelvedataRuby::UnauthorizedResponseError</code> instance.
+- <code>TwelvedataRuby::ResponseError</code> instance object itself when some error occurred that’s not coming from the API
+- a Hash instance which has an <code>:errors</code> key that contains instances of kind <code>TwelvedataRuby::EndpointError</code>. This is an invalid request scenario which the #7, #8, and #9 examples. No actual API request was sent in this scenario.</p>
+
+<p>On first invocation of a valid endpoint name, a <code>TwelvedataRuby::Client</code> instance method of the same name is dynamically defined. So in effect, ideally, there can be a one-to-one mapping of all the API endpoints with their respective parameters constraints. Please visit their excellent API documentation to know more of the endpoint details here https://twelvedata.com/doc. Or if you’re in a hurry, you can list the endpoints definitions:</p>
+
+<p><code>ruby
+TwelvedataRuby::Endpoint.definitions
+</code></p>
+
+<p>Another way of fetching data from API endpoints is by building a valid <code>TwelvedataRuby::Request</code> instance, then invoke <code>#fetch</code> on this instance. The possible return values are the same with the above examples.</p>
+
+<p><code>ruby
+quote_req = TwelvedataRuby::Request.new(:quote, symbol: "IBM")
+quote_resp = quote_req.fetch
+timeseries_req = TwelvedataRuby::Request.new(:quote, symbol: "IBM", interval: "1hour", format: :csv)
+timeseries_resp = timeseries_req.fetch
+etd_req = TwelvedataRuby::Request.new(:etd, symbol: "GOOG")
+etd_resp = etd_req.fetch
+# or just simply chain
+price_resp = TwelvedataRuby::Request.new(:price, symbol: "GOOG").fetch
+</code></p>
+
+<p>An advantage of building a valid request instance first then invoke the <code>#fetch</code> on it is you actually have an option to not send the request one by one BUT rather send them to the API server all at once simultaneously (might be in parallel). Like so taking the above examples’ request instance objects, send them all simultaneously</p>
+
+<p><code>ruby
+# returns a 3 element array of Response objects
+resp_objects_array = TwelvedataRuby::Client.request(quote_req, timeseries_req, etd_req)
+</code></p>
+
+<p>Be caution that the above example, depending on the number request objects sent and how large the responses, hitting the daily limit is likely possible. But then again if you have several api keys you might be able to supply each request object with its own apikey. :)</p>
+
+<p>The data from a successful API request can be access from <code>Response#parsed_body</code>. If request format is <code>:json</code> then it will be a <code>Hash</code> instance</p>
+
+<p><code>ruby
+TwelvedataRuby.client.quote(symbol: "GOOG").parsed_body
+=&gt;
+{:symbol=&gt;"GOOG",
+ :name=&gt;"Alphabet Inc",
+ :exchange=&gt;"NASDAQ",
+ :currency=&gt;"USD",
+ :datetime=&gt;"2021-07-15",
+ :open=&gt;"2650.00000",
+ :high=&gt;"2651.89990",
+ :low=&gt;"2611.95996",
+ :close=&gt;"2625.33008",
+ :volume=&gt;"828300",
+ :previous_close=&gt;"2641.64990",
+ :change=&gt;"-16.31982",
+ :percent_change=&gt;"-0.61779",
+ :average_volume=&gt;"850344",
+ :fifty_two_week=&gt;{:low=&gt;"1406.55005", :high=&gt;"2659.91992", :low_change=&gt;"1218.78003", :high_change=&gt;"-34.58984", :low_change_percent=&gt;"86.65031", :high_change_percent=&gt;"-1.30041", :range=&gt;"1406.550049 - 2659.919922"}}
+</code></p>
+
+<p>Likewise, if the API request format is <code>:csv</code> then <code>Response#parsed_body</code> will be <code>CSV#Table</code> instance</p>
+
+<p><code>ruby
+TwelvedataRuby.client.quote(symbol: "GOOG", format: :csv).parsed_body
+=&gt; #&lt;CSV::Table mode:col_or_row row_count:2&gt;
+</code></p>
+
+<h2 id="documentation">Documentation</h2>
+<p>You can browse the source code <a href="https://kanroyalhigh.github.io/twelvedata_ruby/doc/">documentation</a>
+## Contributing</p>
+
+<p>Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/twelvedata_ruby. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the <a href="https://github.com/[USERNAME]/twelvedata_ruby/blob/master/CODE_OF_CONDUCT.md">code of conduct</a>.</p>
+
+<h2 id="license">License</h2>
+
+<p>The gem is available as open source under the terms of the <a href="https://opensource.org/licenses/MIT">MIT License</a>.</p>
+
+<h2 id="code-of-conduct">Code of Conduct</h2>
+
+<p>Everyone interacting in the TwelvedataRuby project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the <a href="https://github.com/[USERNAME]/twelvedata_ruby/blob/master/CODE_OF_CONDUCT.md">code of conduct</a>.</p>
+
+<h1 id="notice">Notice</h1>
+
+<p>This is not an offical Twelve Data ruby library and the author of this gem is not affiliated with Twelve Data in any way, shape or form. Twelve Data APIs and data are Copyright © 2020 Twelve Data Pte. Ltd</p>
+</div></div>
+
+      <div id="footer">
+  Generated on Fri Jul 16 20:51:22 2021 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.26 (ruby-3.0.1).
+</div>
+
+    </div>
+  </body>
+</html>
