@@ -106,7 +106,7 @@ This release represents a refactor of the TwelvedataRuby gem with breaking chang
 
 ```ruby
 # In your Gemfile, update the Ruby version requirement
-ruby '>= 3.0.0'
+ruby '>= 3.4.0'
 
 # Update the gem
 gem 'twelvedata_ruby', '~> 0.4.0'
