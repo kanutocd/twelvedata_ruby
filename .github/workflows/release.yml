@@ -204,13 +204,13 @@ jobs:
           mkdir -p ~/.gem
           cat > ~/.gem/credentials << EOF
           ---
-          :rubygems_api_key: ${{ secrets.RUBYGEMS_API_KEY }}
+          :rubygems_api_key: ${{ secrets.GEM_HOST_API_KEY }}
           EOF
           chmod 0600 ~/.gem/credentials
 
       - name: Publish gem to RubyGems
         env:
-          RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
+          GEM_HOST_API_KEY: ${{ secrets.GEM_HOST_API_KEY }}
         run: |
           echo "🚀 Publishing gem to RubyGems..."
           gem push ${{ needs.build.outputs.artifact_name }}
