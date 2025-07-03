@@ -196,7 +196,7 @@ jobs:
       - name: Download gem artifact
         uses: actions/download-artifact@v4
         with:
-          name: gem-${{ needs.validate.outputs.version }}
+          name: ${{ needs.build.outputs.artifact_name }}
 
       - name: Configure RubyGems credentials
         run: |
@@ -211,7 +211,7 @@ jobs:
       - name: Publish gem to RubyGems
         run: |
           echo "🚀 Publishing gem to RubyGems..."
-          gem push twelvedata_ruby-${{ needs.validate.outputs.version }}.gem
+          gem push ${{ needs.build.outputs.artifact_name }}
 
           echo "✅ Gem published successfully!"
           echo "📦 Published: twelvedata_ruby v${{ needs.validate.outputs.version }}"
