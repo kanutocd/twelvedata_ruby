@@ -1,6 +1,6 @@
 # TwelvedataRuby
 
-[![Gem Version](https://badge.fury.io/rb/twelvedata_ruby.svg)](https://badge.fury.io/rb/twelvedata_ruby)
+[![Gem Version](https://badge.fury.io/rb/ruby.svg?icon=si%3Arubygems)](https://badge.fury.io/rb/ruby)
 [![CI](https://github.com/kanutocd/twelvedata_ruby/actions/workflows/ci.yml/badge.svg)](https://github.com/kanutocd/twelvedata_ruby/actions/workflows/ci.yml)
 
 A Ruby client library for accessing [Twelve Data's](https://twelvedata.com) comprehensive financial API. Get real-time and historical data for stocks, forex, cryptocurrencies, ETFs, indices, and more.
