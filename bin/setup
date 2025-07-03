@@ -8,7 +8,7 @@ echo "🔧 Setting up TwelvedataRuby development environment..."
 echo
 
 # Check Ruby version
-required_ruby="3.0.0"
+required_ruby="3.4.0"
 current_ruby=$(ruby -v | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+' | head -1)
 
 if ! ruby -e "exit(Gem::Version.new('$current_ruby') >= Gem::Version.new('$required_ruby'))" 2>/dev/null; then

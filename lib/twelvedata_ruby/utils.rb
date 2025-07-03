@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 # Utility methods for common operations
-module TwelvedataRuby::Utils
+module TwelvedataRuby
+  module Utils
   class << self
     # Removes module namespace from class name
     #
@@ -107,5 +108,6 @@ module TwelvedataRuby::Utils
 
       false
     end
+  end
   end
 end

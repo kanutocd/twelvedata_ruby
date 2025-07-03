@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 # Handles endpoint definitions, validation, and parameter management
-class TwelvedataRuby::Endpoint
+module TwelvedataRuby
+  class Endpoint
   DEFAULT_FORMAT = :json
   VALID_FORMATS = [DEFAULT_FORMAT, :csv].freeze
 
@@ -329,5 +330,6 @@ class TwelvedataRuby::Endpoint
 
   def create_error(attr_name, invalid_values, error_class)
     error_class.new(endpoint: self, invalid: invalid_values)
+  end
   end
 end

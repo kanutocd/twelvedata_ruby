@@ -52,8 +52,8 @@ begin
   end
 
   desc "Generate and open documentation"
-  task :docs => :doc do
-    system("open doc/index.html") if RUBY_PLATFORM.match?(/darwin/)
+  task docs: :doc do
+    system("open doc/index.html") if RUBY_PLATFORM.include?("darwin")
   end
 rescue LoadError
   puts "YARD not available. Install it with: gem install yard"

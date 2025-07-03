@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-module TwelvedataRuby::StubHttp
+module TwelvedataRuby
+  module StubHttp
   MIME_TYPES = {
     json: "application/json; charset=utf-8",
     csv: "text/csv",
@@ -51,5 +52,6 @@ module TwelvedataRuby::StubHttp
       )
     end
     options
+  end
   end
 end

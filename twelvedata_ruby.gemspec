@@ -27,7 +27,7 @@ Gem::Specification.new do |spec|
     "rubygems_mfa_required" => "true",
   }
 
-  spec.required_ruby_version = ">= 3.0.0"
+  spec.required_ruby_version = ">= 3.4.0"
 
   spec.files = Dir.chdir(__dir__) do
     `git ls-files -z`.split("\x0").reject do |f|
@@ -39,21 +39,4 @@ Gem::Specification.new do |spec|
   spec.bindir = "exe"
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
-
-
-  spec.add_dependency "httpx", "~> 1.0"
-  spec.add_dependency "csv", "~> 3.3"
-
-  spec.add_development_dependency "rake", "~> 13.0"
-  spec.add_development_dependency "rspec", "~> 3.12"
-  spec.add_development_dependency "rubocop", "~> 1.57"
-  spec.add_development_dependency "rubocop-performance", "~> 1.19"
-  spec.add_development_dependency "rubocop-rspec", "~> 2.25"
-  spec.add_development_dependency "simplecov", "~> 0.22"
-  spec.add_development_dependency "webmock", "~> 3.19"
-  spec.add_development_dependency "yard", "~> 0.9"
-  spec.add_development_dependency "pry", "~> 0.14"
-  spec.add_development_dependency "irb", "~> 1.15"
-  spec.add_development_dependency "ostruct", "~> 0.6.2"
-  spec.add_development_dependency "rspec_junit_formatter", "~> 0.6.0"
 end

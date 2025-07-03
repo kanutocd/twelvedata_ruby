@@ -5,7 +5,8 @@ require "json"
 require "tempfile"
 
 # Handles API responses from Twelve Data
-class TwelvedataRuby::Response
+module TwelvedataRuby
+  class Response
   # CSV column separator used by Twelve Data
   CSV_COL_SEP = ";"
 
@@ -308,5 +309,6 @@ class TwelvedataRuby::Response
       status_code: status_code,
       message: parsed_body[:message],
     )
+  end
   end
 end

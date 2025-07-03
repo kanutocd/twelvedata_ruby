@@ -3,7 +3,8 @@
 require "forwardable"
 
 # Represents an API request to Twelve Data
-class TwelvedataRuby::Request
+module TwelvedataRuby
+  class Request
   extend Forwardable
 
   # Default HTTP method for API requests
@@ -121,5 +122,6 @@ class TwelvedataRuby::Request
   # @return [Integer] Hash code
   def hash
     [name, query_params].hash
+  end
   end
 end

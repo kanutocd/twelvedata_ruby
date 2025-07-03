@@ -1,6 +1,7 @@
 require: rubocop-rspec
 plugins:
   - rubocop-performance
+  - rubocop-rake
 
 AllCops:
   TargetRubyVersion: 3.4
@@ -49,7 +50,7 @@ Style/FrozenStringLiteralComment:
   EnforcedStyle: always
 
 Style/ClassAndModuleChildren:
-  EnforcedStyle: compact
+  EnforcedStyle: nested
 
 # Metrics
 Metrics/AbcSize:
@@ -86,7 +87,7 @@ RSpec/ExampleLength:
   Max: 20
 
 RSpec/MultipleExpectations:
-  Max: 5
+  Max: 6
 
 RSpec/NestedGroups:
   Max: 4
