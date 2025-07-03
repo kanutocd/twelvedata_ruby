@@ -13,7 +13,7 @@ This release represents a refactor of the TwelvedataRuby gem with breaking chang
 
 ### 💥 Breaking Changes
 
-- **Ruby Version**: Now requires Ruby 3.0+ (was 2.4+)
+- **Ruby Version**: Now requires Ruby 3.4.0+ (was 2.4+)
 - **Dependencies**: Updated to modern versions
   - `httpx` updated to `~> 1.0` (was `~> 0.14`)
   - All development dependencies updated to latest versions

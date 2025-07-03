@@ -2,13 +2,12 @@
 
 [![Gem Version](https://badge.fury.io/rb/twelvedata_ruby.svg)](https://badge.fury.io/rb/twelvedata_ruby)
 [![CI](https://github.com/kanutocd/twelvedata_ruby/actions/workflows/ci.yml/badge.svg)](https://github.com/kanutocd/twelvedata_ruby/actions/workflows/ci.yml)
-[![Release](https://github.com/kanutocd/twelvedata_ruby/actions/workflows/release.yml/badge.svg)](https://github.com/kanutocd/twelvedata_ruby/actions/workflows/release.yml)
 
-A modern Ruby client library for accessing [Twelve Data's](https://twelvedata.com) comprehensive financial API. Get real-time and historical data for stocks, forex, cryptocurrencies, ETFs, indices, and more.
+A Ruby client library for accessing [Twelve Data's](https://twelvedata.com) comprehensive financial API. Get real-time and historical data for stocks, forex, cryptocurrencies, ETFs, indices, and more.
 
 ## Features
 
-- 🚀 **Modern Ruby** - Requires Ruby 3.0+, follows modern Ruby practices
+- 🚀 **Modern Ruby** - Requires Ruby 3.4.0+, follows modern Ruby practices
 - 📈 **Comprehensive API Coverage** - All Twelve Data endpoints supported
 - 🔒 **Type Safety** - Strong parameter validation and error handling
 - 📊 **Multiple Formats** - JSON and CSV response formats
@@ -445,9 +444,8 @@ Everyone interacting in the TwelvedataRuby project's codebases, issue trackers, 
 
 ## Support
 
-- 📖 [API Documentation](https://kanutocd.github.io/twelvedata_ruby/doc/) (TODO)
+- 📖 [API Documentation](https://kanutocd.github.io/twelvedata_ruby/doc/)
 - 🐛 [Issue Tracker](https://github.com/kanutocd/twelvedata_ruby/issues)
-- 💬 [Discussions](https://github.com/kanutocd/twelvedata_ruby/discussions)
 - 📧 Email: kenneth.c.demanawa@gmail.com
 
 ## Changelog
