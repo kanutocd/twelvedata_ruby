@@ -392,11 +392,6 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 
 ## Release Process
 
-### For Maintainers
-
-This gem uses automated releases via GitHub Actions. See [Release Process Documentation](docs/RELEASE_PROCESS.md) for complete details.
-TODO: add RELEASE_PROCESS.md file
-
 #### Quick Release Guide
 
 ```bash
@@ -442,7 +437,7 @@ gh workflow run release.yml \
 
 ## License
 
-This gem is available as open source under the terms of the [MIT License](LICENSE.txt).
+This gem is available as open source under the terms of the [MIT License](LICENSE).
 
 ## Code of Conduct
 
