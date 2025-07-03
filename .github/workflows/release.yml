@@ -91,6 +91,8 @@ jobs:
     name: Build Gem
     runs-on: ubuntu-latest
     needs: validate
+    outputs:
+      artifact_name: ${{ steps.verify-gem.outputs.artifact_name }}
 
     steps:
       - name: Checkout code
@@ -117,9 +119,13 @@ jobs:
           ls -la *.gem
 
       - name: Install, verify gem contents and specifications
+        id: verify-gem
         run: |
+          GEM_NAME="twelvedata_ruby-${{ needs.validate.outputs.version }}.gem"
+          echo "artifact_name=${GEM_NAME}" >> $GITHUB_OUTPUT
+
           echo "Installing gem for verification..."
-          gem install twelvedata_ruby-${{ needs.validate.outputs.version }}.gem
+          gem install ${GEM_NAME}
 
           echo "🔍 Verifying gem contents..."
           gem contents twelvedata_ruby --version ${{ needs.validate.outputs.version }}
@@ -128,16 +134,17 @@ jobs:
           gem specification twelvedata_ruby --version ${{ needs.validate.outputs.version }}
 
       - name: Upload gem artifact
+        id: upload-artifact
         uses: actions/upload-artifact@v4
         with:
-          name: gem-${{ needs.validate.outputs.version }}
-          path: "*.gem"
+          name: ${{ steps.verify-gem.outputs.artifact_name }}
+          path: ${{ steps.verify-gem.outputs.artifact_name }}
           retention-days: 30
 
   security_scan:
     name: Security Scan
     runs-on: ubuntu-latest
-    needs: [build, validate]
+    needs: build
 
     steps:
       - name: Checkout code
@@ -152,7 +159,7 @@ jobs:
       - name: Download gem artifact
         uses: actions/download-artifact@v4
         with:
-          name: gem-${{ needs.validate.outputs.version }}
+          name: ${{ needs.build.outputs.artifact_name }}
 
       - name: Security audit
         run: |
@@ -162,7 +169,7 @@ jobs:
 
           echo "🔍 Checking gem for vulnerabilities..."
           # Install the built gem and check its dependencies
-          gem install twelvedata_ruby-${{ needs.validate.outputs.version }}.gem
+          gem install ${{ needs.build.outputs.artifact_name }}
 
           echo "✅ Security scan completed"
 
