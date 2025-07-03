@@ -59,34 +59,34 @@ jobs:
           name: test-results-${{ matrix.ruby-version }}
           path: tmp/rspec.xml
 
-  coverage:
-    name: Coverage
-    runs-on: ubuntu-latest
-    needs: test
+  # coverage:
+  #   name: Coverage
+  #   runs-on: ubuntu-latest
+  #   needs: test
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: "3.4.2"
-          bundler-cache: true
+  #     - name: Set up Ruby
+  #       uses: ruby/setup-ruby@v1
+  #       with:
+  #         ruby-version: "3.4.2"
+  #         bundler-cache: true
 
-      - name: Run tests with coverage
-        run: bin/rspec
-        env:
-          COVERAGE: true
+  #     - name: Run tests with coverage
+  #       run: bin/rspec
+  #       env:
+  #         COVERAGE: true
 
-      - name: Upload coverage to Code Climate
-        uses: paambaati/codeclimate-action@v5.0.0
-        if: github.ref == 'refs/heads/main'
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-        with:
-          coverageCommand: bin/rake coverage
-          coverageLocations: coverage/.resultset.json:simplecov
+  #     - name: Upload coverage to Code Climate
+  #       uses: paambaati/codeclimate-action@v5.0.0
+  #       if: github.ref == 'refs/heads/main'
+  #       env:
+  #         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+  #       with:
+  #         coverageCommand: bin/rake coverage
+  #         coverageLocations: coverage/.resultset.json:simplecov
 
   security:
     name: Security
