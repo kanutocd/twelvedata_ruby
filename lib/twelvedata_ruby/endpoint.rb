@@ -266,6 +266,7 @@ module TwelvedataRuby
     #
     # @return [Boolean] True if query parameters are valid
     def valid_query_params?
+      validate_query_params
       errors[:parameters_keys].nil? && errors[:required_parameters].nil?
     end
 
@@ -315,14 +316,14 @@ module TwelvedataRuby
 
     def validate_required_parameters
       missing = required_parameters - query_params_keys
-      return if missing.empty?
+      (@errors.delete(:required_parameters) || true) and return if missing.empty?
 
       @errors[:required_parameters] = create_error(:required_parameters, missing, EndpointRequiredParametersError)
     end
 
     def validate_parameter_keys
       invalid = query_params_keys - parameters_keys
-      return if invalid.empty?
+      (@errors.delete(:parameters_keys) || true) and return if invalid.empty?
 
       @errors[:parameters_keys] = create_error(:parameters_keys, invalid, EndpointParametersKeysError)
     end

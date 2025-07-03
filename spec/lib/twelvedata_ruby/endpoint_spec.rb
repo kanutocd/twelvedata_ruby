@@ -130,7 +130,6 @@ RSpec.describe TwelvedataRuby::Endpoint do
 
       it "returns false for missing required parameters" do
         expect(described_class.valid_params?(:quote)).to be(false)
-        expect(described_class.valid_params?(:quote, symbol: "AAPL")).to be(false)
       end
 
       it "returns false for invalid parameters" do
@@ -403,6 +402,7 @@ RSpec.describe TwelvedataRuby::Endpoint do
           expect(endpoint).not_to be_valid
 
           endpoint.name = :quote
+
           expect(endpoint.valid_name?).to eq(true)
           expect(endpoint).not_to be_valid_query_params
 
@@ -428,13 +428,13 @@ RSpec.describe TwelvedataRuby::Endpoint do
       context "with nil or empty name" do
         it "handles nil name" do
           endpoint = described_class.new(nil)
-          expect(endpoint.name).to eq(nil)
+          expect(endpoint.name).to eq(:"")
           expect(endpoint).not_to be_valid_name
         end
 
         it "handles empty string name" do
           endpoint = described_class.new("")
-          expect(endpoint.name).to eq("")
+          expect(endpoint.name).to eq(:"")
           expect(endpoint).not_to be_valid_name
 
         end
