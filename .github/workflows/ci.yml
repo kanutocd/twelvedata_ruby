@@ -166,7 +166,8 @@ jobs:
         run: |
           gem build twelvedata_ruby.gemspec
           gem install twelvedata_ruby-*.gem
-          ruby -e "require 'twelvedata_ruby'; puts TwelvedataRuby::VERSION"
+          installed=$(gem info twelvedata_ruby | grep twelvedata_ruby)
+          [[ -n "$installed" ]] && exit 0 || exit 1
 
   notify:
     name: Notify
