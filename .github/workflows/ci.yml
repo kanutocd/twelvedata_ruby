@@ -50,7 +50,7 @@ jobs:
           bundler-cache: true
 
       - name: Run tests
-        run: bundle exec rspec --format progress --format RspecJunitFormatter --out tmp/rspec.xml
+        run: bin/rspec --format progress --format RspecJunitFormatter --out tmp/rspec.xml
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
@@ -75,7 +75,7 @@ jobs:
           bundler-cache: true
 
       - name: Run tests with coverage
-        run: bundle exec rspec
+        run: bin/rspec
         env:
           COVERAGE: true
 
