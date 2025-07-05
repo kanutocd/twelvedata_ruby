@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 require "bundler/setup"
-require "twelvedata_ruby"
+require_relative "../lib/twelvedata_ruby"
 
 require "irb"
 
