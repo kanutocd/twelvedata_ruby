@@ -443,7 +443,7 @@ Everyone interacting in the TwelvedataRuby project's codebases, issue trackers, 
 
 ## Support
 
-- 📖 [API Documentation](https://kanutocd.github.io/twelvedata_ruby/doc/)
+- 📖 [API Documentation](https://kanutocd.github.io/twelvedata_ruby)
 - 🐛 [Issue Tracker](https://github.com/kanutocd/twelvedata_ruby/issues)
 - 📧 Email: kenneth.c.demanawa@gmail.com
 
