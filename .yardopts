@@ -1,5 +1,5 @@
---markup markdown
---markup-provider kramdown
+--markup-provider=redcarpet
+--markup=markdown
 --main README.md
 --output-dir doc
 --protected

@@ -22,6 +22,8 @@ group :development, :test do
   gem "irb", "~> 1.15"
   gem "ostruct", "~> 0.6.2"
   gem "rspec_junit_formatter", "~> 0.6.0"
-  gem "kramdown", "~> 2.5"
+  gem "github-markup", "~> 5.0"
+  gem "redcarpet", "~> 3.6"
 end
+
 

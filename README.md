@@ -225,7 +225,7 @@ requests = [
 responses = TwelvedataRuby::Client.request(requests)
 responses.each_with_index do |http_response, index|
   response = TwelvedataRuby::Response.resolve(http_response, requests[index])
-  puts "#{requests[index].query_params[:symbol]}: #{response.parsed_body[:close]}"
+  puts requests[index].query_params[:symbol] + ": " + response.parsed_body[:close]
 end
 ```
 

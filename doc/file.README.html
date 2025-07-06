@@ -59,554 +59,529 @@
 
       <div id="content"><div id='filecontents'><h1 id="twelvedataruby">TwelvedataRuby</h1>
 
-<p><a href="https://badge.fury.io/rb/ruby"><img src="https://badge.fury.io/rb/ruby.svg?icon=si%3Arubygems" alt="Gem Version" /></a></p>
+<p><a href="https://badge.fury.io/rb/ruby"><img src="https://badge.fury.io/rb/ruby.svg?icon=si%3Arubygems" alt="Gem Version"></a></p>
 
-<p>A Ruby client library for accessing <a href="https://twelvedata.com">Twelve Data’s</a> comprehensive financial API. Get real-time and historical data for stocks, forex, cryptocurrencies, ETFs, indices, and more.</p>
+<p>A Ruby client library for accessing <a href="https://twelvedata.com">Twelve Data&#39;s</a> comprehensive financial API. Get real-time and historical data for stocks, forex, cryptocurrencies, ETFs, indices, and more.</p>
 
 <h2 id="features">Features</h2>
 
 <ul>
-  <li>🚀 <strong>Modern Ruby</strong> - Requires Ruby 3.4.0+, follows modern Ruby practices</li>
-  <li>📈 <strong>Comprehensive API Coverage</strong> - All Twelve Data endpoints supported</li>
-  <li>🔒 <strong>Type Safety</strong> - Strong parameter validation and error handling</li>
-  <li>📊 <strong>Multiple Formats</strong> - JSON and CSV response formats</li>
-  <li>🧪 <strong>Well Tested</strong> - 100% test coverage</li>
-  <li>🔧 <strong>Developer Friendly</strong> - Excellent error messages and debugging support</li>
-  <li>⚡ <strong>High Performance</strong> - Built on HTTPX for concurrent requests</li>
+<li>🚀 <strong>Modern Ruby</strong> - Requires Ruby 3.4.0+, follows modern Ruby practices</li>
+<li>📈 <strong>Comprehensive API Coverage</strong> - All Twelve Data endpoints supported</li>
+<li>🔒 <strong>Type Safety</strong> - Strong parameter validation and error handling</li>
+<li>📊 <strong>Multiple Formats</strong> - JSON and CSV response formats</li>
+<li>🧪 <strong>Well Tested</strong> - 100% test coverage</li>
+<li>🔧 <strong>Developer Friendly</strong> - Excellent error messages and debugging support</li>
+<li>⚡ <strong>High Performance</strong> - Built on HTTPX for concurrent requests</li>
 </ul>
 
 <h2 id="installation">Installation</h2>
 
-<p>Add this line to your application’s Gemfile:</p>
+<p>Add this line to your application&#39;s Gemfile:</p>
 
-<p><code>ruby
-gem 'twelvedata_ruby'
-</code></p>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>twelvedata_ruby</span><span class='tstring_end'>&#39;</span></span>
+</code></pre>
 
 <p>And then execute:</p>
 
-<p><code>bash
-bundle install
-</code></p>
+<pre class="code bash"><code class="bash">bundle install
+</code></pre>
 
 <p>Or install it yourself as:</p>
 
-<p><code>bash
-gem install twelvedata_ruby
-</code></p>
+<pre class="code bash"><code class="bash">gem install twelvedata_ruby
+</code></pre>
 
 <h2 id="quick-start">Quick Start</h2>
 
-<h3 id="get-your-api-key">1. Get Your API Key</h3>
+<h3 id="1-get-your-api-key">1. Get Your API Key</h3>
 
 <p>Sign up for a free API key at <a href="https://twelvedata.com/pricing">Twelve Data</a>.</p>
 
-<h3 id="basic-usage">2. Basic Usage</h3>
+<h3 id="2-basic-usage">2. Basic Usage</h3>
 
-<p>```ruby
-require ‘twelvedata_ruby’</p>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>twelvedata_ruby</span><span class='tstring_end'>&#39;</span></span>
 
-<h1 id="option-1-configure-with-api-key-directly">Option 1: Configure with API key directly</h1>
-<p>client = TwelvedataRuby.client(apikey: “your-api-key-here”)</p>
+<span class='comment'># Option 1: Configure with API key directly
+</span><span class='id identifier rubyid_client'>client</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="TwelvedataRuby.html" title="TwelvedataRuby (module)">TwelvedataRuby</a></span></span><span class='period'>.</span><span class='id identifier rubyid_client'><span class='object_link'><a href="TwelvedataRuby.html#client-class_method" title="TwelvedataRuby.client (method)">client</a></span></span><span class='lparen'>(</span><span class='label'>apikey:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>your-api-key-here</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 
-<h1 id="option-2-use-environment-variable-recommended">Option 2: Use environment variable (recommended)</h1>
-<p>ENV[‘TWELVEDATA_API_KEY’] = ‘your-api-key-here’
-client = TwelvedataRuby.client</p>
+<span class='comment'># Option 2: Use environment variable (recommended)
+</span><span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>TWELVEDATA_API_KEY</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>your-api-key-here</span><span class='tstring_end'>&#39;</span></span>
+<span class='id identifier rubyid_client'>client</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="TwelvedataRuby.html" title="TwelvedataRuby (module)">TwelvedataRuby</a></span></span><span class='period'>.</span><span class='id identifier rubyid_client'><span class='object_link'><a href="TwelvedataRuby.html#client-class_method" title="TwelvedataRuby.client (method)">client</a></span></span>
 
-<h1 id="get-a-stock-quote">Get a stock quote</h1>
-<p>response = client.quote(symbol: “AAPL”)
-puts response.parsed_body
-# =&gt; {
-#   symbol: “AAPL”,
-#   name: “Apple Inc”,
-#   exchange: “NASDAQ”,
-#   currency: “USD”,
-#   datetime: “2024-01-15”,
-#   open: “185.00”,
-#   high: “187.50”,
-#   low: “184.20”,
-#   close: “186.75”,
-#   volume: “45678900”,
-#   …
-# }
-```</p>
+<span class='comment'># Get a stock quote
+</span><span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_quote'>quote</span><span class='lparen'>(</span><span class='label'>symbol:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>AAPL</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_parsed_body'>parsed_body</span>
+<span class='comment'># =&gt; {
+</span><span class='comment'>#   symbol: &quot;AAPL&quot;,
+</span><span class='comment'>#   name: &quot;Apple Inc&quot;,
+</span><span class='comment'>#   exchange: &quot;NASDAQ&quot;,
+</span><span class='comment'>#   currency: &quot;USD&quot;,
+</span><span class='comment'>#   datetime: &quot;2024-01-15&quot;,
+</span><span class='comment'>#   open: &quot;185.00&quot;,
+</span><span class='comment'>#   high: &quot;187.50&quot;,
+</span><span class='comment'>#   low: &quot;184.20&quot;,
+</span><span class='comment'>#   close: &quot;186.75&quot;,
+</span><span class='comment'>#   volume: &quot;45678900&quot;,
+</span><span class='comment'>#   ...
+</span><span class='comment'># }
+</span></code></pre>
 
 <h2 id="api-reference">API Reference</h2>
 
 <h3 id="stock-market-data">Stock Market Data</h3>
 
-<p>```ruby
-# Real-time quote
-client.quote(symbol: “AAPL”)
-client.quote(symbol: “GOOGL”, exchange: “NASDAQ”)</p>
+<pre class="code ruby"><code class="ruby"><span class='comment'># Real-time quote
+</span><span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_quote'>quote</span><span class='lparen'>(</span><span class='label'>symbol:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>AAPL</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_quote'>quote</span><span class='lparen'>(</span><span class='label'>symbol:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GOOGL</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>exchange:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>NASDAQ</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 
-<h1 id="current-price-only">Current price only</h1>
-<p>client.price(symbol: “TSLA”)</p>
+<span class='comment'># Current price only
+</span><span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_price'>price</span><span class='lparen'>(</span><span class='label'>symbol:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>TSLA</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 
-<h1 id="historical-time-series-data">Historical time series data</h1>
-<p>client.time_series(
-  symbol: “AAPL”,
-  interval: “1day”,
-  start_date: “2024-01-01”,
-  end_date: “2024-01-31”
-)</p>
+<span class='comment'># Historical time series data
+</span><span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_time_series'>time_series</span><span class='lparen'>(</span>
+  <span class='label'>symbol:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>AAPL</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='label'>interval:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1day</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='label'>start_date:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>2024-01-01</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='label'>end_date:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>2024-01-31</span><span class='tstring_end'>&quot;</span></span>
+<span class='rparen'>)</span>
 
-<h1 id="end-of-day-prices">End of day prices</h1>
-<p>client.eod(symbol: “MSFT”)</p>
+<span class='comment'># End of day prices
+</span><span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_eod'>eod</span><span class='lparen'>(</span><span class='label'>symbol:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>MSFT</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 
-<h1 id="search-for-symbols">Search for symbols</h1>
-<p>client.symbol_search(symbol: “Apple”)
-```</p>
+<span class='comment'># Search for symbols
+</span><span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_symbol_search'>symbol_search</span><span class='lparen'>(</span><span class='label'>symbol:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Apple</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+</code></pre>
 
-<h3 id="forex--currency">Forex &amp; Currency</h3>
+<h3 id="forex-currency">Forex &amp; Currency</h3>
 
-<p>```ruby
-# Exchange rates
-client.exchange_rate(symbol: “USD/EUR”)</p>
+<pre class="code ruby"><code class="ruby"><span class='comment'># Exchange rates
+</span><span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_exchange_rate'>exchange_rate</span><span class='lparen'>(</span><span class='label'>symbol:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>USD/EUR</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 
-<h1 id="currency-conversion">Currency conversion</h1>
-<p>client.currency_conversion(symbol: “USD/EUR”, amount: 100)</p>
+<span class='comment'># Currency conversion
+</span><span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_currency_conversion'>currency_conversion</span><span class='lparen'>(</span><span class='label'>symbol:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>USD/EUR</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>amount:</span> <span class='int'>100</span><span class='rparen'>)</span>
 
-<h1 id="available-forex-pairs">Available forex pairs</h1>
-<p>client.forex_pairs
-```</p>
+<span class='comment'># Available forex pairs
+</span><span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_forex_pairs'>forex_pairs</span>
+</code></pre>
 
 <h3 id="cryptocurrency">Cryptocurrency</h3>
 
-<p>```ruby
-# Crypto quotes
-client.quote(symbol: “BTC/USD”)</p>
+<pre class="code ruby"><code class="ruby"><span class='comment'># Crypto quotes
+</span><span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_quote'>quote</span><span class='lparen'>(</span><span class='label'>symbol:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>BTC/USD</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 
-<h1 id="available-cryptocurrencies">Available cryptocurrencies</h1>
-<p>client.cryptocurrencies</p>
+<span class='comment'># Available cryptocurrencies
+</span><span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_cryptocurrencies'>cryptocurrencies</span>
 
-<h1 id="crypto-exchanges">Crypto exchanges</h1>
-<p>client.cryptocurrency_exchanges
-```</p>
+<span class='comment'># Crypto exchanges
+</span><span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_cryptocurrency_exchanges'>cryptocurrency_exchanges</span>
+</code></pre>
 
 <h3 id="market-reference-data">Market Reference Data</h3>
 
-<p>```ruby
-# Available stocks
-client.stocks(exchange: “NASDAQ”)</p>
+<pre class="code ruby"><code class="ruby"><span class='comment'># Available stocks
+</span><span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_stocks'>stocks</span><span class='lparen'>(</span><span class='label'>exchange:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>NASDAQ</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 
-<h1 id="etf-information">ETF information</h1>
-<p>client.etf</p>
+<span class='comment'># ETF information
+</span><span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_etf'>etf</span>
 
-<h1 id="market-indices">Market indices</h1>
-<p>client.indices</p>
+<span class='comment'># Market indices
+</span><span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_indices'>indices</span>
 
-<h1 id="stock-exchanges">Stock exchanges</h1>
-<p>client.exchanges</p>
+<span class='comment'># Stock exchanges
+</span><span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_exchanges'>exchanges</span>
 
-<h1 id="technical-indicators">Technical indicators</h1>
-<p>client.technical_indicators
-```</p>
+<span class='comment'># Technical indicators
+</span><span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_technical_indicators'>technical_indicators</span>
+</code></pre>
 
-<h3 id="account--usage">Account &amp; Usage</h3>
+<h3 id="account-usage">Account &amp; Usage</h3>
 
-<p><code>ruby
-# Check API usage
-usage = client.api_usage
-puts "Current usage: #{usage.parsed_body[:current_usage]}/#{usage.parsed_body[:plan_limit]}"
-</code></p>
+<pre class="code ruby"><code class="ruby"><span class='comment'># Check API usage
+</span><span class='id identifier rubyid_usage'>usage</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_api_usage'>api_usage</span>
+<span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Current usage: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_usage'>usage</span><span class='period'>.</span><span class='id identifier rubyid_parsed_body'>parsed_body</span><span class='lbracket'>[</span><span class='symbol'>:current_usage</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_usage'>usage</span><span class='period'>.</span><span class='id identifier rubyid_parsed_body'>parsed_body</span><span class='lbracket'>[</span><span class='symbol'>:plan_limit</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+</code></pre>
 
 <h2 id="advanced-usage">Advanced Usage</h2>
 
 <h3 id="response-formats">Response Formats</h3>
 
-<p>```ruby
-# JSON response (default)
-response = client.quote(symbol: “AAPL”, format: :json)
-data = response.parsed_body # Hash</p>
-
-<h1 id="csv-response">CSV response</h1>
-<p>response = client.quote(symbol: “AAPL”, format: :csv)
-table = response.parsed_body # CSV::Table</p>
-
-<h1 id="save-csv-to-file">Save CSV to file</h1>
-<p>response = client.time_series(
-  symbol: “AAPL”,
-  interval: “1day”,
-  format: :csv,
-  filename: “apple_daily.csv”
-)
-response.save_to_file(“./data/apple_data.csv”)
-```</p>
+<pre class="code ruby"><code class="ruby"><span class='comment'># JSON response (default)
+</span><span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_quote'>quote</span><span class='lparen'>(</span><span class='label'>symbol:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>AAPL</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>format:</span> <span class='symbol'>:json</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_parsed_body'>parsed_body</span> <span class='comment'># Hash
+</span>
+<span class='comment'># CSV response
+</span><span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_quote'>quote</span><span class='lparen'>(</span><span class='label'>symbol:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>AAPL</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>format:</span> <span class='symbol'>:csv</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_table'>table</span> <span class='op'>=</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_parsed_body'>parsed_body</span> <span class='comment'># CSV::Table
+</span>
+<span class='comment'># Save CSV to file
+</span><span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_time_series'>time_series</span><span class='lparen'>(</span>
+  <span class='label'>symbol:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>AAPL</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='label'>interval:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1day</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='label'>format:</span> <span class='symbol'>:csv</span><span class='comma'>,</span>
+  <span class='label'>filename:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>apple_daily.csv</span><span class='tstring_end'>&quot;</span></span>
+<span class='rparen'>)</span>
+<span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_save_to_file'>save_to_file</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>./data/apple_data.csv</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+</code></pre>
 
 <h3 id="error-handling">Error Handling</h3>
 
-<p>```ruby
-response = client.quote(symbol: “INVALID”)</p>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_quote'>quote</span><span class='lparen'>(</span><span class='label'>symbol:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>INVALID</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 
-<p>if response.error
-  case response.error
-  when TwelvedataRuby::UnauthorizedResponseError
-    puts “Invalid API key”
-  when TwelvedataRuby::NotFoundResponseError
-    puts “Symbol not found”
-  when TwelvedataRuby::TooManyRequestsResponseError
-    puts “Rate limit exceeded”
-  else
-    puts “Error: #responseresponse.errorresponse.error.message”
-  end
-else
-  puts response.parsed_body
-end
-```</p>
+<span class='kw'>if</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_error'>error</span>
+  <span class='kw'>case</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_error'>error</span>
+  <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="TwelvedataRuby.html" title="TwelvedataRuby (module)">TwelvedataRuby</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="TwelvedataRuby/UnauthorizedResponseError.html" title="TwelvedataRuby::UnauthorizedResponseError (class)">UnauthorizedResponseError</a></span></span>
+    <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Invalid API key</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="TwelvedataRuby.html" title="TwelvedataRuby (module)">TwelvedataRuby</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="TwelvedataRuby/NotFoundResponseError.html" title="TwelvedataRuby::NotFoundResponseError (class)">NotFoundResponseError</a></span></span>
+    <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Symbol not found</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="TwelvedataRuby.html" title="TwelvedataRuby (module)">TwelvedataRuby</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="TwelvedataRuby/TooManyRequestsResponseError.html" title="TwelvedataRuby::TooManyRequestsResponseError (class)">TooManyRequestsResponseError</a></span></span>
+    <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Rate limit exceeded</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Error: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_error'>error</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>else</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_parsed_body'>parsed_body</span>
+<span class='kw'>end</span>
+</code></pre>
 
 <h3 id="configuration-options">Configuration Options</h3>
 
-<p>```ruby
-client = TwelvedataRuby.client(
-  apikey: “your-api-key”,
-  connect_timeout: 5000,  # milliseconds
-  apikey_env_var_name: “CUSTOM_API_KEY_VAR”
-)</p>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_client'>client</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="TwelvedataRuby.html" title="TwelvedataRuby (module)">TwelvedataRuby</a></span></span><span class='period'>.</span><span class='id identifier rubyid_client'><span class='object_link'><a href="TwelvedataRuby.html#client-class_method" title="TwelvedataRuby.client (method)">client</a></span></span><span class='lparen'>(</span>
+  <span class='label'>apikey:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>your-api-key</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='label'>connect_timeout:</span> <span class='int'>5000</span><span class='comma'>,</span>  <span class='comment'># milliseconds
+</span>  <span class='label'>apikey_env_var_name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>CUSTOM_API_KEY_VAR</span><span class='tstring_end'>&quot;</span></span>
+<span class='rparen'>)</span>
 
-<h1 id="update-configuration-later">Update configuration later</h1>
-<p>client.configure(connect_timeout: 10000)</p>
+<span class='comment'># Update configuration later
+</span><span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_configure'>configure</span><span class='lparen'>(</span><span class='label'>connect_timeout:</span> <span class='int'>10000</span><span class='rparen'>)</span>
 
-<h1 id="or-set-individual-options">Or set individual options</h1>
-<p>client.apikey = “new-api-key”
-client.connect_timeout = 3000
-```</p>
+<span class='comment'># Or set individual options
+</span><span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_apikey'>apikey</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>new-api-key</span><span class='tstring_end'>&quot;</span></span>
+<span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_connect_timeout'>connect_timeout</span> <span class='op'>=</span> <span class='int'>3000</span>
+</code></pre>
 
 <h3 id="concurrent-requests">Concurrent Requests</h3>
 
-<p>```ruby
-# Create multiple requests
-requests = [
-  TwelvedataRuby::Request.new(:quote, symbol: “AAPL”),
-  TwelvedataRuby::Request.new(:quote, symbol: “GOOGL”),
-  TwelvedataRuby::Request.new(:quote, symbol: “MSFT”)
-]</p>
+<pre class="code ruby"><code class="ruby"><span class='comment'># Create multiple requests
+</span><span class='id identifier rubyid_requests'>requests</span> <span class='op'>=</span> <span class='lbracket'>[</span>
+  <span class='const'><span class='object_link'><a href="TwelvedataRuby.html" title="TwelvedataRuby (module)">TwelvedataRuby</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="TwelvedataRuby/Request.html" title="TwelvedataRuby::Request (class)">Request</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="TwelvedataRuby/Request.html#initialize-instance_method" title="TwelvedataRuby::Request#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='symbol'>:quote</span><span class='comma'>,</span> <span class='label'>symbol:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>AAPL</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span>
+  <span class='const'><span class='object_link'><a href="TwelvedataRuby.html" title="TwelvedataRuby (module)">TwelvedataRuby</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="TwelvedataRuby/Request.html" title="TwelvedataRuby::Request (class)">Request</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="TwelvedataRuby/Request.html#initialize-instance_method" title="TwelvedataRuby::Request#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='symbol'>:quote</span><span class='comma'>,</span> <span class='label'>symbol:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GOOGL</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span>
+  <span class='const'><span class='object_link'><a href="TwelvedataRuby.html" title="TwelvedataRuby (module)">TwelvedataRuby</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="TwelvedataRuby/Request.html" title="TwelvedataRuby::Request (class)">Request</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="TwelvedataRuby/Request.html#initialize-instance_method" title="TwelvedataRuby::Request#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='symbol'>:quote</span><span class='comma'>,</span> <span class='label'>symbol:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>MSFT</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='rbracket'>]</span>
 
-<h1 id="send-them-concurrently">Send them concurrently</h1>
-<p>responses = TwelvedataRuby::Client.request(requests)
-responses.each_with_index do |http_response, index|
-  response = TwelvedataRuby::Response.resolve(http_response, requests[index])
-  puts “#requests[index].query_params[:symbol]: #response.parsed_body[:close]”
-end
-```</p>
+<span class='comment'># Send them concurrently
+</span><span class='id identifier rubyid_responses'>responses</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="TwelvedataRuby.html" title="TwelvedataRuby (module)">TwelvedataRuby</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="TwelvedataRuby/Client.html" title="TwelvedataRuby::Client (class)">Client</a></span></span><span class='period'>.</span><span class='id identifier rubyid_request'><span class='object_link'><a href="TwelvedataRuby/Client.html#request-class_method" title="TwelvedataRuby::Client.request (method)">request</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_requests'>requests</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_responses'>responses</span><span class='period'>.</span><span class='id identifier rubyid_each_with_index'>each_with_index</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_http_response'>http_response</span><span class='comma'>,</span> <span class='id identifier rubyid_index'>index</span><span class='op'>|</span>
+  <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="TwelvedataRuby.html" title="TwelvedataRuby (module)">TwelvedataRuby</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="TwelvedataRuby/Response.html" title="TwelvedataRuby::Response (class)">Response</a></span></span><span class='period'>.</span><span class='id identifier rubyid_resolve'><span class='object_link'><a href="TwelvedataRuby/Response.html#resolve-class_method" title="TwelvedataRuby::Response.resolve (method)">resolve</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_http_response'>http_response</span><span class='comma'>,</span> <span class='id identifier rubyid_requests'>requests</span><span class='lbracket'>[</span><span class='id identifier rubyid_index'>index</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_requests'>requests</span><span class='lbracket'>[</span><span class='id identifier rubyid_index'>index</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_query_params'>query_params</span><span class='lbracket'>[</span><span class='symbol'>:symbol</span><span class='rbracket'>]</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>: </span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_parsed_body'>parsed_body</span><span class='lbracket'>[</span><span class='symbol'>:close</span><span class='rbracket'>]</span>
+<span class='kw'>end</span>
+</code></pre>
 
 <h3 id="complex-data-queries">Complex Data Queries</h3>
 
-<p><code>ruby
-# POST request for complex data
-response = client.complex_data(
-  symbols: "AAPL,GOOGL,MSFT",
-  intervals: "1day,1week",
-  start_date: "2024-01-01",
-  end_date: "2024-01-31",
-  methods: "time_series"
-)
-</code></p>
+<pre class="code ruby"><code class="ruby"><span class='comment'># POST request for complex data
+</span><span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_complex_data'>complex_data</span><span class='lparen'>(</span>
+  <span class='label'>symbols:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>AAPL,GOOGL,MSFT</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='label'>intervals:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1day,1week</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='label'>start_date:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>2024-01-01</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='label'>end_date:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>2024-01-31</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='label'>methods:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>time_series</span><span class='tstring_end'>&quot;</span></span>
+<span class='rparen'>)</span>
+</code></pre>
 
 <h2 id="response-objects">Response Objects</h2>
 
 <h3 id="response-methods">Response Methods</h3>
 
-<p>```ruby
-response = client.quote(symbol: “AAPL”)</p>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_quote'>quote</span><span class='lparen'>(</span><span class='label'>symbol:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>AAPL</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 
-<h1 id="response-status">Response status</h1>
-<p>response.success?           # =&gt; true/false
-response.http_status_code   # =&gt; 200
-response.status_code        # =&gt; API status code</p>
-
-<h1 id="content-information">Content information</h1>
-<p>response.content_type       # =&gt; :json, :csv, :plain
-response.body_bytesize      # =&gt; response size in bytes</p>
-
-<h1 id="parsed-data">Parsed data</h1>
-<p>response.parsed_body        # =&gt; Hash, CSV::Table, or String
-response.body              # =&gt; alias for parsed_body</p>
-
-<h1 id="error-information">Error information</h1>
-<p>response.error             # =&gt; nil or ResponseError instance</p>
-
-<h1 id="file-operations">File operations</h1>
-<p>response.attachment_filename  # =&gt; “filename.csv” if present
-response.save_to_file(“path/to/file.csv”)
-response.dump_parsed_body     # =&gt; serialized content</p>
-
-<h1 id="debugging">Debugging</h1>
-<p>response.to_s              # =&gt; human-readable summary
-response.inspect           # =&gt; detailed inspection
-```</p>
+<span class='comment'># Response status
+</span><span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_success?'>success?</span>           <span class='comment'># =&gt; true/false
+</span><span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_http_status_code'>http_status_code</span>   <span class='comment'># =&gt; 200
+</span><span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_status_code'>status_code</span>        <span class='comment'># =&gt; API status code
+</span>
+<span class='comment'># Content information
+</span><span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_content_type'>content_type</span>       <span class='comment'># =&gt; :json, :csv, :plain
+</span><span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_body_bytesize'>body_bytesize</span>      <span class='comment'># =&gt; response size in bytes
+</span>
+<span class='comment'># Parsed data
+</span><span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_parsed_body'>parsed_body</span>        <span class='comment'># =&gt; Hash, CSV::Table, or String
+</span><span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span>              <span class='comment'># =&gt; alias for parsed_body
+</span>
+<span class='comment'># Error information
+</span><span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_error'>error</span>             <span class='comment'># =&gt; nil or ResponseError instance
+</span>
+<span class='comment'># File operations
+</span><span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_attachment_filename'>attachment_filename</span>  <span class='comment'># =&gt; &quot;filename.csv&quot; if present
+</span><span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_save_to_file'>save_to_file</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>path/to/file.csv</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_dump_parsed_body'>dump_parsed_body</span>     <span class='comment'># =&gt; serialized content
+</span>
+<span class='comment'># Debugging
+</span><span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>              <span class='comment'># =&gt; human-readable summary
+</span><span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span>           <span class='comment'># =&gt; detailed inspection
+</span></code></pre>
 
 <h3 id="error-types">Error Types</h3>
 
-<p>```ruby
-# Base error types
-TwelvedataRuby::Error                    # Base error class
-TwelvedataRuby::ConfigurationError       # Configuration issues
-TwelvedataRuby::NetworkError            # Network connectivity issues</p>
-
-<h1 id="api-endpoint-errors">API endpoint errors</h1>
-<p>TwelvedataRuby::EndpointError           # Invalid endpoint usage
-TwelvedataRuby::EndpointNameError       # Invalid endpoint name
-TwelvedataRuby::EndpointParametersKeysError     # Invalid parameters
-TwelvedataRuby::EndpointRequiredParametersError # Missing required parameters</p>
-
-<h1 id="api-response-errors">API response errors</h1>
-<p>TwelvedataRuby::ResponseError           # Base response error
-TwelvedataRuby::BadRequestResponseError         # 400 errors
-TwelvedataRuby::UnauthorizedResponseError       # 401 errors
-TwelvedataRuby::ForbiddenResponseError          # 403 errors
-TwelvedataRuby::NotFoundResponseError           # 404 errors
-TwelvedataRuby::TooManyRequestsResponseError    # 429 errors
-TwelvedataRuby::InternalServerResponseError     # 500 errors
-```</p>
+<pre class="code ruby"><code class="ruby"><span class='comment'># Base error types
+</span><span class='const'><span class='object_link'><a href="TwelvedataRuby.html" title="TwelvedataRuby (module)">TwelvedataRuby</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="TwelvedataRuby/Error.html" title="TwelvedataRuby::Error (class)">Error</a></span></span>                    <span class='comment'># Base error class
+</span><span class='const'><span class='object_link'><a href="TwelvedataRuby.html" title="TwelvedataRuby (module)">TwelvedataRuby</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="TwelvedataRuby/ConfigurationError.html" title="TwelvedataRuby::ConfigurationError (class)">ConfigurationError</a></span></span>       <span class='comment'># Configuration issues
+</span><span class='const'><span class='object_link'><a href="TwelvedataRuby.html" title="TwelvedataRuby (module)">TwelvedataRuby</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="TwelvedataRuby/NetworkError.html" title="TwelvedataRuby::NetworkError (class)">NetworkError</a></span></span>            <span class='comment'># Network connectivity issues
+</span>
+<span class='comment'># API endpoint errors
+</span><span class='const'><span class='object_link'><a href="TwelvedataRuby.html" title="TwelvedataRuby (module)">TwelvedataRuby</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="TwelvedataRuby/EndpointError.html" title="TwelvedataRuby::EndpointError (class)">EndpointError</a></span></span>           <span class='comment'># Invalid endpoint usage
+</span><span class='const'><span class='object_link'><a href="TwelvedataRuby.html" title="TwelvedataRuby (module)">TwelvedataRuby</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="TwelvedataRuby/EndpointNameError.html" title="TwelvedataRuby::EndpointNameError (class)">EndpointNameError</a></span></span>       <span class='comment'># Invalid endpoint name
+</span><span class='const'><span class='object_link'><a href="TwelvedataRuby.html" title="TwelvedataRuby (module)">TwelvedataRuby</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="TwelvedataRuby/EndpointParametersKeysError.html" title="TwelvedataRuby::EndpointParametersKeysError (class)">EndpointParametersKeysError</a></span></span>     <span class='comment'># Invalid parameters
+</span><span class='const'><span class='object_link'><a href="TwelvedataRuby.html" title="TwelvedataRuby (module)">TwelvedataRuby</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="TwelvedataRuby/EndpointRequiredParametersError.html" title="TwelvedataRuby::EndpointRequiredParametersError (class)">EndpointRequiredParametersError</a></span></span> <span class='comment'># Missing required parameters
+</span>
+<span class='comment'># API response errors
+</span><span class='const'><span class='object_link'><a href="TwelvedataRuby.html" title="TwelvedataRuby (module)">TwelvedataRuby</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="TwelvedataRuby/ResponseError.html" title="TwelvedataRuby::ResponseError (class)">ResponseError</a></span></span>           <span class='comment'># Base response error
+</span><span class='const'><span class='object_link'><a href="TwelvedataRuby.html" title="TwelvedataRuby (module)">TwelvedataRuby</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="TwelvedataRuby/BadRequestResponseError.html" title="TwelvedataRuby::BadRequestResponseError (class)">BadRequestResponseError</a></span></span>         <span class='comment'># 400 errors
+</span><span class='const'><span class='object_link'><a href="TwelvedataRuby.html" title="TwelvedataRuby (module)">TwelvedataRuby</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="TwelvedataRuby/UnauthorizedResponseError.html" title="TwelvedataRuby::UnauthorizedResponseError (class)">UnauthorizedResponseError</a></span></span>       <span class='comment'># 401 errors
+</span><span class='const'><span class='object_link'><a href="TwelvedataRuby.html" title="TwelvedataRuby (module)">TwelvedataRuby</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="TwelvedataRuby/ForbiddenResponseError.html" title="TwelvedataRuby::ForbiddenResponseError (class)">ForbiddenResponseError</a></span></span>          <span class='comment'># 403 errors
+</span><span class='const'><span class='object_link'><a href="TwelvedataRuby.html" title="TwelvedataRuby (module)">TwelvedataRuby</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="TwelvedataRuby/NotFoundResponseError.html" title="TwelvedataRuby::NotFoundResponseError (class)">NotFoundResponseError</a></span></span>           <span class='comment'># 404 errors
+</span><span class='const'><span class='object_link'><a href="TwelvedataRuby.html" title="TwelvedataRuby (module)">TwelvedataRuby</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="TwelvedataRuby/TooManyRequestsResponseError.html" title="TwelvedataRuby::TooManyRequestsResponseError (class)">TooManyRequestsResponseError</a></span></span>    <span class='comment'># 429 errors
+</span><span class='const'><span class='object_link'><a href="TwelvedataRuby.html" title="TwelvedataRuby (module)">TwelvedataRuby</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="TwelvedataRuby/InternalServerResponseError.html" title="TwelvedataRuby::InternalServerResponseError (class)">InternalServerResponseError</a></span></span>     <span class='comment'># 500 errors
+</span></code></pre>
 
 <h2 id="available-endpoints">Available Endpoints</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Endpoint</th>
-      <th>Method</th>
-      <th>Required Parameters</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>quote</code></td>
-      <td>GET</td>
-      <td><code>symbol</code></td>
-      <td>Real-time stock quote</td>
-    </tr>
-    <tr>
-      <td><code>price</code></td>
-      <td>GET</td>
-      <td><code>symbol</code></td>
-      <td>Current stock price</td>
-    </tr>
-    <tr>
-      <td><code>time_series</code></td>
-      <td>GET</td>
-      <td><code>symbol</code>, <code>interval</code></td>
-      <td>Historical price data</td>
-    </tr>
-    <tr>
-      <td><code>eod</code></td>
-      <td>GET</td>
-      <td><code>symbol</code></td>
-      <td>End of day price</td>
-    </tr>
-    <tr>
-      <td><code>exchange_rate</code></td>
-      <td>GET</td>
-      <td><code>symbol</code></td>
-      <td>Forex exchange rate</td>
-    </tr>
-    <tr>
-      <td><code>currency_conversion</code></td>
-      <td>GET</td>
-      <td><code>symbol</code>, <code>amount</code></td>
-      <td>Currency conversion</td>
-    </tr>
-    <tr>
-      <td><code>symbol_search</code></td>
-      <td>GET</td>
-      <td><code>symbol</code></td>
-      <td>Search for symbols</td>
-    </tr>
-    <tr>
-      <td><code>earliest_timestamp</code></td>
-      <td>GET</td>
-      <td><code>symbol</code>, <code>interval</code></td>
-      <td>Earliest available data</td>
-    </tr>
-    <tr>
-      <td><code>api_usage</code></td>
-      <td>GET</td>
-      <td>-</td>
-      <td>API usage statistics</td>
-    </tr>
-    <tr>
-      <td><code>stocks</code></td>
-      <td>GET</td>
-      <td>-</td>
-      <td>Available stocks</td>
-    </tr>
-    <tr>
-      <td><code>forex_pairs</code></td>
-      <td>GET</td>
-      <td>-</td>
-      <td>Available forex pairs</td>
-    </tr>
-    <tr>
-      <td><code>cryptocurrencies</code></td>
-      <td>GET</td>
-      <td>-</td>
-      <td>Available cryptocurrencies</td>
-    </tr>
-    <tr>
-      <td><code>etf</code></td>
-      <td>GET</td>
-      <td>-</td>
-      <td>Available ETFs</td>
-    </tr>
-    <tr>
-      <td><code>indices</code></td>
-      <td>GET</td>
-      <td>-</td>
-      <td>Available indices</td>
-    </tr>
-    <tr>
-      <td><code>exchanges</code></td>
-      <td>GET</td>
-      <td>-</td>
-      <td>Available exchanges</td>
-    </tr>
-    <tr>
-      <td><code>cryptocurrency_exchanges</code></td>
-      <td>GET</td>
-      <td>-</td>
-      <td>Available crypto exchanges</td>
-    </tr>
-    <tr>
-      <td><code>technical_indicators</code></td>
-      <td>GET</td>
-      <td>-</td>
-      <td>Available indicators</td>
-    </tr>
-    <tr>
-      <td><code>earnings</code></td>
-      <td>GET</td>
-      <td><code>symbol</code></td>
-      <td>Earnings data</td>
-    </tr>
-    <tr>
-      <td><code>earnings_calendar</code></td>
-      <td>GET</td>
-      <td>-</td>
-      <td>Earnings calendar</td>
-    </tr>
-    <tr>
-      <td><code>complex_data</code></td>
-      <td>POST</td>
-      <td><code>symbols</code>, <code>intervals</code>, <code>start_date</code>, <code>end_date</code></td>
-      <td>Complex data queries</td>
-    </tr>
-  </tbody>
-</table>
+<table><thead>
+<tr>
+<th>Endpoint</th>
+<th>Method</th>
+<th>Required Parameters</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>quote</code></td>
+<td>GET</td>
+<td><code>symbol</code></td>
+<td>Real-time stock quote</td>
+</tr>
+<tr>
+<td><code>price</code></td>
+<td>GET</td>
+<td><code>symbol</code></td>
+<td>Current stock price</td>
+</tr>
+<tr>
+<td><code>time_series</code></td>
+<td>GET</td>
+<td><code>symbol</code>, <code>interval</code></td>
+<td>Historical price data</td>
+</tr>
+<tr>
+<td><code>eod</code></td>
+<td>GET</td>
+<td><code>symbol</code></td>
+<td>End of day price</td>
+</tr>
+<tr>
+<td><code>exchange_rate</code></td>
+<td>GET</td>
+<td><code>symbol</code></td>
+<td>Forex exchange rate</td>
+</tr>
+<tr>
+<td><code>currency_conversion</code></td>
+<td>GET</td>
+<td><code>symbol</code>, <code>amount</code></td>
+<td>Currency conversion</td>
+</tr>
+<tr>
+<td><code>symbol_search</code></td>
+<td>GET</td>
+<td><code>symbol</code></td>
+<td>Search for symbols</td>
+</tr>
+<tr>
+<td><code>earliest_timestamp</code></td>
+<td>GET</td>
+<td><code>symbol</code>, <code>interval</code></td>
+<td>Earliest available data</td>
+</tr>
+<tr>
+<td><code>api_usage</code></td>
+<td>GET</td>
+<td>-</td>
+<td>API usage statistics</td>
+</tr>
+<tr>
+<td><code>stocks</code></td>
+<td>GET</td>
+<td>-</td>
+<td>Available stocks</td>
+</tr>
+<tr>
+<td><code>forex_pairs</code></td>
+<td>GET</td>
+<td>-</td>
+<td>Available forex pairs</td>
+</tr>
+<tr>
+<td><code>cryptocurrencies</code></td>
+<td>GET</td>
+<td>-</td>
+<td>Available cryptocurrencies</td>
+</tr>
+<tr>
+<td><code>etf</code></td>
+<td>GET</td>
+<td>-</td>
+<td>Available ETFs</td>
+</tr>
+<tr>
+<td><code>indices</code></td>
+<td>GET</td>
+<td>-</td>
+<td>Available indices</td>
+</tr>
+<tr>
+<td><code>exchanges</code></td>
+<td>GET</td>
+<td>-</td>
+<td>Available exchanges</td>
+</tr>
+<tr>
+<td><code>cryptocurrency_exchanges</code></td>
+<td>GET</td>
+<td>-</td>
+<td>Available crypto exchanges</td>
+</tr>
+<tr>
+<td><code>technical_indicators</code></td>
+<td>GET</td>
+<td>-</td>
+<td>Available indicators</td>
+</tr>
+<tr>
+<td><code>earnings</code></td>
+<td>GET</td>
+<td><code>symbol</code></td>
+<td>Earnings data</td>
+</tr>
+<tr>
+<td><code>earnings_calendar</code></td>
+<td>GET</td>
+<td>-</td>
+<td>Earnings calendar</td>
+</tr>
+<tr>
+<td><code>complex_data</code></td>
+<td>POST</td>
+<td><code>symbols</code>, <code>intervals</code>, <code>start_date</code>, <code>end_date</code></td>
+<td>Complex data queries</td>
+</tr>
+</tbody></table>
 
-<p>For complete parameter documentation, visit <a href="https://twelvedata.com/docs">Twelve Data’s API documentation</a>.</p>
+<p>For complete parameter documentation, visit <a href="https://twelvedata.com/docs">Twelve Data&#39;s API documentation</a>.</p>
 
 <h2 id="development">Development</h2>
 
 <h3 id="running-tests">Running Tests</h3>
 
-<p>```bash
-# Run all tests
-bundle exec rspec</p>
+<pre class="code bash"><code class="bash"># Run all tests
+bundle exec rspec
 
-<h1 id="run-with-coverage">Run with coverage</h1>
-<p>COVERAGE=true bundle exec rspec</p>
+# Run with coverage
+COVERAGE=true bundle exec rspec
 
-<h1 id="run-specific-test-file">Run specific test file</h1>
-<p>bundle exec rspec spec/lib/twelvedata_ruby/client_spec.rb</p>
+# Run specific test file
+bundle exec rspec spec/lib/twelvedata_ruby/client_spec.rb
 
-<h1 id="run-with-profile-information">Run with profile information</h1>
-<p>PROFILE=true bundle exec rspec
-```</p>
+# Run with profile information
+PROFILE=true bundle exec rspec
+</code></pre>
 
 <h3 id="code-quality">Code Quality</h3>
 
-<p>```bash
-# Run RuboCop
-bundle exec rubocop</p>
+<pre class="code bash"><code class="bash"># Run RuboCop
+bundle exec rubocop
 
-<h1 id="auto-fix-issues">Auto-fix issues</h1>
-<p>bundle exec rubocop -A</p>
+# Auto-fix issues
+bundle exec rubocop -A
 
-<h1 id="generate-documentation">Generate documentation</h1>
-<p>bundle exec yard doc
-```</p>
+# Generate documentation
+bundle exec yard doc
+</code></pre>
 
-<h3 id="debugging-1">Debugging</h3>
+<h3 id="debugging">Debugging</h3>
 
-<p>```ruby
-# Enable debugging output
-require ‘pry’</p>
+<pre class="code ruby"><code class="ruby"><span class='comment'># Enable debugging output
+</span><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>pry</span><span class='tstring_end'>&#39;</span></span>
 
-<p>client = TwelvedataRuby.client(apikey: “your-key”)
-response = client.quote(symbol: “AAPL”)</p>
+<span class='id identifier rubyid_client'>client</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="TwelvedataRuby.html" title="TwelvedataRuby (module)">TwelvedataRuby</a></span></span><span class='period'>.</span><span class='id identifier rubyid_client'><span class='object_link'><a href="TwelvedataRuby.html#client-class_method" title="TwelvedataRuby.client (method)">client</a></span></span><span class='lparen'>(</span><span class='label'>apikey:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>your-key</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_quote'>quote</span><span class='lparen'>(</span><span class='label'>symbol:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>AAPL</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 
-<h1 id="debug-response">Debug response</h1>
-<p>binding.pry</p>
+<span class='comment'># Debug response
+</span><span class='id identifier rubyid_binding'>binding</span><span class='period'>.</span><span class='id identifier rubyid_pry'>pry</span>
 
-<h1 id="inspect-request-details">Inspect request details</h1>
-<p>puts response.request.to_h
-puts response.request.full_url
-puts response.request.query_params
-```</p>
+<span class='comment'># Inspect request details
+</span><span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_to_h'>to_h</span>
+<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_full_url'>full_url</span>
+<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_query_params'>query_params</span>
+</code></pre>
 
 <h2 id="contributing">Contributing</h2>
 
 <p>We welcome contributions! Please see our <a href="CONTRIBUTING.md">Contributing Guide</a> for details.</p>
 
 <ol>
-  <li>Fork the repository</li>
-  <li>Create your feature branch (<code>git checkout -b feature/amazing-feature</code>)</li>
-  <li>Make your changes with tests</li>
-  <li>Run the test suite (<code>bundle exec rspec</code>)</li>
-  <li>Run RuboCop (<code>bundle exec rubocop</code>)</li>
-  <li>Commit your changes (<code>git commit -am 'Add amazing feature'</code>)</li>
-  <li>Push to the branch (<code>git push origin feature/amazing-feature</code>)</li>
-  <li>Open a Pull Request</li>
+<li>Fork the repository</li>
+<li>Create your feature branch (<code>git checkout -b feature/amazing-feature</code>)</li>
+<li>Make your changes with tests</li>
+<li>Run the test suite (<code>bundle exec rspec</code>)</li>
+<li>Run RuboCop (<code>bundle exec rubocop</code>)</li>
+<li>Commit your changes (<code>git commit -am &#39;Add amazing feature&#39;</code>)</li>
+<li>Push to the branch (<code>git push origin feature/amazing-feature</code>)</li>
+<li>Open a Pull Request</li>
 </ol>
 
 <h2 id="release-process">Release Process</h2>
 
 <h4 id="quick-release-guide">Quick Release Guide</h4>
 
-<p>```bash
-# 1. Prepare release
-bin/release prepare –version 0.4.1</p>
+<pre class="code bash"><code class="bash"># 1. Prepare release
+bin/release prepare --version 0.4.1
 
-<h1 id="push-changes">2. Push changes</h1>
-<p>git push origin main</p>
+# 2. Push changes
+git push origin main
 
-<h1 id="create-github-release-with-tag-v041">3. Create GitHub release with tag v0.4.1</h1>
-<p># → Automatic publication to RubyGems.org via GitHub Actions
-```</p>
+# 3. Create GitHub release with tag v0.4.1
+# → Automatic publication to RubyGems.org via GitHub Actions
+</code></pre>
 
 <h4 id="release-helper-commands">Release Helper Commands</h4>
 
-<p>```bash
-# Check if ready for release
-bin/release check</p>
+<pre class="code bash"><code class="bash"># Check if ready for release
+bin/release check
 
-<h1 id="auto-bump-version">Auto-bump version</h1>
-<p>bin/release bump –type patch    # 0.4.0 → 0.4.1
-bin/release bump –type minor    # 0.4.0 → 0.5.0
-bin/release bump –type major    # 0.4.0 → 1.0.0</p>
+# Auto-bump version
+bin/release bump --type patch    # 0.4.0 → 0.4.1
+bin/release bump --type minor    # 0.4.0 → 0.5.0
+bin/release bump --type major    # 0.4.0 → 1.0.0
 
-<h1 id="dry-run-test-without-changes">Dry run (test without changes)</h1>
-<p>bin/release prepare –version 0.4.1 –dry-run
-```</p>
+# Dry run (test without changes)
+bin/release prepare --version 0.4.1 --dry-run
+</code></pre>
 
 <h4 id="github-workflows">GitHub Workflows</h4>
 
 <ul>
-  <li><strong>CI</strong>: Runs tests, linting, and security scans on every push/PR</li>
-  <li><strong>Release</strong>: Automatically publishes to RubyGems.org when GitHub release is created</li>
-  <li><strong>Documentation</strong>: Updates GitHub Pages with latest API docs</li>
+<li><strong>CI</strong>: Runs tests, linting, and security scans on every push/PR</li>
+<li><strong>Release</strong>: Automatically publishes to RubyGems.org when GitHub release is created</li>
+<li><strong>Documentation</strong>: Updates GitHub Pages with latest API docs</li>
 </ul>
 
 <h4 id="manual-release-advanced">Manual Release (Advanced)</h4>
 
-<p><code>bash
-# Trigger release workflow manually
+<pre class="code bash"><code class="bash"># Trigger release workflow manually
 gh workflow run release.yml \
   --field version=0.4.1 \
   --field dry_run=false
-</code></p>
+</code></pre>
 
 <h2 id="license">License</h2>
 
@@ -614,14 +589,14 @@ gh workflow run release.yml \
 
 <h2 id="code-of-conduct">Code of Conduct</h2>
 
-<p>Everyone interacting in the TwelvedataRuby project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the <a href="CODE_OF_CONDUCT.md">code of conduct</a>.</p>
+<p>Everyone interacting in the TwelvedataRuby project&#39;s codebases, issue trackers, chat rooms and mailing lists is expected to follow the <a href="CODE_OF_CONDUCT.md">code of conduct</a>.</p>
 
 <h2 id="support">Support</h2>
 
 <ul>
-  <li>📖 <a href="https://kanutocd.github.io/twelvedata_ruby">API Documentation</a></li>
-  <li>🐛 <a href="https://github.com/kanutocd/twelvedata_ruby/issues">Issue Tracker</a></li>
-  <li>📧 Email: kenneth.c.demanawa@gmail.com</li>
+<li>📖 <a href="https://kanutocd.github.io/twelvedata_ruby">API Documentation</a></li>
+<li>🐛 <a href="https://github.com/kanutocd/twelvedata_ruby/issues">Issue Tracker</a></li>
+<li>📧 Email: <a href="mailto:kenneth.c.demanawa@gmail.com">kenneth.c.demanawa@gmail.com</a></li>
 </ul>
 
 <h2 id="changelog">Changelog</h2>
@@ -632,13 +607,13 @@ gh workflow run release.yml \
 
 <p>This is not an official Twelve Data Ruby library. The author of this gem is not affiliated with Twelve Data in any way, shape or form. Twelve Data APIs and data are Copyright © 2024 Twelve Data Pte. Ltd.</p>
 
-<hr />
+<hr>
 
 <p><strong>Made with ❤️ by the Ruby community</strong></p>
 </div></div>
 
       <div id="footer">
-  Generated on Sun Jul  6 23:38:34 2025 by
+  Generated on Sun Jul  6 23:59:32 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.2).
 </div>
