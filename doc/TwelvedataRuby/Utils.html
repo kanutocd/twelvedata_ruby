@@ -6,7 +6,7 @@
 <title>
   Module: TwelvedataRuby::Utils
   
-    &mdash; Documentation by YARD 0.9.26
+    &mdash; TwelvedataRuby Documentation
   
 </title>
 
@@ -101,7 +101,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#call_block_if_truthy-class_method" title="call_block_if_truthy (class method)">.<strong>call_block_if_truthy</strong>(truthy_val, return_this = nil, &amp;block)  &#x21d2; Object </a>
+      <a href="#blank%3F-class_method" title="blank? (class method)">.<strong>blank?</strong>(value)  &#x21d2; Boolean </a>
     
 
     
@@ -115,7 +115,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if a value is blank (nil, empty, or whitespace-only).</p>
+</div></span>
   
 </li>
 
@@ -123,7 +124,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#camelize-class_method" title="camelize (class method)">.<strong>camelize</strong>(str)  &#x21d2; Object </a>
+      <a href="#camelize-class_method" title="camelize (class method)">.<strong>camelize</strong>(str)  &#x21d2; String </a>
     
 
     
@@ -137,7 +138,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>Converts snake_case to CamelCase.</p>
+</div></span>
   
 </li>
 
@@ -145,7 +147,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#demodulize-class_method" title="demodulize (class method)">.<strong>demodulize</strong>(obj)  &#x21d2; Object </a>
+      <a href="#demodulize-class_method" title="demodulize (class method)">.<strong>demodulize</strong>(obj)  &#x21d2; String </a>
     
 
     
@@ -159,7 +161,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>Removes module namespace from class name.</p>
+</div></span>
   
 </li>
 
@@ -167,7 +170,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#empty_to_nil-class_method" title="empty_to_nil (class method)">.<strong>empty_to_nil</strong>(obj)  &#x21d2; Object </a>
+      <a href="#empty_to_nil-class_method" title="empty_to_nil (class method)">.<strong>empty_to_nil</strong>(obj)  &#x21d2; Object<sup>?</sup> </a>
     
 
     
@@ -181,7 +184,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>Converts empty values to nil.</p>
+</div></span>
   
 </li>
 
@@ -189,7 +193,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#return_nil_unless_true-class_method" title="return_nil_unless_true (class method)">.<strong>return_nil_unless_true</strong>(is_true, &amp;block)  &#x21d2; Object </a>
+      <a href="#execute_if_true-class_method" title="execute_if_true (class method)">.<strong>execute_if_true</strong>(condition) { ... } &#x21d2; Object<sup>?</sup> </a>
     
 
     
@@ -203,7 +207,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>Executes block only if condition is exactly true.</p>
+</div></span>
   
 </li>
 
@@ -211,7 +216,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#to_a-class_method" title="to_a (class method)">.<strong>to_a</strong>(objects)  &#x21d2; Object </a>
+      <a href="#execute_if_truthy-class_method" title="execute_if_truthy (class method)">.<strong>execute_if_truthy</strong>(condition, default_return = nil) { ... } &#x21d2; Object </a>
     
 
     
@@ -225,7 +230,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>Executes block if condition is truthy.</p>
+</div></span>
   
 </li>
 
@@ -233,7 +239,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#to_d-class_method" title="to_d (class method)">.<strong>to_d</strong>(obj, default_value = nil)  &#x21d2; Object </a>
+      <a href="#present%3F-class_method" title="present? (class method)">.<strong>present?</strong>(value)  &#x21d2; Boolean </a>
     
 
     
@@ -247,8 +253,53 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Converts a string to integer an all integer or nothing.</p>
+    <span class="summary_desc"><div class='inline'><p>Validates that a value is not blank.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_array-class_method" title="to_array (class method)">.<strong>to_array</strong>(objects)  &#x21d2; Array </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Ensures return value is an array.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_integer-class_method" title="to_integer (class method)">.<strong>to_integer</strong>(obj, default_value = nil)  &#x21d2; Integer<sup>?</sup> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Converts string to integer with default fallback.</p>
 </div></span>
   
 </li>
@@ -264,29 +315,83 @@
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="call_block_if_truthy-class_method">
+  <h3 class="signature first" id="blank?-class_method">
   
-    .<strong>call_block_if_truthy</strong>(truthy_val, return_this = nil, &amp;block)  &#x21d2; <tt>Object</tt> 
-  
-
+    .<strong>blank?</strong>(value)  &#x21d2; <tt>Boolean</tt> 
   
 
   
-</h3><table class="source_code">
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Checks if a value is blank (nil, empty, or whitespace-only)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>value</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Value to check</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>True if value is blank</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-28
-29
-30</pre>
+104
+105
+106
+107
+108
+109
+110</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/utils.rb', line 28</span>
+      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/utils.rb', line 104</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_call_block_if_truthy'>call_block_if_truthy</span><span class='lparen'>(</span><span class='id identifier rubyid_truthy_val'>truthy_val</span><span class='comma'>,</span> <span class='id identifier rubyid_return_this'>return_this</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_truthy_val'>truthy_val</span> <span class='op'>?</span> <span class='id identifier rubyid_block'>block</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span> <span class='op'>:</span> <span class='id identifier rubyid_return_this'>return_this</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_blank?'>blank?</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+  <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:empty?</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+  <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>String</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+
+  <span class='kw'>false</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -296,26 +401,80 @@
       <div class="method_details ">
   <h3 class="signature " id="camelize-class_method">
   
-    .<strong>camelize</strong>(str)  &#x21d2; <tt>Object</tt> 
+    .<strong>camelize</strong>(str)  &#x21d2; <tt>String</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Converts snake_case to CamelCase</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="TwelvedataRuby::Utils (module)">Utils</a></span></span><span class='period'>.</span><span class='id identifier rubyid_camelize'>camelize</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>snake_case</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; &quot;SnakeCase&quot;</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>str</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>String to convert</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>CamelCase string</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-16
-17
-18</pre>
+40
+41
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/utils.rb', line 16</span>
+      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/utils.rb', line 40</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_camelize'>camelize</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_camelize'>camelize</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>_</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:capitalize</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -326,26 +485,80 @@
       <div class="method_details ">
   <h3 class="signature " id="demodulize-class_method">
   
-    .<strong>demodulize</strong>(obj)  &#x21d2; <tt>Object</tt> 
+    .<strong>demodulize</strong>(obj)  &#x21d2; <tt>String</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Removes module namespace from class name</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="TwelvedataRuby::Utils (module)">Utils</a></span></span><span class='period'>.</span><span class='id identifier rubyid_demodulize'>demodulize</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../TwelvedataRuby.html" title="TwelvedataRuby (module)">TwelvedataRuby</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Error.html" title="TwelvedataRuby::Error (class)">Error</a></span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; &quot;Error&quot;</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>obj</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Object to extract class name from</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Class name without module namespace</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-5
-6
-7</pre>
+14
+15
+16</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/utils.rb', line 5</span>
+      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/utils.rb', line 14</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_demodulize'>demodulize</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_demodulize'>demodulize</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^.+::</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -356,27 +569,88 @@
       <div class="method_details ">
   <h3 class="signature " id="empty_to_nil-class_method">
   
-    .<strong>empty_to_nil</strong>(obj)  &#x21d2; <tt>Object</tt> 
+    .<strong>empty_to_nil</strong>(obj)  &#x21d2; <tt>Object</tt><sup>?</sup> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Converts empty values to nil</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="TwelvedataRuby::Utils (module)">Utils</a></span></span><span class='period'>.</span><span class='id identifier rubyid_empty_to_nil'>empty_to_nil</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; nil
+</span><span class='const'><span class='object_link'><a href="" title="TwelvedataRuby::Utils (module)">Utils</a></span></span><span class='period'>.</span><span class='id identifier rubyid_empty_to_nil'>empty_to_nil</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>test</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; &quot;test&quot;</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>obj</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Object to check</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Object</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Original object or nil if empty</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-20
-21
-22</pre>
+52
+53
+54
+55
+56
+57</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/utils.rb', line 20</span>
+      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/utils.rb', line 52</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_empty_to_nil'>empty_to_nil</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span>
-  <span class='op'>!</span><span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='id identifier rubyid_obj'>obj</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_empty_to_nil'>empty_to_nil</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>if</span> <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+  <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>if</span> <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:empty?</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+
+  <span class='id identifier rubyid_obj'>obj</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -384,29 +658,92 @@
 </div>
     
       <div class="method_details ">
-  <h3 class="signature " id="return_nil_unless_true-class_method">
+  <h3 class="signature " id="execute_if_true-class_method">
   
-    .<strong>return_nil_unless_true</strong>(is_true, &amp;block)  &#x21d2; <tt>Object</tt> 
-  
-
+    .<strong>execute_if_true</strong>(condition) { ... } &#x21d2; <tt>Object</tt><sup>?</sup> 
   
 
   
-</h3><table class="source_code">
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Executes block only if condition is exactly true</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>condition</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Condition to evaluate</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'><p>Block to execute if condition is true</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Object</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Block result or nil</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-32
-33
-34</pre>
+88
+89
+90</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/utils.rb', line 32</span>
+      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/utils.rb', line 88</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_return_nil_unless_true'>return_nil_unless_true</span><span class='lparen'>(</span><span class='id identifier rubyid_is_true'>is_true</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_call_block_if_truthy'>call_block_if_truthy</span><span class='lparen'>(</span><span class='id identifier rubyid_is_true'>is_true</span> <span class='op'>==</span> <span class='kw'>true</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_block'>block</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span> <span class='rbrace'>}</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_execute_if_true'>execute_if_true</span><span class='lparen'>(</span><span class='id identifier rubyid_condition'>condition</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_execute_if_truthy'>execute_if_truthy</span><span class='lparen'>(</span><span class='id identifier rubyid_condition'>condition</span> <span class='op'>==</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -414,28 +751,273 @@
 </div>
     
       <div class="method_details ">
-  <h3 class="signature " id="to_a-class_method">
+  <h3 class="signature " id="execute_if_truthy-class_method">
   
-    .<strong>to_a</strong>(objects)  &#x21d2; <tt>Object</tt> 
-  
-
+    .<strong>execute_if_truthy</strong>(condition, default_return = nil) { ... } &#x21d2; <tt>Object</tt> 
   
 
   
-</h3><table class="source_code">
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Executes block if condition is truthy</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>condition</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Condition to evaluate</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>default_return</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Default return value</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'><p>Block to execute if condition is truthy</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Block result or default value</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-24
-25
-26</pre>
+77
+78
+79
+80
+81</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/utils.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/utils.rb', line 77</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span><span class='lparen'>(</span><span class='id identifier rubyid_objects'>objects</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_execute_if_truthy'>execute_if_truthy</span><span class='lparen'>(</span><span class='id identifier rubyid_condition'>condition</span><span class='comma'>,</span> <span class='id identifier rubyid_default_return'>default_return</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_default_return'>default_return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_condition'>condition</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+
+  <span class='kw'>yield</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="present?-class_method">
+  
+    .<strong>present?</strong>(value)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Validates that a value is not blank</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>value</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Value to validate</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>True if value is present</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+96
+97
+98</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/utils.rb', line 96</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_present?'>present?</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='op'>!</span><span class='id identifier rubyid_blank?'>blank?</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="to_array-class_method">
+  
+    .<strong>to_array</strong>(objects)  &#x21d2; <tt>Array</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Ensures return value is an array</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="TwelvedataRuby::Utils (module)">Utils</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_array'>to_array</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>test</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; [&quot;test&quot;]
+</span><span class='const'><span class='object_link'><a href="" title="TwelvedataRuby::Utils (module)">Utils</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_array'>to_array</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>a</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>b</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='comment'>#=&gt; [&quot;a&quot;, &quot;b&quot;]</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>objects</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Single object or array</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Array containing the objects</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+67
+68
+69</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/utils.rb', line 67</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_to_array'>to_array</span><span class='lparen'>(</span><span class='id identifier rubyid_objects'>objects</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_objects'>objects</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_objects'>objects</span> <span class='op'>:</span> <span class='lbracket'>[</span><span class='id identifier rubyid_objects'>objects</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -444,9 +1026,9 @@
 </div>
     
       <div class="method_details ">
-  <h3 class="signature " id="to_d-class_method">
+  <h3 class="signature " id="to_integer-class_method">
   
-    .<strong>to_d</strong>(obj, default_value = nil)  &#x21d2; <tt>Object</tt> 
+    .<strong>to_integer</strong>(obj, default_value = nil)  &#x21d2; <tt>Integer</tt><sup>?</sup> 
   
 
   
@@ -454,14 +1036,75 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Converts a string to integer an all integer or nothing</p>
+    <p>Converts string to integer with default fallback</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="TwelvedataRuby::Utils (module)">Utils</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_integer'>to_integer</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>123</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; 123
+</span><span class='const'><span class='object_link'><a href="" title="TwelvedataRuby::Utils (module)">Utils</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_integer'>to_integer</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>abc</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>0</span><span class='rparen'>)</span> <span class='comment'>#=&gt; 0</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>obj</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Object to convert</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>default_value</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>, <tt>nil</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Default value if conversion fails</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Converted integer or default value</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -469,19 +1112,19 @@
       <pre class="lines">
 
 
-10
-11
-12
-13
-14</pre>
+27
+28
+29
+30
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/utils.rb', line 10</span>
+      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/utils.rb', line 27</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_to_d'>to_d</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='comma'>,</span> <span class='id identifier rubyid_default_value'>default_value</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
-  <span class='kw'>return</span> <span class='id identifier rubyid_obj'>obj</span> <span class='kw'>if</span> <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Integer</span><span class='rparen'>)</span>
-
-  <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\d+$</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_m'>m</span><span class='op'>|</span> <span class='const'>Integer</span><span class='lparen'>(</span><span class='id identifier rubyid_m'>m</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='rbrace'>}</span> <span class='op'>||</span> <span class='id identifier rubyid_default_value'>default_value</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_to_integer'>to_integer</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='comma'>,</span> <span class='id identifier rubyid_default_value'>default_value</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Integer</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_obj'>obj</span> <span class='op'>:</span> <span class='const'>Integer</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span>
+<span class='kw'>rescue</span> <span class='const'>ArgumentError</span>
+  <span class='id identifier rubyid_default_value'>default_value</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -493,9 +1136,9 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Jul 16 20:51:23 2021 by
-  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.26 (ruby-3.0.1).
+  Generated on Sun Jul  6 23:38:35 2025 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.37 (ruby-3.4.2).
 </div>
 
     </div>

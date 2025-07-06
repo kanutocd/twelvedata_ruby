@@ -6,7 +6,7 @@
 --private
 --title "TwelvedataRuby Documentation"
 --readme README.md
---files CHANGELOG.md,LICENSE.txt
+--files CHANGELOG.md,LICENSE
 lib/**/*.rb
 -
 README.md

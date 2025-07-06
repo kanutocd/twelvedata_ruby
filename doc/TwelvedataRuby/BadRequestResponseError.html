@@ -6,7 +6,7 @@
 <title>
   Exception: TwelvedataRuby::BadRequestResponseError
   
-    &mdash; Documentation by YARD 0.9.26
+    &mdash; TwelvedataRuby Documentation
   
 </title>
 
@@ -105,20 +105,30 @@
   
 </div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>Specific API error classes</p>
 
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
   <h2>Constant Summary</h2>
   
   <h3 class="inherited">Constants inherited
      from <span class='object_link'><a href="ResponseError.html" title="TwelvedataRuby::ResponseError (class)">ResponseError</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="ResponseError.html#API_ERROR_CODES_MAP-constant" title="TwelvedataRuby::ResponseError::API_ERROR_CODES_MAP (constant)">ResponseError::API_ERROR_CODES_MAP</a></span>, <span class='object_link'><a href="ResponseError.html#HTTP_ERROR_CODES_MAP-constant" title="TwelvedataRuby::ResponseError::HTTP_ERROR_CODES_MAP (constant)">ResponseError::HTTP_ERROR_CODES_MAP</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="ResponseError.html#API_ERROR_CODES-constant" title="TwelvedataRuby::ResponseError::API_ERROR_CODES (constant)">ResponseError::API_ERROR_CODES</a></span>, <span class='object_link'><a href="ResponseError.html#HTTP_ERROR_CODES-constant" title="TwelvedataRuby::ResponseError::HTTP_ERROR_CODES (constant)">ResponseError::HTTP_ERROR_CODES</a></span></p>
 
   
   
   <h3 class="inherited">Constants inherited
      from <span class='object_link'><a href="Error.html" title="TwelvedataRuby::Error (class)">Error</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="Error.html#DEFAULT_MSGS-constant" title="TwelvedataRuby::Error::DEFAULT_MSGS (constant)">Error::DEFAULT_MSGS</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="Error.html#DEFAULT_MESSAGES-constant" title="TwelvedataRuby::Error::DEFAULT_MESSAGES (constant)">Error::DEFAULT_MESSAGES</a></span></p>
 
 
 
@@ -126,12 +136,12 @@
   <h2>Instance Attribute Summary</h2>
   
   <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="ResponseError.html" title="TwelvedataRuby::ResponseError (class)">ResponseError</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="ResponseError.html#code-instance_method" title="TwelvedataRuby::ResponseError#code (method)">#code</a></span>, <span class='object_link'><a href="ResponseError.html#json-instance_method" title="TwelvedataRuby::ResponseError#json (method)">#json</a></span>, <span class='object_link'><a href="ResponseError.html#request-instance_method" title="TwelvedataRuby::ResponseError#request (method)">#request</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="ResponseError.html#json_data-instance_method" title="TwelvedataRuby::ResponseError#json_data (method)">#json_data</a></span>, <span class='object_link'><a href="ResponseError.html#request-instance_method" title="TwelvedataRuby::ResponseError#request (method)">#request</a></span>, <span class='object_link'><a href="ResponseError.html#status_code-instance_method" title="TwelvedataRuby::ResponseError#status_code (method)">#status_code</a></span></p>
 
   
   
   <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="Error.html" title="TwelvedataRuby::Error (class)">Error</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="Error.html#attrs-instance_method" title="TwelvedataRuby::Error#attrs (method)">#attrs</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="Error.html#attributes-instance_method" title="TwelvedataRuby::Error#attributes (method)">#attributes</a></span>, <span class='object_link'><a href="Error.html#original_error-instance_method" title="TwelvedataRuby::Error#original_error (method)">#original_error</a></span></p>
 
 
 
@@ -144,7 +154,7 @@
   <h2>Method Summary</h2>
   
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="ResponseError.html" title="TwelvedataRuby::ResponseError (class)">ResponseError</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="ResponseError.html#error_code_klass-class_method" title="TwelvedataRuby::ResponseError.error_code_klass (method)">error_code_klass</a></span>, <span class='object_link'><a href="ResponseError.html#initialize-instance_method" title="TwelvedataRuby::ResponseError#initialize (method)">#initialize</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="ResponseError.html#error_class_for_code-class_method" title="TwelvedataRuby::ResponseError.error_class_for_code (method)">error_class_for_code</a></span>, <span class='object_link'><a href="ResponseError.html#initialize-instance_method" title="TwelvedataRuby::ResponseError#initialize (method)">#initialize</a></span></p>
 
   
   
@@ -155,7 +165,7 @@
   
   
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="Error.html" title="TwelvedataRuby::Error (class)">Error</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="Error.html#initialize-instance_method" title="TwelvedataRuby::Error#initialize (method)">#initialize</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="Error.html#format_default_message-instance_method" title="TwelvedataRuby::Error#format_default_message (method)">#format_default_message</a></span>, <span class='object_link'><a href="Error.html#initialize-instance_method" title="TwelvedataRuby::Error#initialize (method)">#initialize</a></span></p>
 
   <div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
@@ -168,9 +178,9 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Jul 16 20:51:24 2021 by
-  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.26 (ruby-3.0.1).
+  Generated on Sun Jul  6 23:38:35 2025 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.37 (ruby-3.4.2).
 </div>
 
     </div>

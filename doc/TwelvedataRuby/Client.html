@@ -6,7 +6,7 @@
 <title>
   Class: TwelvedataRuby::Client
   
-    &mdash; Documentation by YARD 0.9.26
+    &mdash; TwelvedataRuby Documentation
   
 </title>
 
@@ -104,21 +104,7 @@
   
 </div>
 
-<h2>Overview</h2><div class="docstring">
-  <div class="discussion">
-    
-<p>Responsible of the actual communication – sending a valid request</p>
 
-<pre class="code ruby"><code class="ruby">and receiving the response  -- of the API web server
-</code></pre>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
   
     <h2>
       Constant Summary
@@ -130,66 +116,28 @@
         <dt id="APIKEY_ENV_NAME-constant" class="">APIKEY_ENV_NAME =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Returns the exported shell ENV variable name that holds the apikey.</p>
+    <p>Default environment variable name for API key</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>String</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>the exported shell ENV variable name that holds the apikey</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div>
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>TWELVEDATA_API_KEY</span><span class='tstring_end'>&quot;</span></span></pre></dd>
       
-        <dt id="CONNECT_TIMEOUT-constant" class="">CONNECT_TIMEOUT =
+        <dt id="DEFAULT_CONNECT_TIMEOUT-constant" class="">DEFAULT_CONNECT_TIMEOUT =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Returns CONNECT_TIMEOUT default connection timeout in milliseconds.</p>
+    <p>Default connection timeout in milliseconds</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>CONNECT_TIMEOUT default connection timeout in milliseconds</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div>
         </dt>
@@ -198,32 +146,13 @@
         <dt id="BASE_URL-constant" class="">BASE_URL =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Returns valid URI base url string of the API.</p>
+    <p>Base URL for the Twelve Data API</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>String</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>valid URI base url string of the API</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div>
         </dt>
@@ -241,7 +170,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#options-instance_method" title="#options (instance method)">#<strong>options</strong>  &#x21d2; Hash </a>
+      <a href="#configuration-instance_method" title="#configuration (instance method)">#<strong>configuration</strong>  &#x21d2; Object </a>
     
 
     
@@ -250,6 +179,8 @@
   
   
     
+      <span class="note title readonly">readonly</span>
+    
     
   
   
@@ -258,8 +189,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>The options writeonly attribute that may contain values to override the default attribute values.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute configuration.</p>
 </div></span>
   
 </li>
@@ -281,7 +211,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#build_requests-class_method" title="build_requests (class method)">.<strong>build_requests</strong>(requests)  &#x21d2; Object </a>
+      <a href="#build_requests-class_method" title="build_requests (class method)">.<strong>build_requests</strong>(requests)  &#x21d2; Array </a>
     
 
     
@@ -295,7 +225,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>Build HTTP requests from Request objects.</p>
+</div></span>
   
 </li>
 
@@ -303,7 +234,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#options-class_method" title="options (class method)">.<strong>options</strong>  &#x21d2; Object </a>
+      <a href="#http_options-class_method" title="http_options (class method)">.<strong>http_options</strong>  &#x21d2; Hash </a>
     
 
     
@@ -317,7 +248,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>Get HTTP client options.</p>
+</div></span>
   
 </li>
 
@@ -325,7 +257,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#origin-class_method" title="origin (class method)">.<strong>origin</strong>  &#x21d2; Object </a>
+      <a href="#request-class_method" title="request (class method)">.<strong>request</strong>(request_objects, **options)  &#x21d2; HTTPX::Response<sup>+</sup> </a>
     
 
     
@@ -339,51 +271,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#request-class_method" title="request (class method)">.<strong>request</strong>(request_objects, opts = {})  &#x21d2; Object </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#timeout-class_method" title="timeout (class method)">.<strong>timeout</strong>  &#x21d2; Object </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>Make HTTP requests using HTTPX.</p>
+</div></span>
   
 </li>
 
@@ -400,7 +289,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#apikey-instance_method" title="#apikey (instance method)">#<strong>apikey</strong>  &#x21d2; String </a>
+      <a href="#apikey-instance_method" title="#apikey (instance method)">#<strong>apikey</strong>  &#x21d2; String<sup>?</sup> </a>
     
 
     
@@ -414,8 +303,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Apikey value from the instance options Hash object but if nill use the value from <tt><a href="APIKEY_ENV_NAME">ENV</a></tt>.</p>
+    <span class="summary_desc"><div class='inline'><p>Get the current API key.</p>
 </div></span>
   
 </li>
@@ -438,8 +326,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>The writer method that can be used to pass manually the value of the <code>apikey</code>.</p>
+    <span class="summary_desc"><div class='inline'><p>Set the API key.</p>
 </div></span>
   
 </li>
@@ -448,7 +335,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#apikey_env_var_name-instance_method" title="#apikey_env_var_name (instance method)">#<strong>apikey_env_var_name</strong>  &#x21d2; Object </a>
+      <a href="#apikey_env_var_name-instance_method" title="#apikey_env_var_name (instance method)">#<strong>apikey_env_var_name</strong>  &#x21d2; String </a>
     
 
     
@@ -462,8 +349,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>The name of the ENVIRONMENT variable that may hold the value of the Twelve Data API key # @return [String] the ENV variable that will be used to fetch from ENV the value of the API  key.</p>
+    <span class="summary_desc"><div class='inline'><p>Get the environment variable name for the API key.</p>
 </div></span>
   
 </li>
@@ -472,7 +358,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#apikey_env_var_name=-instance_method" title="#apikey_env_var_name= (instance method)">#<strong>apikey_env_var_name=</strong>(apikey_env_var_name)  &#x21d2; String </a>
+      <a href="#apikey_env_var_name=-instance_method" title="#apikey_env_var_name= (instance method)">#<strong>apikey_env_var_name=</strong>(var_name)  &#x21d2; String </a>
     
 
     
@@ -486,8 +372,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>A setter helper method to configure the ENV variable name of the API key.</p>
+    <span class="summary_desc"><div class='inline'><p>Set the environment variable name for the API key.</p>
 </div></span>
   
 </li>
@@ -496,7 +381,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#connect_timeout-instance_method" title="#connect_timeout (instance method)">#<strong>connect_timeout</strong>  &#x21d2; Object </a>
+      <a href="#configure-instance_method" title="#configure (instance method)">#<strong>configure</strong>(**options)  &#x21d2; self </a>
     
 
     
@@ -510,74 +395,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#connect_timeout=-instance_method" title="#connect_timeout= (instance method)">#<strong>connect_timeout=</strong>(connect_timeout)  &#x21d2; Object </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#fetch-instance_method" title="#fetch (instance method)">#<strong>fetch</strong>(request)  &#x21d2; NilClass, ... </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#method_missing-instance_method" title="#method_missing (instance method)">#<strong>method_missing</strong>(endpoint_name, **endpoint_params, &amp;_block)  &#x21d2; Object </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>The entry point in dynamically defining instance methods based on the called the valid endpoint names.</p>
+    <span class="summary_desc"><div class='inline'><p>Configure the client with new options.</p>
 </div></span>
   
 </li>
@@ -586,7 +404,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#respond_to_missing%3F-instance_method" title="#respond_to_missing? (instance method)">#<strong>respond_to_missing?</strong>(endpoint_name, _include_all = false)  &#x21d2; Boolean </a>
+      <a href="#connect_timeout-instance_method" title="#connect_timeout (instance method)">#<strong>connect_timeout</strong>  &#x21d2; Integer </a>
     
 
     
@@ -600,7 +418,217 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>Get the connection timeout.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#connect_timeout=-instance_method" title="#connect_timeout= (instance method)">#<strong>connect_timeout=</strong>(timeout)  &#x21d2; Integer </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Set the connection timeout.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#define_endpoint_method-instance_method" title="#define_endpoint_method (instance method)">#<strong>define_endpoint_method</strong>(endpoint_name)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fetch-instance_method" title="#fetch (instance method)">#<strong>fetch</strong>(request)  &#x21d2; Response, ... </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Fetch data from an API endpoint.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#handle_fetch_error-instance_method" title="#handle_fetch_error (instance method)">#<strong>handle_fetch_error</strong>(error, request)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>  &#x21d2; Client </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>A new instance of Client.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#method_missing-instance_method" title="#method_missing (instance method)">#<strong>method_missing</strong>(endpoint_name, **endpoint_params, &amp;block)  &#x21d2; Response, ... </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Handle method calls for API endpoints.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#parse_timeout-instance_method" title="#parse_timeout (instance method)">#<strong>parse_timeout</strong>(value)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#reset_configuration-instance_method" title="#reset_configuration (instance method)">#<strong>reset_configuration</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#respond_to_missing%3F-instance_method" title="#respond_to_missing? (instance method)">#<strong>respond_to_missing?</strong>(endpoint_name, include_all = false)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Check if client responds to endpoint methods.</p>
+</div></span>
   
 </li>
 
@@ -609,7 +637,55 @@
   
 
 
-  <div id="method_missing_details" class="method_details_list">
+  <div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>  &#x21d2; <tt><span class='object_link'><a href="" title="TwelvedataRuby::Client (class)">Client</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns a new instance of Client.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+54
+55
+56
+57
+58</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 54</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
+  <span class='ivar'>@configuration</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='ivar'>@endpoint_methods_defined</span> <span class='op'>=</span> <span class='const'>Set</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_reset_configuration'>reset_configuration</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+<div id="method_missing_details" class="method_details_list">
   <h2>Dynamic Method Handling</h2>
   <p class="notice this">
     This class handles dynamic methods through the <tt>method_missing</tt> method
@@ -619,7 +695,7 @@
     <div class="method_details first">
   <h3 class="signature first" id="method_missing-instance_method">
   
-    #<strong>method_missing</strong>(endpoint_name, **endpoint_params, &amp;_block)  &#x21d2; <tt>Object</tt> 
+    #<strong>method_missing</strong>(endpoint_name, **endpoint_params, &amp;block)  &#x21d2; <tt><span class='object_link'><a href="Response.html" title="TwelvedataRuby::Response (class)">Response</a></span></tt>, ... 
   
 
   
@@ -627,16 +703,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note todo">
-    <strong>TODO:</strong>
-    <div class='inline'>
-<p>define all the method signatures of the endpoint methods that will meta-programatically defined at runtime.</p>
-</div>
-  </div>
-
-
-<p>The entry point in dynamically defining instance methods based on the called the valid endpoint names.</p>
+    <p>Handle method calls for API endpoints</p>
 
 
   </div>
@@ -650,13 +717,12 @@
         <span class='name'>endpoint_name</span>
       
       
-        <span class='type'>(<tt>String</tt>)</span>
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>valid API endpoint name to fetch</p>
+        <div class='inline'><p>API endpoint name</p>
 </div>
       
     </li>
@@ -671,22 +737,30 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the optional/required valid query params of the API endpoint. If <code>:apikey</code> key-value pair is present, the pair will override the <code>#apikey</code> of singleton client instance If <code>:format</code> key-value pair is present and is a valid parameter key and value can only be <code>:csv</code> or <code>:json</code> If <code>:filename</code> key-value is present and <code>:format</code> is <code>:csv</code>, then this is will be added to the payload too.</p>
-
-<pre class="code ruby"><code class="ruby">Otherwise, this will just discarded and will not be part of the payload
-</code></pre>
-
-<p>If endpoint name and query params used are not valid, EndpointError instances will be returned</p>
-
-<pre class="code ruby"><code class="ruby">actual API fetch will not happen. @see #fetch for the rest of the documentation
-</code></pre>
+        <div class='inline'><p>Parameters for the endpoint</p>
 </div>
       
     </li>
   
 </ul>
 
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Response.html" title="TwelvedataRuby::Response (class)">Response</a></span></tt>, <tt>Hash</tt>, <tt><span class='object_link'><a href="ResponseError.html" title="TwelvedataRuby::ResponseError (class)">ResponseError</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>API response or error</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -694,15 +768,25 @@
       <pre class="lines">
 
 
-114
-115
-116</pre>
+141
+142
+143
+144
+145
+146
+147
+148</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 114</span>
+      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 141</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='id identifier rubyid_endpoint_name'>endpoint_name</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_endpoint_params'>endpoint_params</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid__block'>_block</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_try_fetch'>try_fetch</span><span class='lparen'>(</span><span class='id identifier rubyid_endpoint_name'>endpoint_name</span><span class='comma'>,</span> <span class='id identifier rubyid_endpoint_params'>endpoint_params</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='kw'>super</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='id identifier rubyid_endpoint_name'>endpoint_name</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_endpoint_params'>endpoint_params</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Endpoint.html" title="TwelvedataRuby::Endpoint (class)">Endpoint</a></span></span><span class='period'>.</span><span class='id identifier rubyid_valid_name?'><span class='object_link'><a href="Endpoint.html#valid_name%3F-class_method" title="TwelvedataRuby::Endpoint.valid_name? (method)">valid_name?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_endpoint_name'>endpoint_name</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_define_endpoint_method'>define_endpoint_method</span><span class='lparen'>(</span><span class='id identifier rubyid_endpoint_name'>endpoint_name</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_endpoint_name'>endpoint_name</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_endpoint_params'>endpoint_params</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='kw'>super</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -715,11 +799,11 @@
     <h2>Instance Attribute Details</h2>
     
       
-      <span id="options=-instance_method"></span>
+      <span id=""></span>
       <div class="method_details first">
-  <h3 class="signature first" id="options-instance_method">
+  <h3 class="signature first" id="configuration-instance_method">
   
-    #<strong>options</strong>  &#x21d2; <tt>Hash</tt> 
+    #<strong>configuration</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -727,32 +811,13 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the options writeonly attribute that may contain values to override the default attribute values. This attribute writer was automatically called in @see TwelvedataRuby.client(**options).</p>
+    <p>Returns the value of attribute configuration.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Hash</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>the options writeonly attribute that may contain values to override the default attribute values. This attribute writer was automatically called in @see TwelvedataRuby.client(**options).</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -760,12 +825,16 @@
       <pre class="lines">
 
 
-44</pre>
+52
+53
+54</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 44</span>
+      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 52</span>
 
-<span class='id identifier rubyid_attr_writer'>attr_writer</span> <span class='symbol'>:options</span></pre>
+<span class='kw'>def</span> <span class='id identifier rubyid_configuration'>configuration</span>
+  <span class='ivar'>@configuration</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -781,27 +850,73 @@
       <div class="method_details first">
   <h3 class="signature first" id="build_requests-class_method">
   
-    .<strong>build_requests</strong>(requests)  &#x21d2; <tt>Object</tt> 
+    .<strong>build_requests</strong>(requests)  &#x21d2; <tt>Array</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Build HTTP requests from Request objects</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>requests</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Request.html" title="TwelvedataRuby::Request (class)">Request</a></span></tt>, <tt>Array&lt;<span class='object_link'><a href="Request.html" title="TwelvedataRuby::Request (class)">Request</a></span>&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Request object(s)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Array of HTTP request specs</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-23
-24
-25</pre>
+37
+38
+39</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 37</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_build_requests'>build_requests</span><span class='lparen'>(</span><span class='id identifier rubyid_requests'>requests</span><span class='rparen'>)</span>
-  <span class='const'><span class='object_link'><a href="Utils.html" title="TwelvedataRuby::Utils (module)">Utils</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_a'><span class='object_link'><a href="Utils.html#to_a-class_method" title="TwelvedataRuby::Utils.to_a (method)">to_a</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_requests'>requests</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:build</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="Utils.html" title="TwelvedataRuby::Utils (module)">Utils</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_array'><span class='object_link'><a href="Utils.html#to_array-class_method" title="TwelvedataRuby::Utils.to_array (method)">to_array</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_requests'>requests</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:build</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -809,59 +924,62 @@
 </div>
     
       <div class="method_details ">
-  <h3 class="signature " id="options-class_method">
+  <h3 class="signature " id="http_options-class_method">
   
-    .<strong>options</strong>  &#x21d2; <tt>Object</tt> 
-  
-
+    .<strong>http_options</strong>  &#x21d2; <tt>Hash</tt> 
   
 
   
-</h3><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Get HTTP client options</p>
 
 
-35
-36
-37</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 35</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_options'>options</span>
-  <span class='id identifier rubyid_origin'>origin</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_timeout'>timeout</span><span class='rparen'>)</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
+  </div>
 </div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="origin-class_method">
+<div class="tags">
   
-    .<strong>origin</strong>  &#x21d2; <tt>Object</tt> 
+<p class="tag_title">Returns:</p>
+<ul class="return">
   
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>HTTPX options</p>
+</div>
+      
+    </li>
+  
+</ul>
 
-  
-
-  
-</h3><table class="source_code">
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-27
-28
-29</pre>
+44
+45
+46
+47
+48
+49</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 44</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_origin'>origin</span>
-  <span class='ivar'>@origin</span> <span class='op'>||=</span> <span class='lbrace'>{</span><span class='label'>origin:</span> <span class='const'><span class='object_link'><a href="#BASE_URL-constant" title="TwelvedataRuby::Client::BASE_URL (constant)">BASE_URL</a></span></span><span class='rbrace'>}</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_http_options'>http_options</span>
+  <span class='lbrace'>{</span>
+    <span class='label'>origin:</span> <span class='const'><span class='object_link'><a href="#BASE_URL-constant" title="TwelvedataRuby::Client::BASE_URL (constant)">BASE_URL</a></span></span><span class='comma'>,</span>
+    <span class='label'>timeout:</span> <span class='lbrace'>{</span> <span class='label'>connect_timeout:</span> <span class='id identifier rubyid_instance'>instance</span><span class='period'>.</span><span class='id identifier rubyid_connect_timeout'>connect_timeout</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -871,57 +989,94 @@
       <div class="method_details ">
   <h3 class="signature " id="request-class_method">
   
-    .<strong>request</strong>(request_objects, opts = {})  &#x21d2; <tt>Object</tt> 
+    .<strong>request</strong>(request_objects, **options)  &#x21d2; <tt>HTTPX::Response</tt><sup>+</sup> 
   
 
   
 
   
-</h3><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Make HTTP requests using HTTPX</p>
 
 
-19
-20
-21</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 19</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='id identifier rubyid_request_objects'>request_objects</span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
-  <span class='const'>HTTPX</span><span class='period'>.</span><span class='id identifier rubyid_with'>with</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_opts'>opts</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='id identifier rubyid_build_requests'>build_requests</span><span class='lparen'>(</span><span class='id identifier rubyid_request_objects'>request_objects</span><span class='rparen'>)</span><span class='rparen'>)</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
+  </div>
 </div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="timeout-class_method">
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
-    .<strong>timeout</strong>  &#x21d2; <tt>Object</tt> 
+    <li>
+      
+        <span class='name'>request_objects</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Request.html" title="TwelvedataRuby::Request (class)">Request</a></span></tt>, <tt>Array&lt;<span class='object_link'><a href="Request.html" title="TwelvedataRuby::Request (class)">Request</a></span>&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Request object(s) to send</p>
+</div>
+      
+    </li>
   
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Additional HTTPX options</p>
+</div>
+      
+    </li>
+  
+</ul>
 
+<p class="tag_title">Returns:</p>
+<ul class="return">
   
+    <li>
+      
+      
+        <span class='type'>(<tt>HTTPX::Response</tt>, <tt>Array&lt;HTTPX::Response&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>HTTP response(s)</p>
+</div>
+      
+    </li>
+  
+</ul>
 
-  
-</h3><table class="source_code">
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-31
-32
-33</pre>
+26
+27
+28
+29
+30
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 31</span>
+      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 26</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_timeout'>timeout</span>
-  <span class='lbrace'>{</span><span class='label'>timeout:</span> <span class='lbrace'>{</span><span class='label'>connect_timeout:</span> <span class='id identifier rubyid_instance'>instance</span><span class='period'>.</span><span class='id identifier rubyid_connect_timeout'>connect_timeout</span><span class='rbrace'>}</span><span class='rbrace'>}</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='id identifier rubyid_request_objects'>request_objects</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_requests'>requests</span> <span class='op'>=</span> <span class='id identifier rubyid_build_requests'>build_requests</span><span class='lparen'>(</span><span class='id identifier rubyid_request_objects'>request_objects</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_http_client'>http_client</span> <span class='op'>=</span> <span class='const'>HTTPX</span><span class='period'>.</span><span class='id identifier rubyid_with'>with</span><span class='lparen'>(</span><span class='id identifier rubyid_http_options'>http_options</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_http_client'>http_client</span><span class='period'>.</span><span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='id identifier rubyid_requests'>requests</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -937,7 +1092,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="apikey-instance_method">
   
-    #<strong>apikey</strong>  &#x21d2; <tt>String</tt> 
+    #<strong>apikey</strong>  &#x21d2; <tt>String</tt><sup>?</sup> 
   
 
   
@@ -945,8 +1100,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns apikey value from the instance options Hash object but if nill use the value from <tt><a href="APIKEY_ENV_NAME">ENV</a></tt>.</p>
+    <p>Get the current API key</p>
 
 
   </div>
@@ -959,13 +1113,12 @@
     <li>
       
       
-        <span class='type'>(<tt>String</tt>)</span>
+        <span class='type'>(<tt>String</tt>, <tt>nil</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>apikey value from the instance options Hash object but if nill use the value from <tt><a href="APIKEY_ENV_NAME">ENV</a></tt></p>
+        <div class='inline'><p>Current API key</p>
 </div>
       
     </li>
@@ -978,15 +1131,15 @@
       <pre class="lines">
 
 
-48
-49
-50</pre>
+75
+76
+77</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 75</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_apikey'>apikey</span>
-  <span class='const'><span class='object_link'><a href="Utils.html" title="TwelvedataRuby::Utils (module)">Utils</a></span></span><span class='period'>.</span><span class='id identifier rubyid_empty_to_nil'><span class='object_link'><a href="Utils.html#empty_to_nil-class_method" title="TwelvedataRuby::Utils.empty_to_nil (method)">empty_to_nil</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:apikey</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='id identifier rubyid_apikey_env_var_name'>apikey_env_var_name</span><span class='rbracket'>]</span>
+  <span class='const'><span class='object_link'><a href="Utils.html" title="TwelvedataRuby::Utils (module)">Utils</a></span></span><span class='period'>.</span><span class='id identifier rubyid_empty_to_nil'><span class='object_link'><a href="Utils.html#empty_to_nil-class_method" title="TwelvedataRuby::Utils.empty_to_nil (method)">empty_to_nil</a></span></span><span class='lparen'>(</span><span class='ivar'>@configuration</span><span class='lbracket'>[</span><span class='symbol'>:apikey</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='id identifier rubyid_apikey_env_var_name'>apikey_env_var_name</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1004,8 +1157,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>The writer method that can be used to pass manually the value of the <code>apikey</code></p>
+    <p>Set the API key</p>
 
 
   </div>
@@ -1023,6 +1175,10 @@
       
       
       
+        &mdash;
+        <div class='inline'><p>New API key</p>
+</div>
+      
     </li>
   
 </ul>
@@ -1038,8 +1194,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p><code>apikey</code> value</p>
+        <div class='inline'><p>The API key that was set</p>
 </div>
       
     </li>
@@ -1052,15 +1207,15 @@
       <pre class="lines">
 
 
-55
-56
-57</pre>
+83
+84
+85</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 83</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_apikey='>apikey=</span><span class='lparen'>(</span><span class='id identifier rubyid_apikey'>apikey</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:apikey</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_apikey'>apikey</span>
+  <span class='ivar'>@configuration</span><span class='lbracket'>[</span><span class='symbol'>:apikey</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_apikey'>apikey</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1070,7 +1225,7 @@
       <div class="method_details ">
   <h3 class="signature " id="apikey_env_var_name-instance_method">
   
-    #<strong>apikey_env_var_name</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>apikey_env_var_name</strong>  &#x21d2; <tt>String</tt> 
   
 
   
@@ -1078,14 +1233,30 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>The name of the ENVIRONMENT variable that may hold the value of the Twelve Data API key # @return [String] the ENV variable that will be used to fetch from ENV the value of the API  key</p>
+    <p>Get the environment variable name for the API key</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Environment variable name</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1093,15 +1264,15 @@
       <pre class="lines">
 
 
-69
-70
-71</pre>
+105
+106
+107</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 69</span>
+      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 105</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_apikey_env_var_name'>apikey_env_var_name</span>
-  <span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:apikey_env_var_name</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="#APIKEY_ENV_NAME-constant" title="TwelvedataRuby::Client::APIKEY_ENV_NAME (constant)">APIKEY_ENV_NAME</a></span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_upcase'>upcase</span>
+  <span class='lparen'>(</span><span class='ivar'>@configuration</span><span class='lbracket'>[</span><span class='symbol'>:apikey_env_var_name</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="#APIKEY_ENV_NAME-constant" title="TwelvedataRuby::Client::APIKEY_ENV_NAME (constant)">APIKEY_ENV_NAME</a></span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_upcase'>upcase</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1111,7 +1282,7 @@
       <div class="method_details ">
   <h3 class="signature " id="apikey_env_var_name=-instance_method">
   
-    #<strong>apikey_env_var_name=</strong>(apikey_env_var_name)  &#x21d2; <tt>String</tt> 
+    #<strong>apikey_env_var_name=</strong>(var_name)  &#x21d2; <tt>String</tt> 
   
 
   
@@ -1119,8 +1290,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>A setter helper method to configure the ENV variable name of the API key</p>
+    <p>Set the environment variable name for the API key</p>
 
 
   </div>
@@ -1131,12 +1301,16 @@
   
     <li>
       
-        <span class='name'>apikey_env_var_name</span>
+        <span class='name'>var_name</span>
       
       
         <span class='type'>(<tt>String</tt>)</span>
       
       
+      
+        &mdash;
+        <div class='inline'><p>New environment variable name</p>
+</div>
       
     </li>
   
@@ -1153,20 +1327,12 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the ENV variable name</p>
+        <div class='inline'><p>The variable name that was set (uppercased)</p>
 </div>
       
     </li>
   
 </ul>
-
-  <p class="tag_title">See Also:</p>
-  <ul class="see">
-    
-      <li><span class='object_link'><a href="#apikey_env_var_name-instance_method" title="TwelvedataRuby::Client#apikey_env_var_name (method)">#apikey_env_var_name</a></span></li>
-    
-  </ul>
 
 </div><table class="source_code">
   <tr>
@@ -1174,15 +1340,138 @@
       <pre class="lines">
 
 
-77
-78
-79</pre>
+113
+114
+115</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 77</span>
+      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 113</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_apikey_env_var_name='>apikey_env_var_name=</span><span class='lparen'>(</span><span class='id identifier rubyid_apikey_env_var_name'>apikey_env_var_name</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:apikey_env_var_name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_apikey_env_var_name'>apikey_env_var_name</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_apikey_env_var_name='>apikey_env_var_name=</span><span class='lparen'>(</span><span class='id identifier rubyid_var_name'>var_name</span><span class='rparen'>)</span>
+  <span class='ivar'>@configuration</span><span class='lbracket'>[</span><span class='symbol'>:apikey_env_var_name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_var_name'>var_name</span><span class='period'>.</span><span class='id identifier rubyid_upcase'>upcase</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="configure-instance_method">
+  
+    #<strong>configure</strong>(**options)  &#x21d2; <tt>self</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Configure the client with new options</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Configuration options</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    <p class="tag_title">Options Hash (<tt>**options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:apikey</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>API key for authentication</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:connect_timeout</span>
+          <span class="type">(<tt>Integer</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>Connection timeout in milliseconds</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:apikey_env_var_name</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>Environment variable name for API key</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>self</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Returns self for method chaining</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+67
+68
+69
+70</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 67</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_configure'>configure</span><span class='lparen'>(</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='ivar'>@configuration</span><span class='period'>.</span><span class='id identifier rubyid_merge!'>merge!</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='kw'>self</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1192,27 +1481,54 @@
       <div class="method_details ">
   <h3 class="signature " id="connect_timeout-instance_method">
   
-    #<strong>connect_timeout</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>connect_timeout</strong>  &#x21d2; <tt>Integer</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Get the connection timeout</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Connection timeout in milliseconds</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-59
-60
-61</pre>
+90
+91
+92</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 59</span>
+      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 90</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_connect_timeout'>connect_timeout</span>
-  <span class='id identifier rubyid_parse_connect_timeout'>parse_connect_timeout</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:connect_timeout</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_parse_timeout'>parse_timeout</span><span class='lparen'>(</span><span class='ivar'>@configuration</span><span class='lbracket'>[</span><span class='symbol'>:connect_timeout</span><span class='rbracket'>]</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1222,7 +1538,83 @@
       <div class="method_details ">
   <h3 class="signature " id="connect_timeout=-instance_method">
   
-    #<strong>connect_timeout=</strong>(connect_timeout)  &#x21d2; <tt>Object</tt> 
+    #<strong>connect_timeout=</strong>(timeout)  &#x21d2; <tt>Integer</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Set the connection timeout</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>timeout</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>, <tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>New timeout value</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The timeout that was set</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+98
+99
+100</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 98</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_connect_timeout='>connect_timeout=</span><span class='lparen'>(</span><span class='id identifier rubyid_timeout'>timeout</span><span class='rparen'>)</span>
+  <span class='ivar'>@configuration</span><span class='lbracket'>[</span><span class='symbol'>:connect_timeout</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_parse_timeout'>parse_timeout</span><span class='lparen'>(</span><span class='id identifier rubyid_timeout'>timeout</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="define_endpoint_method-instance_method">
+  
+    #<strong>define_endpoint_method</strong>(endpoint_name)  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
   
 
   
@@ -1234,15 +1626,27 @@
       <pre class="lines">
 
 
-63
-64
-65</pre>
+187
+188
+189
+190
+191
+192
+193
+194
+195</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 187</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_connect_timeout='>connect_timeout=</span><span class='lparen'>(</span><span class='id identifier rubyid_connect_timeout'>connect_timeout</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_parse_connect_timeout'>parse_connect_timeout</span><span class='lparen'>(</span><span class='id identifier rubyid_connect_timeout'>connect_timeout</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_define_endpoint_method'>define_endpoint_method</span><span class='lparen'>(</span><span class='id identifier rubyid_endpoint_name'>endpoint_name</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='ivar'>@endpoint_methods_defined</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_endpoint_name'>endpoint_name</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span><span class='lparen'>(</span><span class='id identifier rubyid_endpoint_name'>endpoint_name</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='op'>**</span><span class='id identifier rubyid_params'>params</span><span class='op'>|</span>
+    <span class='ivar'>@endpoint_methods_defined</span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='id identifier rubyid_endpoint_name'>endpoint_name</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_request'>request</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Request.html" title="TwelvedataRuby::Request (class)">Request</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Request.html#initialize-instance_method" title="TwelvedataRuby::Request#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_endpoint_name'>endpoint_name</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='id identifier rubyid_request'>request</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1252,7 +1656,7 @@
       <div class="method_details ">
   <h3 class="signature " id="fetch-instance_method">
   
-    #<strong>fetch</strong>(request)  &#x21d2; <tt>NilClass</tt>, ... 
+    #<strong>fetch</strong>(request)  &#x21d2; <tt><span class='object_link'><a href="Response.html" title="TwelvedataRuby::Response (class)">Response</a></span></tt>, ... 
   
 
   
@@ -1260,7 +1664,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
+    <p>Fetch data from an API endpoint</p>
+
 
   </div>
 </div>
@@ -1278,8 +1683,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>built API request object that holds the endpoint payload</p>
+        <div class='inline'><p>Request object to send</p>
 </div>
       
     </li>
@@ -1292,55 +1696,12 @@
     <li>
       
       
-        <span class='type'>(<tt>NilClass</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="Response.html" title="TwelvedataRuby::Response (class)">Response</a></span></tt>, <tt>Hash</tt>, <tt><span class='object_link'><a href="ResponseError.html" title="TwelvedataRuby::ResponseError (class)">ResponseError</a></span></tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p><code>nil</code> if @param <code>request</code> is not truthy</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Hash</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>:errors if the request is not valid will hold the  endpoint errors details @see Endpoint#errors</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="Response.html" title="TwelvedataRuby::Response (class)">Response</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>if <code>request</code> is valid and received an actual response from the API server. The response object&#39;s #error may or may not return a kind of ResponseError @see Response#error</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="ResponseError.html" title="TwelvedataRuby::ResponseError (class)">ResponseError</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>if the response received did not come from the API server itself.</p>
+        <div class='inline'><p>Response or error information</p>
 </div>
       
     </li>
@@ -1353,19 +1714,155 @@
       <pre class="lines">
 
 
-97
-98
-99
-100
-101</pre>
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 97</span>
+      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 121</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='id identifier rubyid_request'>request</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>unless</span> <span class='id identifier rubyid_request'>request</span>
 
-  <span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_valid?'>valid?</span> <span class='op'>?</span> <span class='const'><span class='object_link'><a href="Response.html" title="TwelvedataRuby::Response (class)">Response</a></span></span><span class='period'>.</span><span class='id identifier rubyid_resolve'><span class='object_link'><a href="Response.html#resolve-class_method" title="TwelvedataRuby::Response.resolve (method)">resolve</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='id identifier rubyid_request'>request</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_request'>request</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='lbrace'>{</span><span class='label'>errors:</span> <span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_errors'>errors</span><span class='rbrace'>}</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_valid?'>valid?</span>
+    <span class='id identifier rubyid_http_response'>http_response</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='id identifier rubyid_request'>request</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>HTTPX</span><span class='op'>::</span><span class='const'>Error</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>HTTP request failed</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_http_response'>http_response</span><span class='period'>.</span><span class='id identifier rubyid_error'>error</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_http_response'>http_response</span><span class='period'>.</span><span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+
+    <span class='const'><span class='object_link'><a href="Response.html" title="TwelvedataRuby::Response (class)">Response</a></span></span><span class='period'>.</span><span class='id identifier rubyid_resolve'><span class='object_link'><a href="Response.html#resolve-class_method" title="TwelvedataRuby::Response.resolve (method)">resolve</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_http_response'>http_response</span><span class='comma'>,</span> <span class='id identifier rubyid_request'>request</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='lbrace'>{</span> <span class='label'>errors:</span> <span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_errors'>errors</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+<span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+  <span class='id identifier rubyid_handle_fetch_error'>handle_fetch_error</span><span class='lparen'>(</span><span class='id identifier rubyid_e'>e</span><span class='comma'>,</span> <span class='id identifier rubyid_request'>request</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="handle_fetch_error-instance_method">
+  
+    #<strong>handle_fetch_error</strong>(error, request)  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 171</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_handle_fetch_error'>handle_fetch_error</span><span class='lparen'>(</span><span class='id identifier rubyid_error'>error</span><span class='comma'>,</span> <span class='id identifier rubyid_request'>request</span><span class='rparen'>)</span>
+  <span class='kw'>case</span> <span class='id identifier rubyid_error'>error</span>
+  <span class='kw'>when</span> <span class='const'>HTTPX</span><span class='op'>::</span><span class='const'>Error</span>
+    <span class='const'><span class='object_link'><a href="NetworkError.html" title="TwelvedataRuby::NetworkError (class)">NetworkError</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Error.html#initialize-instance_method" title="TwelvedataRuby::Error#initialize (method)">new</a></span></span><span class='lparen'>(</span>
+      <span class='label'>message:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Network error occurred: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_error'>error</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+      <span class='label'>original_error:</span> <span class='id identifier rubyid_error'>error</span><span class='comma'>,</span>
+    <span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='const'><span class='object_link'><a href="ResponseError.html" title="TwelvedataRuby::ResponseError (class)">ResponseError</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="ResponseError.html#initialize-instance_method" title="TwelvedataRuby::ResponseError#initialize (method)">new</a></span></span><span class='lparen'>(</span>
+      <span class='label'>message:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Unexpected error: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_error'>error</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+      <span class='label'>request:</span> <span class='id identifier rubyid_request'>request</span><span class='comma'>,</span>
+      <span class='label'>original_error:</span> <span class='id identifier rubyid_error'>error</span><span class='comma'>,</span>
+    <span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="parse_timeout-instance_method">
+  
+    #<strong>parse_timeout</strong>(value)  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+167
+168
+169</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 167</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_parse_timeout'>parse_timeout</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="Utils.html" title="TwelvedataRuby::Utils (module)">Utils</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_integer'><span class='object_link'><a href="Utils.html#to_integer-class_method" title="TwelvedataRuby::Utils.to_integer (method)">to_integer</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#DEFAULT_CONNECT_TIMEOUT-constant" title="TwelvedataRuby::Client::DEFAULT_CONNECT_TIMEOUT (constant)">DEFAULT_CONNECT_TIMEOUT</a></span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="reset_configuration-instance_method">
+  
+    #<strong>reset_configuration</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+161
+162
+163
+164
+165</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 161</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_reset_configuration'>reset_configuration</span>
+  <span class='ivar'>@configuration</span> <span class='op'>=</span> <span class='lbrace'>{</span>
+    <span class='label'>connect_timeout:</span> <span class='const'><span class='object_link'><a href="#DEFAULT_CONNECT_TIMEOUT-constant" title="TwelvedataRuby::Client::DEFAULT_CONNECT_TIMEOUT (constant)">DEFAULT_CONNECT_TIMEOUT</a></span></span><span class='comma'>,</span>
+  <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1375,7 +1872,7 @@
       <div class="method_details ">
   <h3 class="signature " id="respond_to_missing?-instance_method">
   
-    #<strong>respond_to_missing?</strong>(endpoint_name, _include_all = false)  &#x21d2; <tt>Boolean</tt> 
+    #<strong>respond_to_missing?</strong>(endpoint_name, include_all = false)  &#x21d2; <tt>Boolean</tt> 
   
 
   
@@ -1383,12 +1880,49 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
+    <p>Check if client responds to endpoint methods</p>
+
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>endpoint_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Method name to check</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>include_all</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Include private methods in check</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1399,6 +1933,10 @@
       
       
       
+        &mdash;
+        <div class='inline'><p>True if client responds to the method</p>
+</div>
+      
     </li>
   
 </ul>
@@ -1409,19 +1947,15 @@
       <pre class="lines">
 
 
-122
-123
-124
-125
-126</pre>
+155
+156
+157</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 122</span>
+      <pre class="code"><span class="info file"># File 'lib/twelvedata_ruby/client.rb', line 155</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_respond_to_missing?'>respond_to_missing?</span><span class='lparen'>(</span><span class='id identifier rubyid_endpoint_name'>endpoint_name</span><span class='comma'>,</span> <span class='id identifier rubyid__include_all'>_include_all</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span>
-  <span class='const'><span class='object_link'><a href="Utils.html" title="TwelvedataRuby::Utils (module)">Utils</a></span></span><span class='period'>.</span><span class='id identifier rubyid_return_nil_unless_true'><span class='object_link'><a href="Utils.html#return_nil_unless_true-class_method" title="TwelvedataRuby::Utils.return_nil_unless_true (method)">return_nil_unless_true</a></span></span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Endpoint.html" title="TwelvedataRuby::Endpoint (class)">Endpoint</a></span></span><span class='period'>.</span><span class='id identifier rubyid_valid_name?'><span class='object_link'><a href="Endpoint.html#valid_name%3F-class_method" title="TwelvedataRuby::Endpoint.valid_name? (method)">valid_name?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_endpoint_name'>endpoint_name</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='lbrace'>{</span>
-    <span class='id identifier rubyid_define_endpoint_method'>define_endpoint_method</span><span class='lparen'>(</span><span class='id identifier rubyid_endpoint_name'>endpoint_name</span><span class='rparen'>)</span>
-  <span class='rbrace'>}</span> <span class='op'>||</span> <span class='kw'>super</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_respond_to_missing?'>respond_to_missing?</span><span class='lparen'>(</span><span class='id identifier rubyid_endpoint_name'>endpoint_name</span><span class='comma'>,</span> <span class='id identifier rubyid_include_all'>include_all</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="Endpoint.html" title="TwelvedataRuby::Endpoint (class)">Endpoint</a></span></span><span class='period'>.</span><span class='id identifier rubyid_valid_name?'><span class='object_link'><a href="Endpoint.html#valid_name%3F-class_method" title="TwelvedataRuby::Endpoint.valid_name? (method)">valid_name?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_endpoint_name'>endpoint_name</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='kw'>super</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1433,9 +1967,9 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Jul 16 20:51:25 2021 by
-  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.26 (ruby-3.0.1).
+  Generated on Sun Jul  6 23:38:35 2025 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.37 (ruby-3.4.2).
 </div>
 
     </div>
